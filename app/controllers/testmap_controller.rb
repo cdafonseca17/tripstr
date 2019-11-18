@@ -1,7 +1,6 @@
 class TestmapController < ApplicationController
-class FlatsController < ApplicationController
   def index
-    @testmaps = Testmap.geocoded #returns flats with coordinates
+    @testmaps = Testmap.geocoded #returns activities with coordinates
 
     @markers = @testmaps.map do |testmap|
       {
@@ -10,5 +9,4 @@ class FlatsController < ApplicationController
       }
     end
   end
-end
 end
