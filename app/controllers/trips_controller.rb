@@ -11,6 +11,8 @@ class TripsController < ApplicationController
   # GET /trips/1
   # GET /trips/1.json
   def show
+
+    authorize @trip
     @activities = @trip.activities.geocoded
     @activitymarkers = @activities.map do |activity|
       {
@@ -34,10 +36,12 @@ class TripsController < ApplicationController
   # GET /trips/new
   def new
     @trip = Trip.new
+    authorize @trip
   end
 
   # GET /trips/1/edit
   def edit
+    authorize @trip
   end
 
   # POST /trips
@@ -73,6 +77,7 @@ class TripsController < ApplicationController
   # DELETE /trips/1.json
   def destroy
     @trip.destroy
+    authorize @trip
     respond_to do |format|
       format.html { redirect_to trips_url, notice: 'Trip was successfully destroyed.' }
       format.json { head :no_content }
