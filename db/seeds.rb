@@ -142,8 +142,8 @@ trips.each do |trip|
     name: trip[:name],
     user: User.all.sample,
     start_date: trip[:start_date],
-    end_date: trip[:end_date]
-    # published: trip[:published]
+    end_date: trip[:end_date],
+    published: trip[:published]
   )
 
 
