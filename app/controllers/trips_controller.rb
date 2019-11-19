@@ -11,6 +11,24 @@ class TripsController < ApplicationController
   # GET /trips/1
   # GET /trips/1.json
   def show
+    @activities = @trip.activities.geocoded
+    @activitymarkers = @activities.map do |activity|
+      {
+        lat: activity.latitude,
+        lng: activity.longitude,
+        color: '#a7c9eb' # bluish water
+      }
+    end
+    @steps = @trip.steps.geocoded # returns activities with coordinates
+    @stepmarkers = @steps.map do |step|
+      {
+        lat: step.latitude,
+        lng: step.longitude,
+        color: '#0bb97c' # green from Figma UI
+      }
+    end
+
+    @markers = @activitymarkers + @stepmarkers
   end
 
   # GET /trips/new
@@ -71,4 +89,4 @@ class TripsController < ApplicationController
     def trip_params
       params.permit(:name, :start_date, :end_date)
     end
-end
+  end

@@ -13,7 +13,7 @@ const buildMap = () => {
 
 const addMarkersToMap = (map, markers) => {
   markers.forEach((marker) => {
-    new mapboxgl.Marker()
+    new mapboxgl.Marker( {"color": marker.color} )
       .setLngLat([ marker.lng, marker.lat ])
       .addTo(map);
   });
@@ -34,4 +34,6 @@ const initMapbox = () => {
   }
 };
 
+
 export { initMapbox };
+
