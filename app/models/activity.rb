@@ -9,4 +9,8 @@ class Activity < ApplicationRecord
 
   geocoded_by :address
   after_validation :geocode, if: :will_save_change_to_address?
+
+  # reverse_geocoded_by :coordinates
+  # after_validation :reverse_geocode # auto-fetch address
 end
+

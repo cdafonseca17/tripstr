@@ -1,11 +1,6 @@
 class StepsController < ApplicationController
   def new
-      @steps = Step.geocoded # returns activities with coordinates
-      @markers = @steps.map do |step|
-        {
-          lat: step.latitude,
-          lng: step.longitude
-        }
+
       end
 
     end
