@@ -1,0 +1,32 @@
+.btn-primary {
+  color: white;
+  background-color: #10B97C;
+  border-color: #10B97C;
+  border-radius: 6px;
+  padding-right: 80px;
+  padding-left: 80px;
+}
+
+.btn-primary:hover {
+  color: white;
+  background-color: #10B97C;
+  border-color: #10B97C;
+  opacity: 0.9;
+}
+
+.btn-outline-primary {
+  color: white;
+  border-color: white;
+  border-width: 2px;
+  border-radius: 6px;
+  padding-right: 80px;
+  padding-left: 80px;
+}
+
+.btn-outline-primary:hover {
+  color: #10B97C;
+  border-color: #10B97C;
+  background-color: transparent;
+  opacity: 0.7;
+}
+
