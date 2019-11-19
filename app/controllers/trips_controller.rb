@@ -4,15 +4,8 @@ class TripsController < ApplicationController
   # GET /trips
   # GET /trips.json
   def index
-    @trips = Trip.all# returns activities with coordinates
-    @trips = Trip.geocoded # returns activities with coordinates
-    @markers = @trips.map do |testmap|
-      {
-        lat: testmap.latitude,
-        lng: testmap.longitude
-      }
-    end
-
+    @trips = Trip.all # returns activities with coordinates
+    @trips = policy_scope(Trip).order(created_at: :desc)
   end
 
   # GET /trips/1
@@ -33,6 +26,7 @@ class TripsController < ApplicationController
   # POST /trips.json
   def create
     @trip = Trip.new(trip_params)
+    authorize @trip
     respond_to do |format|
       if @trip.save
         format.html { redirect_to @trip, notice: 'Trip was successfully created.' }
