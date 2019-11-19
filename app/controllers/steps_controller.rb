@@ -1,19 +1,29 @@
 class StepsController < ApplicationController
-  def new
-  end
+  def index
+    @geotrips = Trip.geocoded # returns activities with coordinates
+       @markers = @geotrips.map do |trip|
+        {
+          lat: trip.latitude,
+          lng: trip.longitude
+        }
+      end
+    end
 
-  def create
-  end
+    def new
+    end
 
-  def edit
-  end
+    def create
+    end
 
-  def save
-  end
+    def edit
+    end
 
-  def update
-  end
+    def save
+    end
 
-  def destroy
+    def update
+    end
+
+    def destroy
+    end
   end
-end
