@@ -1,8 +1,9 @@
 class Trip < ApplicationRecord
   belongs_to :user
-  has_many :steps
+  has_many :steps, dependent: :destroy
 
   validates :name, presence: true, length: { maximum: 100 }
   validates :start_date, presence: true
   validates :end_date, presence: true
+
 end
