@@ -44,7 +44,7 @@ trips = [
       location: "Amsterdam",
       longitude: 52.371894,
       latitude: 4.900755,
-      address: "Antoniesbreestraat 3C",
+      address: "Antoniesbreestraat 3C, Amsterdam",
       activities: [
         {
           category: ["Sleep", "See", "Eat", "Drink", "Comment", "Move"].sample,
@@ -89,7 +89,7 @@ trips = [
       location: "Rome",
       longitude: 41.898116,
       latitude: 12.504502,
-      address: "Via Giovanni Giolitti 54",
+      address: "Via Giovanni Giolitti 54, Rome",
       activities: [
         {
           category: ["Sleep", "See", "Eat", "Drink", "Comment", "Move"].sample,
@@ -116,7 +116,7 @@ trips = [
       location: "Firenze",
       longitude: 43.778024,
       latitude: 11.272040,
-      address: "50132 Firenze FI",
+      address: "50132 Firenze, Firenze",
       activities: [
         {
           category: ["Sleep", "See", "Eat", "Drink", "Comment", "Move"].sample,

@@ -10,6 +10,15 @@ class TripsController < ApplicationController
   # GET /trips/1
   # GET /trips/1.json
   def show
+     @steps = Trip.find(params[:id]).steps.geocoded # returns activities with coordinates
+      @markers = @steps.map do |step|
+      {
+        lat: step.latitude,
+        lng: step.longitude
+      }
+    end
+
+
   end
 
   # GET /trips/new
@@ -71,4 +80,4 @@ class TripsController < ApplicationController
     def trip_params
       params.fetch(:trip, {})
     end
-end
+  end
