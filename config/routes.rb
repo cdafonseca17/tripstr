@@ -16,7 +16,8 @@ Rails.application.routes.draw do
   root to: 'pages#home'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
     # resources trips:
-    resources :trips
-    resources :steps, only: [ :new, :create, :edit, :update, :destroy ]
-    resources :activities, only: [ :new, :create, :edit, :update, :destroy ]
+    resources :trips do
+      resources :steps, only: [ :new, :create, :edit, :update, :destroy ]
+      resources :activities, only: [ :new, :create, :edit, :update, :destroy ]
+    end
 end
