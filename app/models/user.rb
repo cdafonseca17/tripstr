@@ -6,6 +6,10 @@ class User < ApplicationRecord
 
   has_many :trips, dependent: :destroy
 
+  # validates :first_name, presence: true
+  # validates :last_name, presence: true
+  # validates :home_city, presence: true
+
   validates :email, presence: true
   validates :first_name, presence: true
   validates :last_name, presence: true

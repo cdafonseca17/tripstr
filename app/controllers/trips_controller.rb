@@ -4,7 +4,8 @@ class TripsController < ApplicationController
   # GET /trips
   # GET /trips.json
   def index
-    @trips = Trip.all# returns activities with coordinates
+    @trips = Trip.all # returns activities with coordinates
+    @trips = policy_scope(Trip).order(created_at: :desc)
   end
 
   # GET /trips/1
@@ -43,7 +44,7 @@ class TripsController < ApplicationController
   # POST /trips.json
   def create
     @trip = Trip.new(trip_params)
-
+    authorize @trip
     respond_to do |format|
       if @trip.save
         format.html { redirect_to @trip, notice: 'Trip was successfully created.' }
@@ -58,13 +59,12 @@ class TripsController < ApplicationController
   # PATCH/PUT /trips/1
   # PATCH/PUT /trips/1.json
   def update
+    raise
     respond_to do |format|
       if @trip.update(trip_params)
-        format.html { redirect_to @trip, notice: 'Trip was successfully updated.' }
-        format.json { render :show, status: :ok, location: @trip }
+
       else
-        format.html { render :edit }
-        format.json { render json: @trip.errors, status: :unprocessable_entity }
+
       end
     end
   end
@@ -87,6 +87,6 @@ class TripsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def trip_params
-      params.fetch(:trip, {})
+      params.permit(:name, :start_date, :end_date)
     end
   end
