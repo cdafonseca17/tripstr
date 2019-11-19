@@ -4,6 +4,7 @@ class TripsController < ApplicationController
   # GET /trips
   # GET /trips.json
   def index
+    @trips = Trip.all# returns activities with coordinates
     @trips = Trip.geocoded # returns activities with coordinates
     @markers = @trips.map do |testmap|
       {
@@ -11,6 +12,7 @@ class TripsController < ApplicationController
         lng: testmap.longitude
       }
     end
+
   end
 
   # GET /trips/1
