@@ -26,7 +26,7 @@ class TripsController < ApplicationController
       {
         lat: step.latitude,
         lng: step.longitude,
-        color: '#0bb97c' # green from Figma UI
+        color: '#0bb97c' # green from our Figma UI
       }
     end
 
@@ -63,7 +63,7 @@ class TripsController < ApplicationController
   # PATCH/PUT /trips/1
   # PATCH/PUT /trips/1.json
   def update
-    raise
+    #raise
     respond_to do |format|
       if @trip.update(trip_params)
 
