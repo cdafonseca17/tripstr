@@ -1,37 +1,34 @@
 
 puts 'creating seeds'
 User.destroy_all
+Trip.destroy_all
+Step.destroy_all
+Activity.destroy_all
 
-
-User.create(
+cdafonseca = User.new(
   username: 'cdafonseca',
   email: 'dafonseca.ca@gmail.com',
   password: '12345678',
+  password_confirmation: '12345678',
   first_name: "Caroline",
   last_name: "Da Fonseca",
   home_city: "Amsterdam"
-  )
+)
 
-User.create(
+cdafonseca.save
+
+rvisser = User.new(
   username: 'rvisser',
   email: 'rvisser@gmail.com',
   password: '12345678',
+  password_confirmation: '12345678',
   first_name: "Richard",
   last_name: "Visser",
   home_city: "Amsterdam"
-  )
+)
 
-# 5.times do
-#   user = User.new(
-#     username: Faker::Internet.username,
-#     email: Faker::Internet.email,
-#     password: Faker::Internet.password(min_length: 8, max_length: 40),
-#     first_name: Faker::Name.first_name,
-#     last_name: Faker::Name.last_name,
-#     home_city: Faker::Address.city,
-#     )
-#   user.save!
-# end
+rvisser.save
+
 
 
 trips = [
@@ -40,39 +37,141 @@ trips = [
   user_id: 1,
   start_date: ["13/07/2019", "15/07/2019", "18/07/2019"].sample,
   end_date: ["24/07/2019", "26/07/2019", "28/07/2019"].sample,
+  published: true,
   steps: [
     {
       nights: [1, 2, 3, 4].sample,
       location: "Amsterdam",
-      longtitude: 45.33333,
-      latitude: 32.2222,
-      address: "test",
+      longitude: 52.371894,
+      latitude: 4.900755,
+      address: "Antoniesbreestraat 3C",
       activities: [
         {
           category: ["Sleep", "See", "Eat", "Drink", "Comment", "Move"].sample,
-          name: "film hallen",
-          longtitude: 45.33333,
-          latitude: 32.2222,
-          address: "test",
-          comment: "Insert nice comment here",
+          name: "Anne Frank Huis",
+          longitude: 52.375454,
+          latitude: 4.884245,
+          address: "Prinsengracht 275",
+          comment: "Lines of people, lines of people everywhere",
           description: "Insert description of activity here"
         },
         {
           category: ["Sleep", "See", "Eat", "Drink", "Comment", "Move"].sample,
-          name: "Bitter ballen",
-          longtitude: 45.33333,
-          latitude: 32.2222,
-          address: "test",
-          comment: "Insert nice comment here",
+          name: "Pulitzer",
+          longitude: 52.372995,
+          latitude: 4.883347,
+          address: "Grachtengordel",
+          comment: "What an amazing experience",
+          description: "Insert description of activity here"
+        },
+        {
+          category: ["Sleep", "See", "Eat", "Drink", "Comment", "Move"].sample,
+          name: "Royal Palace Amsterdam",
+          longitude: 52.373446,
+          latitude: 4.891880,
+          address: "Binnenstad",
+          comment: "What an amazing experience",
           description: "Insert description of activity here"
         }
       ]
     }
   ]
-}]
+},
+{
+  name: "Italy",
+  user_id: 1,
+  start_date: ["13/07/2019", "15/07/2019", "18/07/2019"].sample,
+  end_date: ["24/07/2019", "26/07/2019", "28/07/2019"].sample,
+  published: false,
+  steps: [
+    {
+      nights: [1, 2, 3, 4].sample,
+      location: "Rome",
+      longitude: 41.898116,
+      latitude: 12.504502,
+      address: "Via Giovanni Giolitti 54",
+      activities: [
+        {
+          category: ["Sleep", "See", "Eat", "Drink", "Comment", "Move"].sample,
+          name: "Colosaeo",
+          longitude: 41.890330,
+          latitude: 12.492177,
+          address: "00184 Roma",
+          comment: "What a beauty",
+          description: "Insert description of activity here"
+        },
+        {
+          category: ["Sleep", "See", "Eat", "Drink", "Comment", "Move"].sample,
+          name: "Gelateria La Romana",
+          longitude: 41.908574,
+          latitude: 12.499100,
+          address: "Via Venti Settembre, 60",
+          comment: "Insert nice comment here",
+          description: "Insert description of activity here"
+        }
+      ]
+    },
+    {
+      nights: [1, 2, 3, 4].sample,
+      location: "Firenze",
+      longitude: 43.778024,
+      latitude: 11.272040,
+      address: "50132 Firenze FI",
+      activities: [
+        {
+          category: ["Sleep", "See", "Eat", "Drink", "Comment", "Move"].sample,
+          name: "St Trinity Bridge",
+          longitude: 43.769318,
+          latitude: 11.250419,
+          address: "Ponte Santa Trinita",
+          comment: "What a beauty",
+          description: "Insert description of activity here"
+        }
+      ]
+    }
+  ]
+}
+]
 
 
-puts trips
+
+trips.each do |trip|
+  p "Creating trips"
+
+  newtrip = Trip.create!(
+    name: trip[:name],
+    user: User.all.sample,
+    start_date: trip[:start_date],
+    end_date: trip[:end_date]
+    # published: trip[:published]
+  )
+
+
+  trip[:steps].each do |step|
+    newstep = Step.create!(
+      trip_id: newtrip.id,
+      nights: step[:nights],
+      location: step[:location],
+      longitude: step[:longitude],
+      latitude: step[:latitude],
+      address: step[:address]
+    )
+
+      step[:activities].each do | activity |
+        newactivity = Activity.create!(
+            step_id: newstep.id,
+            category: activity[:category],
+            name: activity[:name],
+            longitude: activity[:longitude],
+            latitude: activity[:latitude],
+            address: activity[:address],
+            comment: "Insert nice comment here",
+            description: "Insert description of activity here",
+        )
+      end
+  end
+
+end
 
 # 5.times do
 #   trip = Trip.new(
@@ -91,7 +190,7 @@ puts trips
 #       trip_id: trip.id,
 #       nights: [1, 2, 3, 4].sample,
 #       location:
-#       longtitude:
+#       longitude:
 #       latitude:
 #       address:
 #     )
@@ -102,7 +201,7 @@ puts trips
 #         activity = Activity.new(
 #           category: ["Sleep", "See", "Eat", "Drink", "Comment", "Move"].sample
 #           name:
-#           longtitude:
+#           longitude:
 #           latitude:
 #           address:
 #           comment: "Insert nice comment here",
