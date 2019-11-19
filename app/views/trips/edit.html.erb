@@ -4,3 +4,10 @@
 
 <%= link_to 'Show', @trip %> |
 <%= link_to 'Back', trips_path %>
+
+<%= simple_form_for [@trip] do |f| %>
+  <%= f.input :name %>
+  <%= f.input :start_date %>
+  <%= f.input :end_date %>
+  <%= f.submit "start", class: "btn btn-primary" %>
+<% end %>
