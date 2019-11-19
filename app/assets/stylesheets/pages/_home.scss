@@ -1,1 +1,10 @@
-// Specific CSS for your home-page
+.banner {
+  background-size: cover;
+  background-position: top;
+  height: 100vh;
+  margin-bottom: 30px;
+  text-align: center;
+  padding-top: 40vh;
+  color: #eee;
+  background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), asset-url('banner-background.jpg');;
+}
