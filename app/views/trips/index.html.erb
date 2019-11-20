@@ -12,9 +12,15 @@
   <tbody>
     <% @trips.each do |trip| %>
       <tr>
+        <% if policy(Trip).show? %>
         <td><%= link_to 'Show', trip %></td>
+        <% end %>
+
         <td><%= link_to 'Edit', edit_trip_path(trip) %></td>
+
+
         <td><%= link_to 'Destroy', trip, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
       </tr>
     <% end %>
   </tbody>

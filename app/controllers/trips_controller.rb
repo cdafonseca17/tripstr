@@ -11,7 +11,6 @@ class TripsController < ApplicationController
   # GET /trips/1
   # GET /trips/1.json
   def show
-
     authorize @trip
     @activities = @trip.activities.geocoded
     @activitymarkers = @activities.map do |activity|
