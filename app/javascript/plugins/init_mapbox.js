@@ -29,9 +29,21 @@ const fitMapToMarkers = (map, markers) => {
 };
 
 const getGoogleApiPlaces = (address) => {
-  console.log('I call gogle');
-  console.log('I wait for JSON to be parse')
-  console.log('I update the forms values');
+  // console.log('I call Google');
+  // console.log('I wait for JSON to be parse')
+  // console.log('I update the forms values');
+
+  fetch(`https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${address}&inputtype=textquery&fields=photos,formatted_address,name,rating,opening_hours,geometry&key='GOOGLE_API_KEY`)
+  .then(response => response.json())
+  .then((data) => {
+    data.Search.forEach((result) => {
+      const movie = `<li class="list-inline-item">
+        <img src="${result.Poster}" alt="">
+        <p>${result.Title}</p>
+      </li>`;
+      results.insertAdjacentHTML("beforeend", movie);
+    });
+  });
 
 
 }
