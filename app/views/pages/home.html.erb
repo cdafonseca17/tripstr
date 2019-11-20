@@ -15,8 +15,17 @@
     </div>
   </div>
   <div class="row justify-content-center p-5">
+    <div class="col-4"></div>
+<%= form_tag trips_path, method: :get do %>
+  <%= text_field_tag :query,
+    params[:query],
+    class: "form-control",
+    placeholder: "Location"
+  %>
+<% end %>
+    <div class="col-4">
         <%= submit_tag "Search", class: "something btn btn-primary btn-block" %>
-
+    </div>
   <div class="row"></div>
 </div>
 
@@ -44,7 +53,7 @@
             <%= step.location %>
             <% end %>
           </div>
-          <img src="http://static8.viadeo-static.com/EYpyny056Med4-bepxcgITuE6ek=/300x300/member/0021qd2yuvxay6fm%3Fts%3D1410279827000" class="card-trip-user avatar-bordered" />
+          <img src="https://media.licdn.com/dms/image/C4E03AQGoXplFFOtXdQ/profile-displayphoto-shrink_800_800/0?e=1579737600&v=beta&t=DIQ4dYohLrYxeelnZSJvN2meZxQ3RiPUXu70duxfMUA" class="card-trip-user avatar-bordered" />
         </div>
       </div>
     </div>

@@ -4,8 +4,16 @@ class TripsController < ApplicationController
   # GET /trips
   # GET /trips.json
   def index
-    @trips = Trip.all # returns activities with coordinates
     @trips = policy_scope(Trip).order(created_at: :desc)
+    if params[:query].present?
+      sql_query = " \
+        trips.name ILIKE :query \
+        OR steps.location ILIKE :query \
+      "
+      @trips = Trip.joins(:steps).where(sql_query, query: "%#{params[:query]}%")
+    else
+      @trips = Trip.all
+    end
   end
 
   # GET /trips/1
