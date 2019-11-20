@@ -28,14 +28,39 @@ const fitMapToMarkers = (map, markers) => {
   map.fitBounds(bounds, { padding: 70, maxZoom: 15 });
 };
 
-const initGeocoderInput = (map) => {
+const getGoogleApiPlaces = (address) => {
+  console.log('I call gogle');
+  console.log('I wait for JSON to be parse')
+  console.log('I update the forms values');
 
+
+}
+
+const getValue = (e) => {
+  if(e.keyCode == 13) {
+    var elem = e.srcElement || e.target;
+    const address = elem.value;
+    getGoogleApiPlaces(address)
+  }
+}
+
+const initGeocoderInput = (map) => {
+  const el = document.getElementById('geocoder');
   var geocoder = new MapboxGeocoder({
       accessToken: mapboxgl.accessToken,
       mapboxgl: mapboxgl
   });
-  document.getElementById('geocoder').appendChild(geocoder.onAdd(map));
+  el.appendChild(geocoder.onAdd(map));
+
+  const value = el.addEventListener('keypress', getValue);
+
+  // geocoder.on('results', function(results) {
+  //    console.log(results);
+  // })
+
 };
+
+
 
 const initMapbox = () => {
   if (mapElement) {
