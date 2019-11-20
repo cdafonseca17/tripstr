@@ -17,7 +17,9 @@ class TripsController < ApplicationController
       {
         lat: activity.latitude,
         lng: activity.longitude,
-        color: '#a7c9eb' # bluish water
+        color: '#a7c9eb', # blue ass water
+        infoWindow: render_to_string(partial: "activity_info", locals: { activity: activity })
+        #image_url: helpers.asset_url('REPLACE_THIS_WITH_YOUR_IMAGE_IN_ASSETS')
       }
     end
     @steps = @trip.steps.geocoded # returns activities with coordinates
@@ -25,7 +27,9 @@ class TripsController < ApplicationController
       {
         lat: step.latitude,
         lng: step.longitude,
-        color: '#0bb97c' # green from our Figma UI
+        color: '#0bb97c', # green from our Figma UI
+        infoWindow: render_to_string(partial: "step_info", locals: { step: step })
+        #image_url: helpers.asset_url('REPLACE_THIS_WITH_YOUR_IMAGE_IN_ASSETS')
       }
     end
 

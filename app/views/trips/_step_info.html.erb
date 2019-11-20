@@ -1,0 +1,6 @@
+<% @steps = @trip.steps %>
+<% step_index = @steps.map { |step| step }.index(step) + 1 %>
+<h3><%= step_index%>. <%= step.location %></h3>
+<p>link_to the step</p>
+
+
