@@ -10,6 +10,9 @@
 
 
  <h2>Map</h2>
+<div id='geocoder' class='geocoder'></div>
+
+
 <div
   id="map"
 
@@ -17,4 +20,4 @@
   data-markers="<%= @markers.to_json %>"
   data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
 ></div>
-</div>x
+</div>

@@ -6,7 +6,8 @@ class TripPolicy < ApplicationPolicy
   end
 
   def create?
-    record.user == user
+    # record.user == user
+    return true
   end
 
   def show?
@@ -14,14 +15,17 @@ class TripPolicy < ApplicationPolicy
   end
 
   def edit?
-    record.user == user
+    return true
+    # record.user == user
   end
 
   def destroy?
-    record.user == user
+    return true
+    # record.user == user
   end
 
   def new?
     return true
+    # record.user == user
   end
 end
