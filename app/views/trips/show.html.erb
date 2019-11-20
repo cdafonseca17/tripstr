@@ -1,14 +1,20 @@
 <p id="notice"><%= notice %></p>
-<h1>Trip #<%=Trip.find(params[:id]).id%></h1>
+<!-- <h1>Trip #<%=Trip.find(params[:id]).id%></h1> -->
 <%= link_to 'Edit', edit_trip_path(@trip) %> |
 <%= link_to 'Back', trips_path %>
+
+<div class='container' name= 'page container'>
+  <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://cdn2.coachmag.co.uk/sites/coachmag/files/styles/16x9_746/public/2016/10/powerlifting.jpg?itok=mIcR1ESq&timestamp=1476292351)">
+     <h2> <%= @trip.name %> </h2>
+    </div>
 
 
  <h2>Map</h2>
 <div
   id="map"
-  style="width: 100%;
-  height: 600px;"
+
+
   data-markers="<%= @markers.to_json %>"
   data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
 ></div>
+</div>x
