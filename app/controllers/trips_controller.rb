@@ -11,7 +11,6 @@ class TripsController < ApplicationController
   # GET /trips/1
   # GET /trips/1.json
   def show
-
     authorize @trip
     @activities = @trip.activities.geocoded
     @activitymarkers = @activities.map do |activity|
@@ -48,7 +47,7 @@ class TripsController < ApplicationController
   # POST /trips.json
   def create
     @trip = Trip.new(trip_params)
-    # authorize @trip
+    authorize @trip
     respond_to do |format|
       if @trip.save
         format.html { redirect_to @trip, notice: 'Trip was successfully created.' }
