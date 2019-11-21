@@ -7,6 +7,9 @@ class ActivitiesController < ApplicationController
     @activity.category = params["activity"]["category"]
     @activity.name = params["activity"]["name"]
     @activity.comment = params["activity"]["comment"]
+    @step = Step.find(@activity.step_id)
+    @activities = @step.activities
+    # @activity.position = @activities.map {|activity| activity.position}.sort.last + 1
     # @step = Step.find(1)
     # @activity = Activity.new(activity_params)
     # @activity.step_id = @step
