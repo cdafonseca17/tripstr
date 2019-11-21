@@ -65,7 +65,7 @@
             <% end %>
           </div>
           <div>
-          <%=(trip.end_date - trip.start_date).to_i%> days
+          <%=trip.end_date.to_i - trip.start_date.to_i%> days
           </div>
           <img src="https://media.licdn.com/dms/image/C4E03AQGoXplFFOtXdQ/profile-displayphoto-shrink_800_800/0?e=1579737600&v=beta&t=DIQ4dYohLrYxeelnZSJvN2meZxQ3RiPUXu70duxfMUA" class="card-trip-user avatar-bordered" />
         </div>
