@@ -18,8 +18,10 @@ Rails.application.routes.draw do
     # resources trips:
     resources :users, only: [ :show ]
     resources :trips do
-      resources :steps, only: [ :new, :create, :edit, :update, :destroy ]
-      resources :activities, only: [ :new, :create, :edit, :update, :destroy ]
+      resources :steps, only: [ :new, :create, :edit, :update, :destroy ] do
+        resources :activities, only: [ :new, :create, :edit, :update, :destroy ]
+      end
     end
     get "profile", to: "profile#index"
+    get '/mytrips', to: 'pages#mytrips'
 end

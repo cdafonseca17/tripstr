@@ -1,0 +1,7 @@
+<%= simple_form_for [@trip] do |f| %>
+  <%= f.input :name %>
+  <%= f.input :start_date %>
+  <%= f.input :end_date %>
+  <%#= f.input :photo %>
+  <%= f.submit "save", class: "btn btn-primary" %>
+<% end %>

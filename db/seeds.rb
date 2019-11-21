@@ -45,6 +45,7 @@ trips = [
       longitude: 52.371894,
       latitude: 4.900755,
       address: "Amsterdam, The Netherlands",
+      position: 1,
       activities: [
         {
           category: ["Sleep", "See", "Eat", "Drink", "Comment", "Move"].sample,
@@ -53,7 +54,8 @@ trips = [
           latitude: 4.884245,
           address: "Westermarkt 20, Amsterdam",
           comment: "Lines of people, lines of people everywhere",
-          description: "Insert description of activity here"
+          description: "Insert description of activity here",
+          position: 1
         },
         {
           category: ["Sleep", "See", "Eat", "Drink", "Comment", "Move"].sample,
@@ -62,7 +64,8 @@ trips = [
           latitude: 4.883347,
           address: 'Eerste van der Helststraat 70, 1072 NZ Amsterdam',
           comment: "What an amazing experience",
-          description: "Insert description of activity here"
+          description: "Insert description of activity here",
+          position: 2
         },
         {
           category: ["Sleep", "See", "Eat", "Drink", "Comment", "Move"].sample,
@@ -71,7 +74,8 @@ trips = [
           latitude: 4.891880,
           address: "Nieuwezijds Voorburgwal 147, 1012 RJ Amsterdam",
           comment: "What an amazing experience",
-          description: "Insert description of activity here"
+          description: "Insert description of activity here",
+          position: 3
         }
       ]
     }
@@ -90,6 +94,7 @@ trips = [
       longitude: 41.898116,
       latitude: 12.504502,
       address: "Rome, Italy",
+      position: 1,
       activities: [
         {
           category: ["Sleep", "See", "Eat", "Drink", "Comment", "Move"].sample,
@@ -98,7 +103,8 @@ trips = [
           latitude: 12.492177,
           address: "Piazza del Colosseo, 1, 00184 Rome",
           comment: "What a beauty",
-          description: "Insert description of activity here"
+          description: "Insert description of activity here",
+          position: 1
         },
         {
           category: ["Sleep", "See", "Eat", "Drink", "Comment", "Move"].sample,
@@ -107,7 +113,8 @@ trips = [
           latitude: 12.499100,
           address: "Via Cola di Rienzo, 2, 00193 Roma RM, Italy",
           comment: "Insert nice comment here",
-          description: "Insert description of activity here"
+          description: "Insert description of activity here",
+          position: 2
         }
       ]
     },
@@ -117,6 +124,7 @@ trips = [
       longitude: 43.778024,
       latitude: 11.272040,
       address: "Florence, Italy",
+      position: 2,
       activities: [
         {
           category: ["Sleep", "See", "Eat", "Drink", "Comment", "Move"].sample,
@@ -125,7 +133,8 @@ trips = [
           latitude: 11.250419,
           address: "Ponte Santa Trinita",
           comment: "What a beauty",
-          description: "Ponte Santa Trinita, 50100 Firenze FI, Italy"
+          description: "Ponte Santa Trinita, 50100 Firenze FI, Italy",
+          position: 1
         }
       ]
     }
@@ -154,7 +163,8 @@ trips.each do |trip|
       location: step[:location],
       longitude: step[:longitude],
       latitude: step[:latitude],
-      address: step[:address]
+      address: step[:address],
+      position: step[:position]
     )
 
       step[:activities].each do | activity |
@@ -165,8 +175,9 @@ trips.each do |trip|
             longitude: activity[:longitude],
             latitude: activity[:latitude],
             address: activity[:address],
+            position: activity[:position],
             comment: "Insert nice comment here",
-            description: "Insert description of activity here",
+            description: "Insert description of activity here"
         )
       end
   end
