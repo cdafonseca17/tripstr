@@ -1,6 +1,7 @@
 class Step < ApplicationRecord
   belongs_to :trip
-  has_many :activities, dependent: :destroy
+  has_many :activities, -> { order(position: :asc) }, dependent: :destroy
+  acts_as_list scope: :trip
 
   # validates :nights, presence: true
   # validates :location, presence: true

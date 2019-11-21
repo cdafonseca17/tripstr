@@ -7,6 +7,7 @@ class StepsController < ApplicationController
       @step.trip_id = params["trip_id"].to_i
       @trip = Trip.find(@step.trip_id)
       @steps = @trip.steps
+      # @step.position = @steps.map {|step| step.position}.sort.last + 1
       @activity = Activity.new
       if @step.save
         redirect_to edit_trip_path(@trip)

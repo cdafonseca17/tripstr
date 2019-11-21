@@ -163,7 +163,8 @@ trips.each do |trip|
       location: step[:location],
       longitude: step[:longitude],
       latitude: step[:latitude],
-      address: step[:address]
+      address: step[:address],
+      position: step[:position]
     )
 
       step[:activities].each do | activity |
@@ -174,8 +175,9 @@ trips.each do |trip|
             longitude: activity[:longitude],
             latitude: activity[:latitude],
             address: activity[:address],
+            position: activity[:position],
             comment: "Insert nice comment here",
-            description: "Insert description of activity here",
+            description: "Insert description of activity here"
         )
       end
   end
