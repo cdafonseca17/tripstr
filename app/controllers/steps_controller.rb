@@ -23,15 +23,24 @@ class StepsController < ApplicationController
     end
 
     def edit
-    end
-
-    def save
+      @trip = Trip.find(params["trip_id"])
+      @step = Step.find(params[:id])
     end
 
     def update
+      @step = Step.find(params[:id])
+      @trip = Trip.find(params["trip_id"].to_i)
+      @step.update(step_params)
+      #@step = Step.new(step_params)
+      redirect_to edit_trip_path(@trip)
+
     end
 
     def destroy
+      @step = Step.find(params[:id])
+      @trip = Trip.find(params["trip_id"].to_i)
+      @step.destroy
+      redirect_to edit_trip_path(@trip)
     end
 
     private

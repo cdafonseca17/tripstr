@@ -1,4 +1,5 @@
 <%= simple_form_for [trip, step, activity] do |f| %>
+  <%= f.hidden_field :category, value: "Comment" %>
   <%= f.input :comment, placeholder: "Comment/Tips" %>
-  <%= f.submit "add", class: "btn btn-primary" %>
+  <%= f.submit "save", class: "btn btn-primary" %>
 <% end %>

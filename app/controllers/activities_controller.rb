@@ -4,7 +4,8 @@ class ActivitiesController < ApplicationController
     @activity = Activity.new(activity_params)
     @trip = params["trip_id"].to_i
     @activity.step_id = params["step_id"].to_i
-    @activity.category = "comment"
+    @activity.category = params["activity"]["category"]
+    @activity.name = params["activity"]["name"]
     @activity.comment = params["activity"]["comment"]
     # @step = Step.find(1)
     # @activity = Activity.new(activity_params)
@@ -18,35 +19,29 @@ class ActivitiesController < ApplicationController
     # end
   end
 
-  private
-    def activity_params
-      params["activity"].permit(:comment)
-    end
-
+  def edit
+    @trip = Trip.find(params["trip_id"])
+    @step = Step.find(params["step_id"])
+    @activity = Activity.find(params[:id])
   end
 
+  def update
+    @activity = Activity.find(params[:id])
+    @trip = Trip.find(params["trip_id"].to_i)
+    @activity.update(activity_params)
+    redirect_to edit_trip_path(@trip)
+  end
 
+  def destroy
+    @step = Step.find(params["step_id"].to_i)
+    @activity = Activity.find(params[:id])
+    @trip = Trip.find(params["trip_id"].to_i)
+    @activity.destroy
+    redirect_to edit_trip_path(@trip)
+  end
 
-
-
-
-
-
-
-
-
-
-
-
-#   def edit
-#   end
-
-#   def update
-#   end
-
-#   def save
-#   end
-
-#   def destroy
-#   end
-# end
+  private
+    def activity_params
+      params["activity"].permit(:comment, :name)
+    end
+  end

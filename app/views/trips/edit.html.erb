@@ -1,85 +1,104 @@
+
+<%= link_to 'Show', @trip %> |
+<%= link_to 'Back', trips_path %>
+
+<!-- Trip banner -->
 <div class="d-flex justify-content-between">
   <div>
-  <h2><%= @trip.name %></h2>
-  <h4><%= @trip.start_date %></h4>
-  <h4><%= @trip.end_date %></h4>
+    <%= render 'trips/partials/tripinfo', trip: @trip %>
   </div>
-  <!-- Button trigger modal -->
   <div>
-    <button type="button" data-toggle="modal" data-target="#tripModal">
-      Edit trip settings
-    </button>
+    <%= render 'trips/partials/tripedit', trip: @trip %>
   </div>
 </div>
 
-<% @steps.map do |step| %>
-  <div>
-
-    <div class="d-flex justify-content-between">
-      <h3><%= step.location %> (<%= step.nights %> nights)</h3>
-      <div>
-        Edit
-        Delete
-      </div>
-    </div>
-
+<!-- Each step of the trip -->
+<% @steps.each_with_index do |step, index| %>
+  <div id="step-<%= step.id %>" class="d-flex">
+    <%= render 'steps/partials/stepinfo', trip: @trip, step: step, index: index %>
     <div>
-      <a class="btn btn-primary" data-toggle="collapse" href="#collapseComment" role="button" aria-expanded="false" aria-controls="collapseComment">
+      <%= render 'steps/partials/stepedit', trip: @trip, step: step, index: index %>
+      <%= render 'steps/partials/stepdelete', trip: @trip, step: step, index: index %>
+    </div>
+  </div>
+
+  <!-- Each activity of a specific step -->
+  <% step.activities.map do |activity| %>
+    <div class="d-flex">
+      <div class="activity-info">
+        <%= render 'activities/partials/activityinfo', trip: @trip, step: step, activity: activity %>
+      </div>
+      <div>
+        <%= render 'activities/partials/activityedit', trip: @trip, step: step, activity: activity %>
+        <%= render 'activities/partials/activitydelete', trip: @trip, step: step, activity: activity %>
+      </div>
+   </div>
+  <% end %>
+
+  <div id="activitytypes-<%= step.id %>">
+    <%= render 'activities/partials/activityadd', trip: @trip, step: step, activity: @activity %>
+  </div>
+<% end %>
+
+<div>
+  <%= render 'steps/partials/form', trip: @trip, step: @step %>
+</div>
+
+<!-- ["Sleep", "See", "Eat", "Drink", "Comment", "Move"] -->
+<!-- Modal for Editing Trip-->
+<!-- <div id="activity-form-<%#= activity.id %>"></div> -->
+
+
+ <!-- <div>
+          <%#= link_to "Edit", edit_trip_step_activity_path(@trip, step, activity), remote: true %>
+        </div> -->
+<!--
+        <div>
+          <%#= link_to "Edit", edit_trip_step_path(@trip, step), remote: true %>
+        </div> -->
+<!-- Comment Move Sleep See Eat Drink -->
+      <!-- if click on activity.category == "comment" -->
+
+<!-- <a class="btn btn-primary" data-toggle="collapse" href="#collapseComment" role="button" aria-expanded="false" aria-controls="collapseComment">
           Comment </a>
       <a class="btn btn-primary" data-toggle="collapse" href="#collapseSleep" role="button" aria-expanded="false" aria-controls="collapseSleep">
           Sleep </a>
       <div class="collapse" id="collapseComment">
         <div class="card card-body">
-          <%= render 'activities/formcomment', trip: @trip, step: step, activity: @activity %>
+          <%#= render 'activities/partials/formcomment', trip: @trip, step: step, activity: @activity %>
         </div>
       </div>
       <div class="collapse" id="collapseComment">
         <div class="card card-body">
-          <%= render 'activities/formsleep', trip: @trip, step: step, activity: @activity %>
+          <%#= render 'activities/partials/formsleep', trip: @trip, step: step, activity: @activity %>
         </div>
       </div>
-    </div>
+    </div> -->
 
-    <% step.activities.map do |activity| %>
-      <div>
-        <%= activity.name %>
-        <%= activity.category %>
-        <%= activity.comment %>
-        <%#= activity.photo %>
-      </div>
-    <% end %>
-  </div>
-<% end %>
+<!--
+<script>
+  document.getElementById("multiCollapseComment").addEventListener("click", (event) => {
+    event.preventDefault();
+    console.log(event);
+    // @activity.category = "Comment";
+  })
 
-<div>
-  <%= render 'steps/form', trip: @trip, step: @step %>
-</div>
+  document.getElementById("multiCollapseSleep").addEventListener("click", (event) => {
+    event.preventDefault();
+    console.log(event);
+    // @activity.category = "Sleep";
+  })
+</script> -->
+
+<!-- <script>
+  var $accordion = $('#accordion');
+  $accordion.on('show.bs.collapse','.collapse', function() {
+  $accordion.find('.collapse.show').collapse('hide');
+  });
+</script> -->
 
 <!-- if click on activity.category == "comment" -->
 <!-- if click on activity.category == "sleep" -->
-  <%#= render 'activities/formsleep', trip: @trip, step: @step %>
-<!-- ["Sleep", "See", "Eat", "Drink", "Comment", "Move"] -->
-<!-- Modal -->
-<div class="modal fade" id="tripModal" tabindex="-1" role="dialog" aria-labelledby="tripModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="tripModalLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <%= render 'trips/form', trip: @trip %>
-      </div>
-    </div>
-  </div>
-</div>
+  <%#= render 'activities/partials/formsleep', trip: @trip, step: @step %>
 
-<!-- Comment Move Sleep See Eat Drink -->
-      <!-- if click on activity.category == "comment" -->
-
-<%= link_to 'Show', @trip %> |
-<%= link_to 'Back', trips_path %>
-
-
+<!--  <%#= render 'steps/partials/form', trip: @trip, step: step %> -->

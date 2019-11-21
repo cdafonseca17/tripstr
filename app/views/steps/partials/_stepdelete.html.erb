@@ -1,0 +1,4 @@
+<%= link_to ('<i class="far fa-trash-alt"></i>').html_safe, trip_step_path(@trip, step),
+      method: :delete,
+      class: 'btn btn-link',
+      data: { confirm: "Are you sure?" } %>
