@@ -22,4 +22,5 @@ Rails.application.routes.draw do
       resources :activities, only: [ :new, :create, :edit, :update, :destroy ]
     end
     get "profile", to: "profile#index"
+    get '/mytrips', to: 'pages#mytrips'
 end
