@@ -32,16 +32,20 @@ const getGoogleApiPlaces = (address) => {
   // console.log('I call Google');
   // console.log('I wait for JSON to be parse')
   // console.log('I update the forms values');
+  var proxyUrl = 'https://cors-anywhere.herokuapp.com/',
+      targetUrl = `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${address}&inputtype=textquery&fields=photos,formatted_address,name,rating,opening_hours,geometry&key='GOOGLE_API_KEY`
 
-  fetch(`https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${address}&inputtype=textquery&fields=photos,formatted_address,name,rating,opening_hours,geometry&key='GOOGLE_API_KEY`)
-  .then(response => response.json())
-  .then((data) => {
+  // fetch(`https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${address}&inputtype=textquery&fields=photos,formatted_address,name,rating,opening_hours,geometry&key='GOOGLE_API_KEY`)
+  fetch(proxyUrl + targetUrl)
+    .then(response => response.json())
+    .then((data) => {
     data.Search.forEach((result) => {
-      const movie = `<li class="list-inline-item">
-        <img src="${result.Poster}" alt="">
+      const place = `<li class="list-inline-item">
+        <img src="${result.photo}" alt="">
         <p>${result.Title}</p>
-      </li>`;
-      results.insertAdjacentHTML("beforeend", movie);
+        </li>`;
+      results.insertAdjacentHTML("beforeend", place);
+
     });
   });
 

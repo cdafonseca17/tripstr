@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_19_103144) do
+ActiveRecord::Schema.define(version: 2019_11_21_101303) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,12 @@ ActiveRecord::Schema.define(version: 2019_11_19_103144) do
     t.bigint "step_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "photo"
+    t.integer "rating"
+    t.string "url"
+    t.string "icon"
+    t.string "type"
+    t.integer "place_id"
     t.index ["step_id"], name: "index_activities_on_step_id"
   end
 
@@ -43,8 +49,8 @@ ActiveRecord::Schema.define(version: 2019_11_19_103144) do
 
   create_table "trips", force: :cascade do |t|
     t.string "name"
-    t.date "start_date"
-    t.date "end_date"
+    t.string "start_date"
+    t.string "end_date"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
