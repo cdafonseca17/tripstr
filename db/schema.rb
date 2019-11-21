@@ -50,7 +50,7 @@ ActiveRecord::Schema.define(version: 2019_11_21_113140) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "published"
+    t.boolean "published", default: false
     t.index ["user_id"], name: "index_trips_on_user_id"
   end
 
