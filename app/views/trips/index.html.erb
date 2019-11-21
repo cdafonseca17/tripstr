@@ -23,9 +23,18 @@
     placeholder: "Location"
   %>
   </div>
+  <div class="col-4">
+<%= form_tag trips_path, method: :get do %>
+  <%= text_field_tag :trip_days,
+    params[:trip_days],
+    class: "form-control",
+    placeholder: "Approx. How many days?"
+  %>
+  </div>
 <div class="col-4">
         <%= submit_tag "Search", class: "something btn btn-primary btn-block" %>
     </div>
+<% end %>
 <% end %>
 
   <div class="row"></div>
@@ -54,6 +63,9 @@
             <%  trip.steps.each do |step| %>
             <%= step.location %>
             <% end %>
+          </div>
+          <div>
+          <%=(trip.end_date - trip.start_date).to_i%> days
           </div>
           <img src="https://media.licdn.com/dms/image/C4E03AQGoXplFFOtXdQ/profile-displayphoto-shrink_800_800/0?e=1579737600&v=beta&t=DIQ4dYohLrYxeelnZSJvN2meZxQ3RiPUXu70duxfMUA" class="card-trip-user avatar-bordered" />
         </div>

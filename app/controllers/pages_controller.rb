@@ -4,4 +4,7 @@ class PagesController < ApplicationController
   def home
     @trips = Trip.all
   end
+  def trip_days
+      (@trip.end_date - @trip.start_date).to_i
+  end
 end

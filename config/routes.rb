@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   # get 'steps/destroy'
 
   devise_for :users
-  root to: 'pages#home'
+  root to: 'trips#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
     # resources trips:
     resources :users, only: [ :show ]
