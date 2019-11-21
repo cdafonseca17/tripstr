@@ -1,5 +1,6 @@
 class Activity < ApplicationRecord
   belongs_to :step
+  acts_as_list scope: :step
   # validates :name, presence: true
 
   # validates :description, length: { maximum: 500 }

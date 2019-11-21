@@ -49,6 +49,7 @@ class TripsController < ApplicationController
   end
 
   def create
+    raise
     @trip = Trip.new(trip_params)
     @trip.user = current_user
     authorize @trip
@@ -61,6 +62,8 @@ class TripsController < ApplicationController
 
   def edit
     @steps = @trip.steps
+      #.sort_by{|step| step.position}
+      # @list.sort_by{|e| e[:time_ago]}
     @step = Step.new
     @activity = Activity.new
     authorize @trip

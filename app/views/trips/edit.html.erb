@@ -13,12 +13,12 @@
 </div>
 
 <!-- Each step of the trip -->
-<% @steps.each_with_index do |step, index| %>
+<% @steps.each do |step| %>
   <div id="step-<%= step.id %>" class="d-flex">
-    <%= render 'steps/partials/stepinfo', trip: @trip, step: step, index: index %>
+    <%= render 'steps/partials/stepinfo', trip: @trip, step: step %>
     <div>
-      <%= render 'steps/partials/stepedit', trip: @trip, step: step, index: index %>
-      <%= render 'steps/partials/stepdelete', trip: @trip, step: step, index: index %>
+      <%= render 'steps/partials/stepedit', trip: @trip, step: step %>
+      <%= render 'steps/partials/stepdelete', trip: @trip, step: step %>
     </div>
   </div>
 
