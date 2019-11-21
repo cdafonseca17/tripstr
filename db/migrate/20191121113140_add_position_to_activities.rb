@@ -3,4 +3,3 @@ class AddPositionToActivities < ActiveRecord::Migration[5.2]
     add_column :activities, :position, :integer
   end
 end
-
