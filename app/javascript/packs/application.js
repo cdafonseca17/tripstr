@@ -4,4 +4,8 @@ import 'mapbox-gl/dist/mapbox-gl.css'; // <-- you need to uncomment the styleshe
 // internal imports
 import { initMapbox } from '../plugins/init_mapbox';
 
+// searching on mapbox map
+
+import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
+
 initMapbox();
