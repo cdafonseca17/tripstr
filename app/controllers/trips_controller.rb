@@ -19,7 +19,7 @@ class TripsController < ApplicationController
     end
     if params[:trip_days].present?
       @trips = @trips.select { |trip|
-        ((trip_days_param - 3)..(trip_days_param + 3)).to_a.include?((trip.end_date - trip.start_date).to_i) }
+        ((trip_days_param - 3)..(trip_days_param + 3)).to_a.include?(trip.end_date.to_i - trip.start_date.to_i) }
     end
   end
 
@@ -55,7 +55,7 @@ class TripsController < ApplicationController
   end
 
   def create
-    raise
+    # raise
     @trip = Trip.new(trip_params)
     @trip.user = current_user
     authorize @trip
