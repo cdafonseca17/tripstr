@@ -4,6 +4,7 @@ class TripsController < ApplicationController
   # GET /trips
   # GET /trips.json
   def index
+    @trips = Trip.all
     @trips = policy_scope(Trip).order(created_at: :desc)
     if params[:query].present?
       sql_query = " \
@@ -16,8 +17,6 @@ class TripsController < ApplicationController
     end
   end
 
-  # GET /trips/1
-  # GET /trips/1.json
   def show
     authorize @trip
     @activities = @trip.activities.geocoded
@@ -44,48 +43,45 @@ class TripsController < ApplicationController
     @markers = @activitymarkers + @stepmarkers
   end
 
-  # GET /trips/new
   def new
     @trip = Trip.new
     authorize @trip
   end
 
-  # GET /trips/1/edit
+  def create
+    @trip = Trip.new(trip_params)
+    @trip.user = current_user
+    authorize @trip
+    if @trip.save
+      redirect_to edit_trip_path(@trip)
+    else
+      render 'new'
+    end
+  end
+
   def edit
+    @steps = @trip.steps
+    @step = Step.new
+    @activity = Activity.new
     authorize @trip
   end
 
   # POST /trips
   # POST /trips.json
-  def create
-    @trip = Trip.new(trip_params)
-    authorize @trip
-    respond_to do |format|
-      if @trip.save
-        format.html { redirect_to @trip, notice: 'Trip was successfully created.' }
-        format.json { render :show, status: :created, location: @trip }
-      else
-        format.html { render :new }
-        format.json { render json: @trip.errors, status: :unprocessable_entity }
-      end
-    end
-  end
 
   # PATCH/PUT /trips/1
   # PATCH/PUT /trips/1.json
+
   def update
-    #raise
-    respond_to do |format|
-      if @trip.update(trip_params)
-
-      else
-
-      end
+    @step = Step.new
+    @step.trip_id = @trip
+    if @trip.update(trip_params)
+      redirect_to edit_trip_path(@trip)
+    else
+      render :new
     end
   end
 
-  # DELETE /trips/1
-  # DELETE /trips/1.json
   def destroy
     @trip.destroy
     authorize @trip
@@ -96,13 +92,29 @@ class TripsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_trip
       @trip = Trip.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def trip_params
-      params.permit(:name, :start_date, :end_date)
+      params["trip"].permit(:name, :start_date, :end_date)
     end
-  end
+end
+
+    # respond_to do |format|
+    #   if @trip.save
+    #     format.html { redirect_to @trip, notice: 'Trip was successfully created.' }
+    #     format.json { render :show, status: :created, location: @trip }
+    #   else
+    #     format.html { render :new }
+    #     format.json { render json: @trip.errors, status: :unprocessable_entity }
+    #   end
+    # end
+
+
+  # PATCH/PUT /trips/1
+  # PATCH/PUT /trips/1.json
+
+
+  # DELETE /trips/1
+  # DELETE /trips/1.json

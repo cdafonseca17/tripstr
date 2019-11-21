@@ -1,0 +1,6 @@
+<%= simple_form_for [trip, step, activity] do |f| %>
+  <%= f.hidden_field :category, value: "Eat" %>
+  <%= f.input :name, placeholder: "Enter name" %>
+  <%= f.input :comment, placeholder: "Comment/Tips" %>
+  <%= f.submit "save", class: "btn btn-primary" %>
+<% end %>
