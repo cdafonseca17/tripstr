@@ -4,6 +4,14 @@ import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 
 const mapElement = document.getElementById('map');
 
+// const photo = document.getElementById('');
+// const rating = document.getElementById('');
+// const url = document.getElementById('');
+// const icon = document.getElementById('');
+// const type = document.getElementById('');
+// const place_id = document.getElementById('');
+
+
 const buildMap = () => {
   mapboxgl.accessToken = mapElement.dataset.mapboxApiKey;
   return new mapboxgl.Map({
@@ -33,23 +41,39 @@ const getGoogleApiPlaces = (address) => {
   // console.log('I wait for JSON to be parse')
   // console.log('I update the forms values');
   var proxyUrl = 'https://cors-anywhere.herokuapp.com/',
-      targetUrl = `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${address}&inputtype=textquery&fields=photos,formatted_address,name,rating,opening_hours,geometry&key='GOOGLE_API_KEY`
+      targetUrl = `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${address}&inputtype=textquery&fields=photos,formatted_address,name,rating,opening_hours,geometry&key=AIzaSyBI4-a-0aKDJs2qaArqsW1tHjfLg893wkE`,
+      anotherTarget = 'https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=Museum%20of%20Contemporary%20Art%20Australia&inputtype=textquery&fields=place_id,photos,formatted_address,name,icon,rating,opening_hours,geometry&key=AIzaSyBI4-a-0aKDJs2qaArqsW1tHjfLg893wkE';
+
+  // fetch(`https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${address}&inputtype=textquery&fields=photos,formatted_address,name,rating,opening_hours,geometry&key='GOOGLE_API_KEY`)
+  fetch(proxyUrl + anotherTarget)
+    .then(response => response.json())
+    .then((data) => {
+      console.log(data);
+      getDetails(data.candidates[0].place_id)
+      // parse the data obj and get the data taht you need to fill the form values.
+  });
+}
+
+
+const getDetails = (placeId) => {
+  // console.log('I call Google');
+  // console.log('I wait for JSON to be parse')
+  // console.log('I update the forms values');
+  console.log("PLACE ID", placeId)
+  var proxyUrl = 'https://cors-anywhere.herokuapp.com/',
+      targetUrl = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=name,photo,url,type,website,rating,formatted_phone_number&key=AIzaSyBI4-a-0aKDJs2qaArqsW1tHjfLg893wkE`;
 
   // fetch(`https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${address}&inputtype=textquery&fields=photos,formatted_address,name,rating,opening_hours,geometry&key='GOOGLE_API_KEY`)
   fetch(proxyUrl + targetUrl)
     .then(response => response.json())
     .then((data) => {
-    data.Search.forEach((result) => {
-      const place = `<li class="list-inline-item">
-        <img src="${result.photo}" alt="">
-        <p>${result.Title}</p>
-        </li>`;
-      results.insertAdjacentHTML("beforeend", place);
+      console.log(data);
+    }
+  );
+}
 
-    });
-  });
-
-
+const getPhotos = (photo_reference) => {
+  console.log("PHOTO REF", photo_reference)
 }
 
 const getValue = (e) => {
