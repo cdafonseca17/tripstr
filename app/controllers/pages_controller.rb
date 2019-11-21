@@ -5,6 +5,10 @@ class PagesController < ApplicationController
     @trips = Trip.all
   end
 
+  def trip_days
+      (@trip.end_date - @trip.start_date).to_i
+  end
+
   def mytrips
     @trips = Trip.where(user: current_user)
   end
