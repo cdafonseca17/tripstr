@@ -30,3 +30,33 @@
   opacity: 0.7;
 }
 
+.btn-outline-green-primary {
+  color: #10B97C;
+  border-color: #10B97C;
+  border-width: 2px;
+  border-radius: 6px;
+  padding-right: 80px;
+  padding-left: 80px;
+}
+.btn-outline-green-primary:hover {
+  color: #10B97C;
+  border-color: #10B97C;
+  background-color: transparent;
+  opacity: 0.7;
+}
+
+.btn-secondary {
+  color: white;
+  background-color: #ABAAAA;
+  border-color: #ABAAAA;
+  border-radius: 6px;
+  padding-right: 80px;
+  padding-left: 80px;
+}
+
+.btn-secondary:hover {
+  color: white;
+  background-color: #ABAAAA;
+  border-color: #ABAAAA;
+  opacity: 0.9;
+}
