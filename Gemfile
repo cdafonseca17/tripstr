@@ -17,6 +17,7 @@ gem 'faker'
 gem 'devise'
 gem 'geocoder'
 gem 'pundit'
+gem 'acts_as_list'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
