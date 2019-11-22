@@ -1,0 +1,53 @@
+<i class="fas fa-plus-circle icon" style="padding-right: 10px">  </i>
+<a href="" data-toggle="collapse" data-target="#multiCollapseSee-<%= step.id %>" role="button" aria-expanded="false" aria-controls="multiCollapseSee-<%= step.id %>"><i class="far fa-eye icon-button"></i></a>
+<a href="" data-toggle="collapse" data-target="#multiCollapseEat-<%= step.id %>" role="button" aria-expanded="false" aria-controls="multiCollapseEat-<%= step.id %>"><i class="fas fa-utensils icon-button" style="padding: 5px 7px"></i></a>
+<a href="" data-toggle="collapse" data-target="#multiCollapseDrink-<%= step.id %>" role="button" aria-expanded="false" aria-controls="multiCollapseDrink-<%= step.id %>"><i class="fas fa-cocktail icon-button"></i></a>
+<a href="" data-toggle="collapse" data-target="#multiCollapseSleep-<%= step.id %>" role="button" aria-expanded="false" aria-controls="multiCollapseSleep-<%= step.id %>"><i class="fas fa-bed icon-button"></i></a>
+<a href="" data-toggle="collapse" data-target="#multiCollapseMove-<%= step.id %>" role="button" aria-expanded="false" aria-controls="multiCollapseMove-<%= step.id %>"><i class="fas fa-bus icon-button"></i></a>
+<a href="" data-toggle="collapse" data-target="#multiCollapseComment-<%= step.id %>" role="button" aria-expanded="false" aria-controls="multiCollapseComment-<%= step.id %>"><i class="fas fa-comment icon-button"></i></a>
+
+    <div class="collapse multi-collapse" id="multiCollapseComment-<%= step.id %>" data-parent="#activitytypes-<%= step.id %>">
+      <div class="card card-body">
+        <%= render 'activities/partials/formcomment', trip: @trip, step: step, activity: @activity %>
+      </div>
+    </div>
+
+    <div class="collapse multi-collapse" id="multiCollapseSleep-<%= step.id %>" data-parent="#activitytypes-<%= step.id %>">
+      <div class="card card-body">
+        <%= render 'activities/partials/formsleep', trip: @trip, step: step, activity: @activity %>
+      </div>
+    </div>
+
+    <div class="collapse multi-collapse" id="multiCollapseEat-<%= step.id %>" data-parent="#activitytypes-<%= step.id %>">
+      <div class="card card-body">
+        <%= render 'activities/partials/formeat', trip: @trip, step: step, activity: @activity %>
+      </div>
+    </div>
+
+    <div class="collapse multi-collapse" id="multiCollapseSee-<%= step.id %>" data-parent="#activitytypes-<%= step.id %>">
+      <div class="card card-body">
+        <%= render 'activities/partials/formsee', trip: @trip, step: step, activity: @activity %>
+      </div>
+    </div>
+
+    <div class="collapse multi-collapse" id="multiCollapseDrink-<%= step.id %>" data-parent="#activitytypes-<%= step.id %>">
+      <div class="card card-body">
+        <%= render 'activities/partials/formdrink', trip: @trip, step: step, activity: @activity %>
+      </div>
+    </div>
+
+    <div class="collapse multi-collapse" id="multiCollapseMove-<%= step.id %>" data-parent="#activitytypes-<%= step.id %>">
+      <div class="card card-body">
+        <%= render 'activities/partials/formmove', trip: @trip, step: step, activity: @activity %>
+      </div>
+    </div>
+    </div>
+
+<!--
+<button class="btn btn-primary" data-toggle="collapse" data-target="#multiCollapseComment-<%= step.id %>" role="button" aria-expanded="false" aria-controls="multiCollapseComment-<%= step.id %>">Comment</i></button>
+<button class="btn btn-primary" data-toggle="collapse" data-target="#multiCollapseSleep-<%= step.id %>" role="button" aria-expanded="false" aria-controls="multiCollapseSleep-<%= step.id %>">Sleep</button>
+<button class="btn btn-primary" data-toggle="collapse" data-target="#multiCollapseEat-<%= step.id %>" role="button" aria-expanded="false" aria-controls="multiCollapseEat-<%= step.id %>">Eat</button>
+<button class="btn btn-primary" data-toggle="collapse" data-target="#multiCollapseSee-<%= step.id %>" role="button" aria-expanded="false" aria-controls="multiCollapseSee-<%= step.id %>">See</button>
+<button class="btn btn-primary" data-toggle="collapse" data-target="#multiCollapseDrink-<%= step.id %>" role="button" aria-expanded="false" aria-controls="multiCollapseDrink-<%= step.id %>">Drink</button>
+<button class="btn btn-primary" data-toggle="collapse" data-target="#multiCollapseMove-<%= step.id %>" role="button" aria-expanded="false" aria-controls="multiCollapseMove-<%= step.id %>">Move</button>
+ -->

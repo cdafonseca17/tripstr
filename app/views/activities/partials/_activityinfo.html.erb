@@ -1,0 +1,19 @@
+<h4><% if activity.category == "See" %>
+  <i class="far fa-eye icon"></i>
+<% elsif activity.category == "Eat"  %>
+  <i class="fas fa-utensils icon"></i>
+<% elsif activity.category == "Drink"  %>
+  <i class="fas fa-cocktail icon"></i>
+<% elsif activity.category == "Sleep"  %>
+  <i class="fas fa-bed icon"></i>
+<% elsif activity.category == "Move"  %>
+  <i class="fas fa-bus icon"></i>
+<% elsif activity.category == "Comment"  %>
+  <i class="fas fa-comment icon"></i>
+<% end %>
+<%= activity.name %></h2>
+<div class="comment-input">
+  <%= activity.comment %>
+</div>
+<%#= activity.position %>
+<%#= activity.photo %>

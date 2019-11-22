@@ -1,0 +1,5 @@
+<%= simple_form_for [@trip, step], html: {class: 'form-inline'} do |f| %>
+  <%= f.input :location, placeholder: "Location", label: false %>
+  <%= f.input :nights, placeholder: "Number of nights", label:false %>
+  <%= f.submit "save", class: "btn btn-secondary" %>
+<% end %>

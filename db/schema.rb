@@ -10,7 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 2019_11_21_101303) do
+
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +34,7 @@ ActiveRecord::Schema.define(version: 2019_11_21_101303) do
     t.string "icon"
     t.string "type"
     t.integer "place_id"
+    t.integer "position"
     t.index ["step_id"], name: "index_activities_on_step_id"
   end
 
@@ -44,6 +47,7 @@ ActiveRecord::Schema.define(version: 2019_11_21_101303) do
     t.bigint "trip_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "position"
     t.index ["trip_id"], name: "index_steps_on_trip_id"
   end
 
@@ -54,7 +58,7 @@ ActiveRecord::Schema.define(version: 2019_11_21_101303) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "published"
+    t.boolean "published", default: false
     t.index ["user_id"], name: "index_trips_on_user_id"
   end
 

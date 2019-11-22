@@ -13,13 +13,15 @@ Rails.application.routes.draw do
   # get 'steps/destroy'
 
   devise_for :users
-  root to: 'pages#home'
+  root to: 'trips#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
     # resources trips:
     resources :users, only: [ :show ]
     resources :trips do
-      resources :steps, only: [ :new, :create, :edit, :update, :destroy ]
-      resources :activities, only: [ :new, :create, :edit, :update, :destroy ]
+      resources :steps, only: [ :new, :create, :edit, :update, :destroy ] do
+        resources :activities, only: [ :new, :create, :edit, :update, :destroy ]
+      end
     end
     get "profile", to: "profile#index"
+    get '/mytrips', to: 'pages#mytrips'
 end
