@@ -16,6 +16,8 @@
     <%= yield %>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
+    <p id="gkey" data-key="<%= ENV['GOOGLE_API_KEY'] %>"></p>
+
     <%= javascript_include_tag 'application' %>
     <%= javascript_pack_tag 'application' %>
   </body>

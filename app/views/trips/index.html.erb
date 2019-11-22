@@ -3,15 +3,35 @@
     <h1 class="mb-3">Find and share travel experiences</h1>
   </div>
   <div class="row justify-content-center">
-    <button type="button" class="btn btn-primary btn-lg mr-4 mt-4">Find a trip</button>
-    <button type="button" class="btn btn-outline-primary btn-lg mt-4">Add a trip</button>
+    <button id="find-trip-button" type="button" class="btn btn-primary btn-lg mr-4 mt-4">Find a trip</button>
+          <!-- Button trigger modal -->
+        <button type="button" class="btn btn-outline-primary btn-lg mt-4" data-toggle="modal" data-target="#exampleModal">
+          Add a trip
+        </button>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add a trip!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <% @trip = Trip.new %>
+                <%= render "trips/partials/form", trip: @trip %>
+              </div>
+            </div>
+          </div>
+        </div>
   </div>
 </div>
 
 <div class="container">
   <div class="row">
     <div class="col-12 mt-3" align="center">
-    <h2 class="mb-3">Find and share travel experiences</h2>
+    <h2 id="index-search-header" class="pt-3">Find and share travel experiences</h2>
     </div>
   </div>
   <div class="row justify-content-center p-5">
@@ -31,7 +51,7 @@
     placeholder: "Approx. How many days?"
   %>
   </div>
-<div class="col-4">
+<div id= "search-home" class="col-4">
         <%= submit_tag "Search", class: "something btn btn-primary btn-block" %>
     </div>
 <% end %>
@@ -46,6 +66,8 @@
     <% 5.times do  %>
 
     <% @trips.each do |trip| %>
+    <% if trip.published == true %>
+
 
     <div class="col-4">
       <div class="card-trip">
@@ -73,4 +95,14 @@
     </div>
     <% end %>
     <% end %>
+    <% end %>
+
   </div>
+
+  <!-- <script>
+    const button = document.querySelector('#find-trip-button');
+button.addEventListener('click', (event) => {
+var element = document.querySelector("#search-home");
+element.scrollIntoView({ behavior: 'smooth', block: 'end'});
+});
+</script> -->
