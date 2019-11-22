@@ -72,39 +72,51 @@
 
   <h4>Published (<%= trippublishedcount %>) </h4>
 
+  <div class="container">
   <div class="row">
+
+    <% 5.times do  %>
+
     <% @trips.each do |trip| %>
     <% if trip.published == true %>
+
+
     <div class="col-4">
       <div class="card-trip">
-       <%= link_to "More Details", trip_path(trip), class: 'card-link' %>
-       <%= link_to "Edit Trip", edit_trip_path(trip), class: 'card-link' %>
-       <%= link_to "Delete Trip", trip_path(trip),
-       method: :delete,
-       data: { confirm: "Are you sure?" } %>
+        <%= link_to "", trip_path(trip), class: 'card-link' %>
+        <% if trip.name == 'Netherlands'  %>
+        <img src="https://images.unsplash.com/photo-1558000143-a78f8299c40b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80" />
+        <% elsif trip.name == 'Italy'  %>
+        <img src="https://images.unsplash.com/photo-1503970999490-4404449dc349?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1938&q=80" />
+        <% else  %>
+        <img src="https://images.unsplash.com/photo-1490773996481-9ff25c7d9484?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80" />
+        <% end %>
+        <div class="card-trip-infos">
+          <div>
+            <h3><%= trip.name %></h3>
+            <%  trip.steps.each do |step| %>
+            <%= step.location %>
+            <% end %>
+          </div>
+          <div>
+            <%= link_to "More Details", trip_path(trip), class: 'card-link' %>
+        <%= link_to "Edit Trip", edit_trip_path(trip), class: 'card-link' %>
+        <%= link_to "Delete Trip", trip_path(trip),
+        method: :delete,
+        data: { confirm: "Are you sure?" } %>
 
-       <% if trip.name == 'Netherlands'  %>
-       <img src="https://images.unsplash.com/photo-1558000143-a78f8299c40b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80" />
-       <% elsif trip.name == 'Italy'  %>
-       <img src="https://images.unsplash.com/photo-1503970999490-4404449dc349?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1938&q=80" />
-       <% else  %>
-       <img src="https://images.unsplash.com/photo-1490773996481-9ff25c7d9484?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80" />
-       <% end %>
-       <div class="card-trip-infos">
-        <div>
-          <h3><%= trip.name %></h3>
-          <%  trip.steps.each do |step| %>
-          <%= step.location %>
-          <% end %>
+          <%=trip.end_date.to_i - trip.start_date.to_i%> days
+          </div>
+          <img src="https://media.licdn.com/dms/image/C4E03AQGoXplFFOtXdQ/profile-displayphoto-shrink_800_800/0?e=1579737600&v=beta&t=DIQ4dYohLrYxeelnZSJvN2meZxQ3RiPUXu70duxfMUA" class="card-trip-user avatar-bordered" />
         </div>
-        <img src="https://media.licdn.com/dms/image/C4E03AQGoXplFFOtXdQ/profile-displayphoto-shrink_800_800/0?e=1579737600&v=beta&t=DIQ4dYohLrYxeelnZSJvN2meZxQ3RiPUXu70duxfMUA" class="card-trip-user avatar-bordered" />
       </div>
     </div>
+    <% end %>
+    <% end %>
+    <% end %>
+
   </div>
-</div>
-</div>
-<% end %>
-<% end %>
+
 
 
 
