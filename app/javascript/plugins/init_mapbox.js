@@ -3,7 +3,13 @@ import mapboxgl from 'mapbox-gl';
 import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 
 const mapElement = document.getElementById('map');
-// const authorization =
+
+
+const getKey = () => {
+  return document.getElementById("gkey").dataset.key.toString();
+}
+
+
 
 const getKey = () => {
   return document.getElementById("gkey").dataset.key.toString();
@@ -39,6 +45,7 @@ const getGoogleApiPlaces = (address, lng, lat) => {
   // console.log('I update the forms values');
   var proxyUrl = 'https://cors-anywhere.herokuapp.com/',
       // targetUrl = `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${address}&inputtype=textquery&fields=photos,formatted_address,name,rating,opening_hours,geometry&key=`,
+
       // anotherTarget = 'https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=Museum%20of%20Contemporary%20Art%20Australia&inputtype=textquery&fields=place_id,photos,formatted_address,name,icon,rating,opening_hours,geometry&key=';
       targetGeo = `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${address}&inputtype=textquery&fields=photos,formatted_address,name,opening_hours,place_id,rating&locationbias=point:${lat},${lng}&key=${getKey()}`;
   // fetch(`https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${address}&inputtype=textquery&fields=photos,formatted_address,name,rating,opening_hours,geometry&key='GOOGLE_API_KEY`)
@@ -105,6 +112,19 @@ const getDetails = (placeId) => {
 }
 
 const getPhotos = (photo_reference) => {
+// <<<<<<< api_key
+//   console.log("PHOTO REF", photo_reference)
+
+//   var proxyUrl = 'https://cors-anywhere.herokuapp.com/',
+//       targetUrl = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photo_reference}&key=${getKey()}`;
+//   fetch(proxyUrl + targetUrl, { headers: { Authorization: authorization } })
+//     .then(response => response)
+//     .then((data) => {
+//       // console.log(data);
+//     }
+//   );
+//   document.getElementById("testphoto").src = proxyUrl + targetUrl
+// =======
   url_path = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photo_reference}&key=${getKey()}`;
   const inputPhoto = document.querySelector("#activity_photo");
   inputPhoto.value = url_path;
