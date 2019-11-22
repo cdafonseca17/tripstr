@@ -5,6 +5,7 @@ Trip.destroy_all
 Step.destroy_all
 Activity.destroy_all
 
+
 cdafonseca = User.new(
   username: 'cdafonseca',
   email: 'dafonseca.ca@gmail.com',
@@ -15,7 +16,7 @@ cdafonseca = User.new(
   home_city: "Amsterdam"
 )
 
-cdafonseca.save
+
 
 rvisser = User.new(
   username: 'rvisser',
@@ -27,8 +28,7 @@ rvisser = User.new(
   home_city: "Amsterdam"
 )
 
-rvisser.save
-
+users = [cdafonseca.save, rvisser.save]
 
 
 trips = [
@@ -83,7 +83,7 @@ trips = [
 },
 {
   name: "Italy",
-  user_id: 1,
+  user_id: 2,
   start_date: ["13/07/2019", "15/07/2019", "18/07/2019"].sample,
   end_date: ["24/07/2019", "26/07/2019", "28/07/2019"].sample,
   published: false,
@@ -142,30 +142,41 @@ trips = [
 }
 ]
 
+# users.each do |user|
+#   newuser = User.create!(
+#     username: user[:username],
+#     email: user[:email],
+#     password: user[:password],
+#     password_confirmation: user[:password_confirmation],
+#     first_name: user[:first_name],
+#     last_name: user[:last_name],
+#     home_city: user[:home_city]
+#   )
+# end
 
 
 trips.each do |trip|
   p "Creating trips"
 
-  newtrip = Trip.create!(
-    name: trip[:name],
-    user: User.all.sample,
-    start_date: trip[:start_date],
-    end_date: trip[:end_date],
-    published: trip[:published]
-  )
+      newtrip = Trip.create!(
+        user_id: trip[:user_id],
+        name: trip[:name],
+        start_date: trip[:start_date],
+        end_date: trip[:end_date],
+        published: trip[:published]
+      )
 
 
-  trip[:steps].each do |step|
-    newstep = Step.create!(
-      trip_id: newtrip.id,
-      nights: step[:nights],
-      location: step[:location],
-      longitude: step[:longitude],
-      latitude: step[:latitude],
-      address: step[:address],
-      position: step[:position]
-    )
+    trip[:steps].each do |step|
+      newstep = Step.create!(
+        trip_id: newtrip.id,
+        nights: step[:nights],
+        location: step[:location],
+        longitude: step[:longitude],
+        latitude: step[:latitude],
+        address: step[:address],
+        position: step[:position]
+      )
 
       step[:activities].each do | activity |
         newactivity = Activity.create!(
@@ -180,6 +191,7 @@ trips.each do |trip|
             description: "Insert description of activity here"
         )
       end
+
   end
 
 end

@@ -3,17 +3,23 @@ class TripsController < ApplicationController
 
   # GET /trips
   # GET /trips.json
+
   def index
-    @trips = Trip.all
+    trip_days_param = params[:trip_days].to_i
+    # @trips = Trip.all
     @trips = policy_scope(Trip).order(created_at: :desc)
     if params[:query].present?
       sql_query = " \
-        trips.name ILIKE :query \
-        OR steps.location ILIKE :query \
+      trips.name ILIKE :query \
+      OR steps.location ILIKE :query \
       "
       @trips = Trip.joins(:steps).where(sql_query, query: "%#{params[:query]}%")
     else
       @trips = Trip.all
+    end
+    if params[:trip_days].present?
+      @trips = @trips.select { |trip|
+        ((trip_days_param - 3)..(trip_days_param + 3)).to_a.include?(trip.end_date.to_i - trip.start_date.to_i) }
     end
   end
 
@@ -49,7 +55,7 @@ class TripsController < ApplicationController
   end
 
   def create
-    raise
+    # raise
     @trip = Trip.new(trip_params)
     @trip.user = current_user
     authorize @trip
@@ -121,3 +127,4 @@ end
 
   # DELETE /trips/1
   # DELETE /trips/1.json
+
