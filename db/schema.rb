@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 2019_11_21_113140) do
     t.integer "rating"
     t.string "url"
     t.string "icon"
-    t.string "type"
+    t.string "types"
     t.integer "place_id"
     t.integer "position"
     t.index ["step_id"], name: "index_activities_on_step_id"

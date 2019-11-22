@@ -11,6 +11,10 @@ const getKey = () => {
 
 
 
+const getKey = () => {
+  return document.getElementById("gkey").dataset.key.toString();
+}
+
 const buildMap = () => {
   mapboxgl.accessToken = mapElement.dataset.mapboxApiKey;
   return new mapboxgl.Map({
@@ -59,60 +63,90 @@ const getDetails = (placeId) => {
   // console.log('I call Google');
   // console.log('I wait for JSON to be parse')
   // console.log('I update the forms values');
-  console.log("PLACE ID", placeId)
+  // console.log("PLACE ID", placeId)
   var proxyUrl = 'https://cors-anywhere.herokuapp.com/',
-      targetUrl = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=name,formatted_address,icon,photo,url,type,website,rating,formatted_phone_number&key=${getKey()}`;
+      targetUrl = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=name,icon,photo,url,formatted_address,geometry,type,website,rating,formatted_phone_number&key=${getKey()}`;
 
   // fetch(`https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${address}&inputtype=textquery&fields=photos,formatted_address,name,rating,opening_hours,geometry&key='GOOGLE_API_KEY`)
   fetch(proxyUrl + targetUrl,)
     .then(response => response.json())
     .then((data) => {
-      console.log(data);
+      // console.log(data.result)
+      const location = data.result.name
       const name = data.result.name
       const rating = data.result.rating
       const url = data.result.website
       const types = data.result.types[0]
       const icon = data.result.icon
+      const address = data.result.formatted_address
+      const longitude = data.result.geometry.location.lng
+      const latitude = data.result.geometry.location.lat
       console.log(name)
+
+      const inputLocation = document.querySelector("#step_location")
+      inputLocation.value = location
+
       const inputRating = document.querySelector("#activity_rating")
-      // inputRating.value = rating
+      inputRating.value = rating
 
+      const inputName = document.querySelector("#name_activity_custom")
+      inputName.value = name;
+      console.log(document.getElementById("name_activity_custom").value)
+      // alert(document.getElementById("activity_name").value);
 
+      const inputUrl = document.querySelector("#activity_url")
+      inputUrl.value = url
+
+      const inputTypes = document.querySelector("#activity_types")
+      inputTypes.value = types
+
+      const inputIcon = document.querySelector("#activity_icon")
+      inputIcon.value = icon
+
+      const inputAddress = document.querySelector("#activity_address")
+      inputAddress.value = address
+      console.log(data.result)
       getPhotos(data.result.photos[0].photo_reference)
     }
   );
 }
 
 const getPhotos = (photo_reference) => {
-  console.log("PHOTO REF", photo_reference)
+// <<<<<<< api_key
+//   console.log("PHOTO REF", photo_reference)
 
-  var proxyUrl = 'https://cors-anywhere.herokuapp.com/',
-      targetUrl = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photo_reference}&key=${getKey()}`;
-  fetch(proxyUrl + targetUrl, { headers: { Authorization: authorization } })
-    .then(response => response)
-    .then((data) => {
-      // console.log(data);
-    }
-  );
-  document.getElementById("testphoto").src = proxyUrl + targetUrl
+//   var proxyUrl = 'https://cors-anywhere.herokuapp.com/',
+//       targetUrl = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photo_reference}&key=${getKey()}`;
+//   fetch(proxyUrl + targetUrl, { headers: { Authorization: authorization } })
+//     .then(response => response)
+//     .then((data) => {
+//       // console.log(data);
+//     }
+//   );
+//   document.getElementById("testphoto").src = proxyUrl + targetUrl
+// =======
+  url_path = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photo_reference}&key=${getKey()}`;
+  const inputPhoto = document.querySelector("#activity_photo");
+  inputPhoto.value = url_path;
 }
 
 const getValue = (e) => {
   if(e.keyCode == 13) {
     var elem = e.srcElement || e.target;
+    // console.log(elem.value);
     const address = elem.value;
     // const lat = address.candidates[0].geometry.location.lat
     // console.log(address)
 
 
-const endpoint = `geocoding/v5/mapbox.places/${address}.json`;
-  const url = `https://api.mapbox.com/${endpoint}?access_token=pk.eyJ1IjoiY2RhZm9uc2VjYSIsImEiOiJjazJlam1peHkwOWZsM29wYmxmbWw4b3pnIn0.l7jR3kxUiz-pDPh6l4fI6g`;
-  fetch(url)
+    const endpoint = `geocoding/v5/mapbox.places/${address}.json`;
+    const url = `https://api.mapbox.com/${endpoint}?access_token=pk.eyJ1IjoiY2RhZm9uc2VjYSIsImEiOiJjazJlam1peHkwOWZsM29wYmxmbWw4b3pnIn0.l7jR3kxUiz-pDPh6l4fI6g`;
+    fetch(url)
     .then(response => response.json())
     .then((data) => {
       const lng = data.features[0].center[0];
       const lat = data.features[0].center[1];
-    getGoogleApiPlaces(address, lng, lat);
+      getGoogleApiPlaces(address, lng, lat);
     });
 
   }
@@ -129,7 +163,7 @@ const initGeocoderInput = (map) => {
   const value = el.addEventListener('keypress', getValue);
 
   // geocoder.on('results', function(results) {
-     console.log(results);
+     // console.log(results);
   // })
 
 };

@@ -2,7 +2,7 @@
 <%#= link_to 'Back', trips_path %>
 
 <!-- Trip banner -->
-<div class="d-flex justify-content-between">
+<div class="d-flex justify-content-between card-category">
   <div>
     <%= render 'trips/partials/tripinfo', trip: @trip %>
   </div>
@@ -12,7 +12,8 @@
 </div>
 
 <!-- Each step of the trip -->
-
+  <%#= @steps1.map { |step| step.location } %>
+  <%#= @steps.map { |step| step.location } %>
   <% @steps.each do |step| %>
     <div style="padding: 20px 50px">
       <div id="step-<%= step.id %>" class="d-flex">
@@ -45,16 +46,27 @@
   <% end %>
   </div>
 
+
   <div style="padding: 20px 50px">
     <h3>Add new step <%= render 'steps/partials/stepadd', trip: @trip, step: @step %></h3>
   </div>
   <div style="margin-top: 30px; margin-bottom: 30px">
-    <button type="button" class="btn btn-outline-green-primary">Save as draft</button>
-    <button type="button" class="btn btn-primary">Published</button>
+      <% if @trip.published?  %>
+        <%= simple_form_for [@trip] do |f| %>
+          <%= f.hidden_field :published, value: :false %>
+          <%= f.submit "Change to Draft", class: "btn btn-primary" %>
+        <% end %>
+      <% else %>
+        <%= simple_form_for [@trip] do |f| %>
+          <%= f.hidden_field :published, value: :true %>
+          <%= f.submit "Publish", class: "btn btn-primary" %>
+        <% end %>
+      <% end %>
+      <%= link_to "Save as Draft", mytrips_path, class: "btn btn-outline-green-primary" %>
   </div>
 
+<h2>Map</h2>
 
-   <h2>Map</h2>
  <!-- SEARCH BAR -->
 <div id='geocoder' class='geocoder'></div>
 
@@ -65,6 +77,7 @@
   data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
 ></div>
 </div>
+
 
 <!-- ["Sleep", "See", "Eat", "Drink", "Comment", "Move"] -->
 <!-- Modal for Editing Trip-->
