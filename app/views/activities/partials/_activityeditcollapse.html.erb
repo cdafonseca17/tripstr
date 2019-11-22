@@ -1,0 +1,17 @@
+<div class="collapse" id="collapseEditActivity<%= activity.id %>">
+  <div class="card card-body">
+    <% if activity.category == "Comment" %>
+      <%= render 'activities/partials/formcomment', trip: @trip, step: step, activity: activity %>
+    <% elsif activity.category == "Sleep" %>
+      <%= render 'activities/partials/formsleep', trip: @trip, step: step, activity: activity %>
+    <% elsif activity.category == "Eat" %>
+      <%= render 'activities/partials/formeat', trip: @trip, step: step, activity: activity %>
+    <% elsif activity.category == "See" %>
+      <%= render 'activities/partials/formsee', trip: @trip, step: step, activity: activity %>
+    <% elsif activity.category == "Drink" %>
+      <%= render 'activities/partials/formsee', trip: @trip, step: step, activity: activity %>
+    <% elsif activity.category == "Move" %>
+      <%= render 'activities/partials/formmove', trip: @trip, step: step, activity: activity %>
+    <% end %>
+  </div>
+</div>

@@ -1,6 +1,2 @@
 <h3 class="step-info"><%= step.position%>- <%= step.location %>
-    (<% if step.nights > 1 %>
-      <%= step.nights %> nights
-    <% elsif step.nights <= 1 %>
-      <%= step.nights %> night
-    <% end %>)</h3>
+    (<% if step.nights > 1 %><%= step.nights %> nights<% elsif step.nights <= 1 %><%= step.nights %>night<% end %>)</h3>
