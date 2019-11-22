@@ -107,7 +107,7 @@ class TripsController < ApplicationController
     @step = Step.new
     @step.trip_id = @trip
     if @trip.update(trip_params)
-      redirect_to edit_trip_path(@trip)
+      redirect_to mytrips_path(@trip)
     else
       render :new
     end
@@ -128,7 +128,7 @@ class TripsController < ApplicationController
     end
 
     def trip_params
-      params["trip"].permit(:name, :start_date, :end_date)
+      params["trip"].permit(:name, :start_date, :end_date, :published)
     end
 end
 

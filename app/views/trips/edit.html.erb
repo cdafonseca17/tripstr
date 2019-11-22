@@ -51,10 +51,19 @@
     <h3>Add new step <%= render 'steps/partials/stepadd', trip: @trip, step: @step %></h3>
   </div>
   <div style="margin-top: 30px; margin-bottom: 30px">
-    <button type="button" class="btn btn-outline-green-primary">Save as draft</button>
-    <button type="button" class="btn btn-primary">Published</button>
+      <% if @trip.published?  %>
+        <%= simple_form_for [@trip] do |f| %>
+          <%= f.hidden_field :published, value: :false %>
+          <%= f.submit "Change to Draft", class: "btn btn-primary" %>
+        <% end %>
+      <% else %>
+        <%= simple_form_for [@trip] do |f| %>
+          <%= f.hidden_field :published, value: :true %>
+          <%= f.submit "Publish", class: "btn btn-primary" %>
+        <% end %>
+      <% end %>
+      <%= link_to "Save as Draft", mytrips_path, class: "btn btn-outline-green-primary" %>
   </div>
-
 
 <h2>Map</h2>
  <!-- SEARCH BAR -->
@@ -67,6 +76,9 @@
   data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
 ></div>
 </div>
+<!--
+    <button type="button" class="btn btn-outline-green-primary">Save as draft</button>
+    <button type="button" class="btn btn-primary">Published</button> -->
 
 
 <!-- ["Sleep", "See", "Eat", "Drink", "Comment", "Move"] -->
