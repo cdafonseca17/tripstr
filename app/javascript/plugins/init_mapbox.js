@@ -2,17 +2,8 @@
 import mapboxgl from 'mapbox-gl';
 import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 
-// address =
-
 const mapElement = document.getElementById('map');
-
-// const photo = document.getElementById('');
-// const rating = document.getElementById('');
-// const url = document.getElementById('');
-// const icon = document.getElementById('');
-// const type = document.getElementById('');
-// const place_id = document.getElementById('');
-
+// const authorization =
 
 const buildMap = () => {
   mapboxgl.accessToken = mapElement.dataset.mapboxApiKey;
@@ -43,9 +34,9 @@ const getGoogleApiPlaces = (address, lng, lat) => {
   // console.log('I wait for JSON to be parse')
   // console.log('I update the forms values');
   var proxyUrl = 'https://cors-anywhere.herokuapp.com/',
-      // targetUrl = `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${address}&inputtype=textquery&fields=photos,formatted_address,name,rating,opening_hours,geometry&key=AIzaSyBI4-a-0aKDJs2qaArqsW1tHjfLg893wkE`,
-      // anotherTarget = 'https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=Museum%20of%20Contemporary%20Art%20Australia&inputtype=textquery&fields=place_id,photos,formatted_address,name,icon,rating,opening_hours,geometry&key=AIzaSyBI4-a-0aKDJs2qaArqsW1tHjfLg893wkE';
-      targetGeo = `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${address}&inputtype=textquery&fields=photos,formatted_address,name,opening_hours,place_id,rating&locationbias=point:${lat},${lng}&key=AIzaSyBI4-a-0aKDJs2qaArqsW1tHjfLg893wkE`;
+      // targetUrl = `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${address}&inputtype=textquery&fields=photos,formatted_address,name,rating,opening_hours,geometry&key=`,
+      // anotherTarget = 'https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=Museum%20of%20Contemporary%20Art%20Australia&inputtype=textquery&fields=place_id,photos,formatted_address,name,icon,rating,opening_hours,geometry&key=';
+      targetGeo = `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${address}&inputtype=textquery&fields=photos,formatted_address,name,opening_hours,place_id,rating&locationbias=point:${lat},${lng}&key=`;
   // fetch(`https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${address}&inputtype=textquery&fields=photos,formatted_address,name,rating,opening_hours,geometry&key='GOOGLE_API_KEY`)
   fetch(proxyUrl + targetGeo)
     .then(response => response.json())
@@ -63,16 +54,20 @@ const getDetails = (placeId) => {
   // console.log('I update the forms values');
   console.log("PLACE ID", placeId)
   var proxyUrl = 'https://cors-anywhere.herokuapp.com/',
-      targetUrl = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=name,photo,url,type,website,rating,formatted_phone_number&key=AIzaSyBI4-a-0aKDJs2qaArqsW1tHjfLg893wkE`;
+      targetUrl = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=name,icon,photo,url,type,website,rating,formatted_phone_number&key=`;
 
   // fetch(`https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${address}&inputtype=textquery&fields=photos,formatted_address,name,rating,opening_hours,geometry&key='GOOGLE_API_KEY`)
-  fetch(proxyUrl + targetUrl)
+  fetch(proxyUrl + targetUrl,)
     .then(response => response.json())
     .then((data) => {
       console.log(data);
       const rating = data.result.rating
-      console.log(rating)
-      // window.picture = data;
+      const url = data.result.website
+      const types = data.result.types[0]
+      const icon = data.result.icon
+      console.log(icon)
+
+
       getPhotos(data.result.photos[0].photo_reference)
     }
   );
@@ -82,15 +77,14 @@ const getPhotos = (photo_reference) => {
   console.log("PHOTO REF", photo_reference)
 
   var proxyUrl = 'https://cors-anywhere.herokuapp.com/',
-      targetUrl = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photo_reference}&key=AIzaSyBI4-a-0aKDJs2qaArqsW1tHjfLg893wkE`;
-  fetch(proxyUrl + targetUrl)
-    .then(response => response
+      targetUrl = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photo_reference}&key=`;
+  fetch(proxyUrl + targetUrl, { headers: { Authorization: authorization } })
+    .then(response => response)
     .then((data) => {
-      console.log(data);
+      // console.log(data);
     }
   );
   document.getElementById("testphoto").src = proxyUrl + targetUrl
-
 }
 
 const getValue = (e) => {
