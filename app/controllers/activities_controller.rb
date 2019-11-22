@@ -45,6 +45,6 @@ class ActivitiesController < ApplicationController
 
   private
     def activity_params
-      params["activity"].permit(:comment, :name)
+      params["activity"].permit(:comment, :name, :photo)
     end
   end

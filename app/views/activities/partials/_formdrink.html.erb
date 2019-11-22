@@ -1,7 +1,14 @@
 <%= simple_form_for [trip, step, activity] do |f| %>
+<!-- -->
+
   <h4 style="padding-bottom: 10px">Where to drink</h4>
   <%= f.hidden_field :category, value: "Drink" %>
-  <%= f.input :name, placeholder: "Location", label: false %>
+  <%= f.hidden_field :rating %>
+  <%= f.hidden_field :url %>
+  <%= f.hidden_field :icon %>
+  <%= f.hidden_field :type %>
+  <%= f.hidden_field :name %>
+  <%= ("<div id='geocoder' class='geocoder'></div>").html_safe %>
   <%= f.input :comment, placeholder: "Share your feedback", label: false %>
   <%= f.submit "save", class: "btn btn-secondary" %>
 <% end %>
