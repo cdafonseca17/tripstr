@@ -10,7 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_21_113140) do
+
+ActiveRecord::Schema.define(version: 2019_11_21_101303) do
+
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +28,12 @@ ActiveRecord::Schema.define(version: 2019_11_21_113140) do
     t.bigint "step_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "photo"
+    t.integer "rating"
+    t.string "url"
+    t.string "icon"
+    t.string "type"
+    t.integer "place_id"
     t.integer "position"
     t.index ["step_id"], name: "index_activities_on_step_id"
   end
