@@ -33,11 +33,13 @@ users = [cdafonseca.save, rvisser.save]
 
 trips = [
 {
-  name: "Netherlands",
+  name: "Exploring the Netherlands",
   user_id: 1,
-  start_date: ["13/07/2019", "15/07/2019", "18/07/2019"].sample,
+  start_date: ["13/07/2019", "15/07/2019", "18/07/2019",].sample,
   end_date: ["24/07/2019", "26/07/2019", "28/07/2019"].sample,
   published: true,
+  country: 'Netherlands',
+  country_code: 'NL',
   steps: [
     {
       nights: [1, 2, 3, 4].sample,
@@ -82,11 +84,13 @@ trips = [
   ]
 },
 {
-  name: "Italy",
+  name: "Tour of Italy",
   user_id: 2,
   start_date: ["13/07/2019", "15/07/2019", "18/07/2019"].sample,
   end_date: ["24/07/2019", "26/07/2019", "28/07/2019"].sample,
   published: false,
+  country: 'Italy',
+  country_code: 'IT',
   steps: [
     {
       nights: [1, 2, 3, 4].sample,
@@ -139,7 +143,163 @@ trips = [
       ]
     }
   ]
-}
+},
+{
+  name: "Skiing the French Alps",
+  user_id: 1,
+  start_date: ["13/12/2019", "15/12/2019", "18/12/2019",].sample,
+  end_date: ["24/12/2019", "26/12/2019", "28/12/2019"].sample,
+  published: true,
+  country: 'France',
+  country_code:'FR',
+  steps: [
+    {
+      nights: [1, 2, 3, 4].sample,
+      location: "France",
+      longitude: 52.371894,
+      latitude: 4.900755,
+      address: "Morzine, France",
+      position: 1,
+      activities: [
+        {
+          category: "See",
+          name: "Avoriaz",
+          longitude: 6.776600,
+          latitude: 46.191250,
+          address: "44 Prom. Du Festival Morzine, France",
+          comment: "Beautiful mountain with great conditions for skiing!",
+          description: "Ski resort",
+          position: 1
+        },
+        {
+          category: "Sleep",
+          name: "Hotel des Dromonts",
+          longitude: 6.776700,
+          latitude: 46.189220,
+          address: ' 40 Place Des Dromonts, Avoriaz, France',
+          comment: "4 star hotel but felt like 5 stars! Would stay here again!",
+          description: "Ski Resort Hotel",
+          position: 2
+        },
+        {
+          category: "Eat",
+          name: "Le Petit Lindaret",
+          longitude: 6.773520,
+          latitude: 46.210180,
+          address: "4863 Route des Lindarets Montriond, France",
+          comment: "Super fromage!",
+          description: "Modern European Cuisine",
+          position: 3
+        }
+      ]
+    }
+  ]
+},
+
+{
+  name: "Rwanda Gorilla Trekking Safari",
+  user_id: 2 ,
+  start_date: ["13/05/2020", "15/05/2020", "18/05/2020",].sample,
+  end_date: ["24/05/2020", "26/05/2020", "28/05/2020"].sample,
+  published: true,
+  country: 'Rwanda',
+  country_code: 'RW',
+  steps: [
+    {
+      nights: [1, 2, 3, 4].sample,
+      location: "Ruhengeri",
+      longitude: 52.371894,
+      latitude: 4.900755,
+      address: "Ruhengeri, Rwanda",
+      position: 1,
+      activities: [
+        {
+          category: "Sleep",
+          name: "Mountain Gorilla View Lodge",
+          longitude: 29.587690,
+          latitude: -1.446210,
+          address: "Kinigi Virunga Mountains, Kinigi Rwanda",
+          comment: "Wonderful staff, beautiful view of the mountains!",
+          description: "Hotel",
+          position: 1
+        },
+        {
+          category: "See",
+          name: "Rwanda Gorilla Tours",
+          longitude: 29.534367,
+          latitude: -1.540668,
+          address: 'Mukingo, Rwanda',
+          comment: "Once in a lifetime experience",
+          description: "Guided tour through the jungle",
+          position: 2
+        },
+        {
+          category: "Drink",
+          name: "Sous Le Soleil Bar Brasserie",
+          longitude: 29.271003,
+          latitude: -1.783669,
+          address: "Kigufi, Rwanda",
+          comment: "What an amazing experience",
+          description: "Lovely drinks",
+          position: 3
+        }
+      ]
+    }
+  ]
+},
+
+{
+  name: "Durban",
+  user_id: 1,
+  start_date: ["13/07/2019", "15/07/2019", "18/07/2019",].sample,
+  end_date: ["24/07/2019", "26/07/2019", "28/07/2019"].sample,
+  published: true,
+  country: 'South Africa',
+  country_code: 'ZA',
+  steps: [
+    {
+      nights: [1, 2, 3, 4].sample,
+      location: "Durban",
+      longitude: 31.021839,
+      latitude: -29.858681,
+      address: "Durban, South Africa",
+      position: 1,
+      activities: [
+        {
+          category: "Eat",
+          name: "The Chef's Table",
+          longitude: 52.375454,
+          latitude: 4.884245,
+          address: "1 Chartwell Dr, Umhlanga, South Africa",
+          comment: "Absolutely amazing restaurant.  Best wine list, best food and the most wonderful people. Thanks for brilliant experience.  We will be back again and again and again.",
+          description: "Fine dining restaurant",
+          position: 1
+        },
+        {
+          category: "See",
+          name: "uShaka Marine World",
+          longitude: 30.776060,
+          latitude: -27.040960,
+          address: 'King Shaka Ave, Durban, South Africa',
+          comment: "So many dolphins!!",
+          description: "Marine Theme Park",
+          position: 2
+        },
+        {
+          category: "See",
+          name: "Toyota Motor Manufacturing South Africa",
+          longitude: 30.931390,
+          latitude: -29.977860,
+          address: "2F Prospecton Rd, Prospecton, South Africa",
+          comment: "Wonderful and informative tour of a manufacturing plant",
+          description: "Factory Tour",
+          position: 3
+        }
+      ]
+    }
+  ]
+},
+
 ]
 
 # users.each do |user|
