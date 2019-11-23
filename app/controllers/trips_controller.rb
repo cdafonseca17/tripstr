@@ -55,7 +55,6 @@ class TripsController < ApplicationController
   end
 
   def create
-    # raise
     @trip = Trip.new(trip_params)
     @trip.user = current_user
     authorize @trip
@@ -128,7 +127,7 @@ class TripsController < ApplicationController
     end
 
     def trip_params
-      params["trip"].permit(:name, :start_date, :end_date, :published)
+      params["trip"].permit(:name, :start_date, :end_date, :published, :country, :country_code)
     end
 end
 

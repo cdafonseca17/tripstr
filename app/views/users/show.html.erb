@@ -8,11 +8,11 @@
     </div>
     <div class="user_countries">
       <p><strong>COUNTRIES</strong></p>
-      <p>19</p>
+      <p><%= @user.trips.count %></p>
     </div>
     <div class="user_contributions">
       <p><strong>CONTRIBUTIONS</strong></p>
-      <p>33</p>
+      <p><%= @user.trips.count %></p>
     </div>
   </div>
 
@@ -25,20 +25,22 @@
 <div id="mapdiv" style="width: 100%; height: 450px;"></div>
 <div style="width: 1000px; font-size: 70%; padding: 2px 0; text-align: center; background-color: #FFFFFF; margin-top: 1px; color: #edeaea;"><a href="https://www.amcharts.com/visited_countries/" style="color: #edeaea;">Create your own visited countries map</a> or check out the <a href="https://www.amcharts.com/" style="color: #edeaea;">JavaScript Charts</a>.</div> -->
 
-<% country_codes = ["GR", "FR", "PT", "SP"] %>
+<% country_codes = @user.trips.map {|trip| trip.country_code} %>
 <% country_codes_map = [] %>
 <% country_codes.each do |country_code| %>
   <% hash = Hash.new %>
-  <% hash["id".to_sym] = country_code %>
-  <% hash["showAsSelected".to_sym] = true %>
+  <% hash["id"] = country_code %>
+  <% hash["showAsSelected"] = true %>
   <% country_codes_map << hash %>
 <% end %>
-<% country = country_codes_map %>
-<%= country.to_json %>
+<% @country = country_codes_map %>
+<%#= country.to_json %>
 <%# @country_json = country_codes_map.to_json %>
 <!-- <p id="thisThing" data-url="<%= @country_codes_map %>"><%= @country_codes_map %></p> -->
 
 <script type="text/javascript">
+  var country = JSON.parse('<%= raw(@country.to_json) %>')
+  console.log(country)
   var map = AmCharts.makeChart("mapdiv",{
     type: "map",
     theme: "dark",
@@ -52,7 +54,7 @@
     dataProvider : {
     map : "worldHigh",
     getAreasFromMap : true,
-    areas : [{"id":"GR","showAsSelected":true},{"id":"FR","showAsSelected":true},{"id":"PT","showAsSelected":true},{"id":"SP","showAsSelected":true}]
+    areas : country
     },
     areasSettings : {
     autoZoom : false,
