@@ -12,5 +12,5 @@ import smoothScroll from "../plugins/find_a_trip_auto_scroll";
 
 initMapbox();
 
-smoothScroll();
+// smoothScroll();
 
