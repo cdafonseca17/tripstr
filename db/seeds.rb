@@ -143,8 +143,7 @@ trips = [
       ]
     }
   ]
-}
-
+},
 {
   name: "Skiing the French Alps",
   user_id: 1,
@@ -173,8 +172,8 @@ trips = [
           position: 1
         },
         {
-          category: "Sleep"
-          name: "Hôtel des Dromonts",
+          category: "Sleep",
+          name: "Hotel des Dromonts",
           longitude: 6.776700,
           latitude: 46.189220,
           address: ' 40 Place Des Dromonts, Avoriaz, France',
@@ -183,7 +182,7 @@ trips = [
           position: 2
         },
         {
-          category: "Eat"
+          category: "Eat",
           name: "Le Petit Lindaret",
           longitude: 6.773520,
           latitude: 46.210180,
