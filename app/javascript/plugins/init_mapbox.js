@@ -11,9 +11,9 @@ const getKey = () => {
 
 
 
-const getKey = () => {
-  return document.getElementById("gkey").dataset.key.toString();
-}
+// const getKey = () => {
+//   return document.getElementById("gkey").dataset.key.toString();
+// }
 
 const buildMap = () => {
   mapboxgl.accessToken = mapElement.dataset.mapboxApiKey;
