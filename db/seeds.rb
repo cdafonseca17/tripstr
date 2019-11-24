@@ -323,7 +323,9 @@ trips.each do |trip|
         name: trip[:name],
         start_date: trip[:start_date],
         end_date: trip[:end_date],
-        published: trip[:published]
+        published: trip[:published],
+        country: trip[:country],
+        country_code: trip[:country_code]
       )
 
 
