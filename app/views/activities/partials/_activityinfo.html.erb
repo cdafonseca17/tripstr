@@ -1,18 +1,18 @@
 <h4><% if activity.category == "See" %>
   <i class="far fa-eye icon"></i>
-<% elsif activity.category == "Eat"  %>
+<% elsif activity.category == "Eat" %>
   <i class="fas fa-utensils icon"></i>
-<% elsif activity.category == "Drink"  %>
+<% elsif activity.category == "Drink" %>
   <i class="fas fa-cocktail icon"></i>
-<% elsif activity.category == "Sleep"  %>
+<% elsif activity.category == "Sleep" %>
   <i class="fas fa-bed icon"></i>
-<% elsif activity.category == "Move"  %>
+<% elsif activity.category == "Move" %>
   <i class="fas fa-bus icon"></i>
-<% elsif activity.category == "Comment"  %>
+<% elsif activity.category == "Comment" %>
   <i class="fas fa-comment icon"></i>
 <% end %>
 <%= activity.name %></h2>
-<div class="comment-input">
+<div>
   <%= activity.comment %>
   <%= activity.photo %>
   <%= activity.types %>

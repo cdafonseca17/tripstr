@@ -1,3 +1,10 @@
 <a data-toggle="collapse" href="#collapseEditStep<%= step.id %>" role="button" aria-expanded="false" aria-controls="collapseEditStep<%= step.id %>">
   <i class="far fa-edit"></i>
 </a>
+
+<div class="collapse" id="collapseEditStep<%= step.id %>">
+        <div class="card card-body">
+          <%= render 'steps/partials/stepadd', trip: @trip, step: step %>
+        </div>
+      </div>
+

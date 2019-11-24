@@ -94,6 +94,8 @@ class TripsController < ApplicationController
       }
     end
 
+        # infoWindow: render_to_string(partial: "country_info", locals: { country: country })
+
     @markers = @activitymarkers + @stepmarkers
   end
 
