@@ -56,6 +56,7 @@ class TripsController < ApplicationController
 
   def create
     @trip = Trip.new(trip_params)
+    @trip.country = @trip.country_name
     @trip.user = current_user
     authorize @trip
     if @trip.save
@@ -129,6 +130,7 @@ class TripsController < ApplicationController
     def trip_params
       params["trip"].permit(:name, :start_date, :end_date, :published, :country, :country_code)
     end
+
 end
 
     # respond_to do |format|
