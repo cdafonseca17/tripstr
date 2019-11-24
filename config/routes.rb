@@ -24,4 +24,5 @@ Rails.application.routes.draw do
     end
     get "profile", to: "profile#index"
     get '/mytrips', to: 'pages#mytrips'
+    get '/testedittrip', to: 'pages#testedittrip'
 end

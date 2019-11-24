@@ -1,6 +1,7 @@
 <%= simple_form_for [trip, step, activity] do |f| %>
   <h4 style="padding-bottom: 10px">General comments</h4>
   <%= f.hidden_field :category, value: "Comment" %>
+  <%= f.hidden_field :name, value: "General comments" %>
   <%= f.input :comment, placeholder: "Enter comment", label:false %>
   <%= f.submit "save", class: "btn btn-secondary" %>
 <% end %>
