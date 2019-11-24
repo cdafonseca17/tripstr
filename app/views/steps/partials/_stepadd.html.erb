@@ -1,8 +1,53 @@
-<%= simple_form_for [@trip, step], html: {class: 'form-inline'} do |f| %>
-  <%= f.input :location %>
-  <%#= ("<div id='geocoder' class='geocoder'></div>").html_safe %>
-  <%= f.input :nights, placeholder: "Number of nights", label:false %>
-  <%= f.submit "save", class: "btn btn-secondary" %>
+<% if @steps.empty? %>
+  <a data-toggle="collapse" href="#collapseStepAdd" role="button" aria-expanded="false" aria-controls="collapseStepAdd">
+    Add your first step
+  </a>
+<% else %>
+  <a data-toggle="collapse" href="#collapseStepAdd" role="button" aria-expanded="false" aria-controls="collapseStepAdd">
+    Add new step
+  </a>
 <% end %>
+
+<div class="collapse" id="collapseStepAdd">
+  <div class="card card-body">
+    <%= simple_form_for [@trip, step] do |f| %>
+      <%= f.input :location, label: false, placeholder: "Location" %>
+      <%#= ("<div id='geocoder' class='geocoder'></div>").html_safe %>
+      <%= f.input :nights, placeholder: "Number of nights", label:false %>
+      <%= f.submit "Add", class: "btn btn-secondary" %>
+      <% end %>
+  </div>
+</div>
+
+
+
+<!--
+  <a href="" data-toggle="collapse" data-target="#multiCollapseStepAdd-<%= step.id %>" role="button" aria-expanded="false" aria-controls="multiCollapseStepAdd-<%= step.id %>">Add your first step</a>
+<#% else %>
+  <a href="" data-toggle="collapse" data-target="#multiCollapseStepAdd-<%= step.id %>" role="button" aria-expanded="false" aria-controls="multiCollapseStepAdd-<%= step.id %>">Add step</a>
+<#% end %>
+
+ -->
+
+
+<!--
+ <div class="collapse multi-collapse" id="multiCollapseStepAdd-<%= step.id %>" data-parent="#activitytypes-<%= step.id %>">
+      <div class="card card-body">
+        hello
+
+      </div>
+    </div>
+
+
+
+<%= simple_form_for [@trip, step] do |f| %>
+          <%#= f.input :location, label: false, placeholder: "Location" %>
+          <%#= ("<div id='geocoder' class='geocoder'></div>").html_safe %>
+          <%#= f.input :nights, placeholder: "Number of nights", label:false %>
+          <%#= f.submit "Add", class: "btn btn-secondary" %>
+      <% end %>
+
+ -->
+
 
 

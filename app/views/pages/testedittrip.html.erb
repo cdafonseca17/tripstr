@@ -1,3 +1,13 @@
+<%#= link_to 'Show', @trip %>
+<%#= link_to 'Back', trips_path %>
+
+<% @trip = Trip.find(7)  %>
+<% @step = Step.new  %>
+<% @activity = Activity.new  %>
+<% @activities = @trip.activities %>
+<% @steps = @trip.steps  %>
+
+<!-- Trip banner -->
 <div class="card-category d-flex " style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2466&q=80)">
   <div>
     <%= render 'trips/partials/tripinfo', trip: @trip %>
@@ -58,89 +68,30 @@
   </div>
 </div>
 
-<!-- SEARCH BAR -->
-<div id='geocoder' class='geocoder'></div>
-
-<!-- MAPBOX -->
-<div
-  id="map"
-  data-markers="<%= @markers.to_json %>"
-  data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
-></div>
-</div>
 
 
 
 
 
 
-
-<%#= link_to 'Show', @trip %> <!-- | -->
-<%#= link_to 'Back', trips_path %>
-
-<!-- Trip banner -->
-<!-- <div class="d-flex justify-content-between card-category">
-  <div>
-    <%#= render 'trips/partials/tripinfo', trip: @trip %>
-  </div>
-  <div>
-    <%#= render 'trips/partials/tripedit', trip: @trip %>
-  </div>
-</div> -->
-
-<!-- Each step of the trip -->
-  <%#= @steps1.map { |step| step.location } %>
-  <%#= @steps.map { |step| step.location } %>
-  <%# @steps.each do |step| %>
-    <!-- <div style="padding: 20px 50px">
-      <div id="step-" class="d-flex">
-        <%#= render 'steps/partials/stepinfo', trip: @trip, step: step %>
-        <div>
-          <%#= render 'steps/partials/stepedit', trip: @trip, step: step %>
-          <%#= render 'steps/partials/stepdelete', trip: @trip, step: step %>
-        </div>
-      </div> -->
-        <%#= render 'steps/partials/stepeditcollapse', trip: @trip, step: step %>
-
-      <!-- Each activity of a specific step -->
-      <%# step.activities.map do |activity| %>
-        <!-- <div class="d-flex" style="padding: 15px 0px">
-          <div class="activity-info">
-            <%#= render 'activities/partials/activityinfo', trip: @trip, step: step, activity: activity %>
-          </div>
-          <div>
-            <%#= render 'activities/partials/activityedit', trip: @trip, step: step, activity: activity %>
-            <%#= render 'activities/partials/activitydelete', trip: @trip, step: step, activity: activity %>
-          </div>
-       </div>
-        <%#= render 'activities/partials/activityeditcollapse', trip: @trip, step: step, activity: activity %>
-      <%# end %>
-
-      <div id="activitytypes-" style="padding: 15px 0px">
-        <%#= render 'activities/partials/activityadd', trip: @trip, step: step, activity: @activity %>
-      </div>
-    </div>
-  <%# end %>
-  </div> -->
+ <%#= render 'activities/partials/activityeditcollapse', trip: @trip, step: step, activity: activity %>
+<!-- <div>
+              <%#= render 'activities/partials/activityedit', trip: @trip, step: step, activity: activity %>
+              <%#= render 'activities/partials/activitydelete', trip: @trip, step: step, activity: activity %>
+            </div> -->
 
 
-  <!-- <div style="padding: 20px 50px">
-    <h3>Add new step <%#= render 'steps/partials/stepadd', trip: @trip, step: @step %></h3>
-  </div>
-  <div style="margin-top: 30px; margin-bottom: 30px">
-      <%# if @trip.published?  %>
-        <%#= simple_form_for [@trip] do |f| %>
-          <%#= f.hidden_field :published, value: :false %>
-          <%#= f.submit "Change to Draft", class: "btn btn-primary" %>
-        <%# end %>
-      <%# else %>
-        <%#= simple_form_for [@trip] do |f| %>
-          <%#= f.hidden_field :published, value: :true %>
-          <%#= f.submit "Publish", class: "btn btn-primary" %>
-        <%# end %>
-      <%# end %>
-      <%#= link_to "Save as Draft", mytrips_path, class: "btn btn-outline-green-primary" %>
-  </div> -->
+
+<!-- <div>
+            <%#= render 'steps/partials/stepedit', trip: @trip, step: step %>
+            <%#= render 'steps/partials/stepdelete', trip: @trip, step: step %>
+          </div> -->
+
+
+
+
+
+
 
 <!-- <h2>Map</h2> -->
 
@@ -151,7 +102,7 @@
 <!-- <div
   id="map"
   data-markers="<%= @markers.to_json %>"
-  data-mapbox-api-key="<%#= ENV['MAPBOX_API_KEY'] %>"
+  data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
 ></div>
 </div> -->
 
