@@ -57,6 +57,9 @@ class TripsController < ApplicationController
   def create
     @trip = Trip.new(trip_params)
     @trip.country = @trip.country_name
+    @trip.dates = params["dates"]
+    @trip.start_date = params["dates"].split(" - ")[0]
+    @trip.end_date = params["dates"].split(" - ")[1]
     @trip.user = current_user
     authorize @trip
     if @trip.save
@@ -93,8 +96,17 @@ class TripsController < ApplicationController
         #image_url: helpers.asset_url('REPLACE_THIS_WITH_YOUR_IMAGE_IN_ASSETS')
       }
     end
+    @country = @trip.country
+    # @countrymarkers = [{
+    #     lat: @trip.latitude,
+    #     lng: @trip.longitude,
+    #     color: 'black', # blue ass water
+    #     # infoWindow: render_to_string(partial: "activity_info", locals: { activity: activity })
+    #     #image_url: helpers.asset_url('REPLACE_THIS_WITH_YOUR_IMAGE_IN_ASSETS')
+    #   }]
 
-    @markers = @activitymarkers + @stepmarkers
+
+    # @markers = @activitymarkers + @stepmarkers + @countrymarkers
   end
 
   # POST /trips
@@ -106,6 +118,8 @@ class TripsController < ApplicationController
   def update
     @step = Step.new
     @step.trip_id = @trip
+    @trip.start_date = params["dates"].split(" - ")[0]
+    @trip.start_date = params["dates"].split(" - ")[1]
     if @trip.update(trip_params)
       redirect_to mytrips_path(@trip)
     else
@@ -129,6 +143,7 @@ class TripsController < ApplicationController
 
     def trip_params
       params["trip"].permit(:name, :start_date, :end_date, :published, :country, :country_code)
+
     end
 
 end
