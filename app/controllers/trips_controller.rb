@@ -105,8 +105,11 @@ class TripsController < ApplicationController
     #     #image_url: helpers.asset_url('REPLACE_THIS_WITH_YOUR_IMAGE_IN_ASSETS')
     #   }]
 
-
     # @markers = @activitymarkers + @stepmarkers + @countrymarkers
+
+        # infoWindow: render_to_string(partial: "country_info", locals: { country: country })
+
+    @markers = @activitymarkers + @stepmarkers
   end
 
   # POST /trips
