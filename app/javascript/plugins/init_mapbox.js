@@ -71,7 +71,7 @@ const getDetails = (placeId) => {
   fetch(proxyUrl + targetUrl,)
     .then(response => response.json())
     .then((data) => {
-      // console.log(data.result)
+      console.log(data.result)
       const location = data.result.name
       const name = data.result.name
       const rating = data.result.rating
