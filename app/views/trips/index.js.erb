@@ -5,6 +5,11 @@ function searchTrips(innerHTML) {
 
 searchTrips('<%= j render "trips/partials/cardtrip", trip: @trip %>');
 
+var elements =  document.querySelectorAll('.card-trip');
+elements.forEach(element => {
+element.classList.add('animated', 'slideInUp');
+});
+
 
 //in JS
 // Grab the comntainer element
