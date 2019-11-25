@@ -46,6 +46,7 @@ const getGoogleApiPlaces = (address, lng, lat, elem) => {
       fetch(proxyUrl + targetGeo)
         .then(response => response.json())
         .then((data) => {
+          console.log(data)
           getDetails(data.candidates[0].place_id, elem)
           // parse the data obj and get the data that you need to fill the form values.
       });
@@ -84,6 +85,7 @@ const getDetails = (placeId, form) => {
       // console.log(location)
 
       const inputLocationStep = formRef.querySelector(".step-location-input-js");
+      const inputAddressStep = formRef.querySelector(".step-address-input-js");
       const inputRating = formRef.querySelector(".activity-rating-input-js");
       const inputActivityName = formRef.querySelector('.activity-name-input-js');
       const inputUrl = formRef.querySelector(".activity-url-input-js");
@@ -91,9 +93,11 @@ const getDetails = (placeId, form) => {
       const inputIcon = formRef.querySelector(".activity-icon-input-js");
       const inputAddress = formRef.querySelector(".activity-address-input-js");
 
+
       if (inputLocationStep != null) {
         inputLocationStep.value = name;
-        console.log(inputLocationStep)
+        inputAddressStep.value = address;
+        console.log(inputLocationStep, inputAddressStep)
       }
 
       if (inputActivityName != null) {
@@ -139,6 +143,7 @@ const getValue = (e) => {
 
       getGoogleApiPlaces(address, lng, lat, elem);
 
+
       const inputLongitude = document.querySelector("#trip_longitude")
       inputLongitude.value = lng
 
@@ -183,8 +188,8 @@ const initMapbox = () => {
     const map = buildMap();
     const markers = JSON.parse(mapElement.dataset.markers);
     initGeocoderInput(map);
-    // addMarkersToMap(map, markers);
-    // fitMapToMarkers(map, markers);
+    addMarkersToMap(map, markers);
+    fitMapToMarkers(map, markers);
 
     map.addControl(new MapboxGeocoder({ accessToken: mapboxgl.accessToken, mapboxgl: mapboxgl }));
   }

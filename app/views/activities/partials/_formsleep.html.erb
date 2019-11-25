@@ -7,9 +7,18 @@
   <%= f.hidden_field :types, class: "activity-types-input-js" %>
   <%= f.hidden_field :address, class: "activity-address-input-js" %>
   <%= f.hidden_field :name, label: false, class: "activity-name-input-js" %>
+  <%= f.hidden_field :latitude %>
+  <%= f.hidden_field :longitude %>
 
   <%= ("<div id='geocoder' class='geocoder'></div>").html_safe %>
 
   <%= f.input :comment, placeholder: "Share your feedback", label: false %>
   <%= f.submit "save", class: "btn btn-secondary" %>
 <% end %>
+
+
+
+
+
+
+

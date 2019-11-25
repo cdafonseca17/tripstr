@@ -39,6 +39,6 @@ class StepsController < ApplicationController
 
     private
     def step_params
-      params["step"].permit(:location, :nights)
+      params["step"].permit(:location, :nights, :address, :latitude, :longitude)
     end
   end
