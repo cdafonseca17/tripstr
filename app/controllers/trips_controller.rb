@@ -46,12 +46,24 @@ class TripsController < ApplicationController
       }
     end
 
-    @markers = @activitymarkers + @stepmarkers
+    # @markers = @activitymarkers + @stepmarkers
   end
 
   def new
     @trip = Trip.new
     authorize @trip
+
+    # @country = @trip.country
+    # @countrymarkers = [{
+    #     lat: @trip.latitude,
+    #     lng: @trip.longitude,
+    #     color: 'black', # blue ass water
+    #     # infoWindow: render_to_string(partial: "activity_info", locals: { activity: activity })
+    #     #image_url: helpers.asset_url('REPLACE_THIS_WITH_YOUR_IMAGE_IN_ASSETS')
+    #   }]
+
+    # @markers = @countrymarkers
+
   end
 
   def create
@@ -94,9 +106,11 @@ class TripsController < ApplicationController
       }
     end
 
+    @markers = @activitymarkers + @stepmarkers
+
         # infoWindow: render_to_string(partial: "country_info", locals: { country: country })
 
-    @markers = @activitymarkers + @stepmarkers
+    # @markers = @activitymarkers + @stepmarkers
   end
 
   # POST /trips
@@ -130,7 +144,7 @@ class TripsController < ApplicationController
     end
 
     def trip_params
-      params["trip"].permit(:name, :start_date, :end_date, :published, :country, :country_code)
+      params["trip"].permit(:name, :start_date, :end_date, :published, :country, :country_code, :longitude, :latitude)
     end
 
 end

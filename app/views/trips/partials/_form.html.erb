@@ -4,6 +4,10 @@
   <%# f.hidden_field :country, value: document.getElementById("trip_country_code") %>
   <%= f.input :start_date %>
   <%= f.input :end_date %>
+
+  <%= f.hidden_field :longitude %>
+  <%= f.hidden_field :latitude %>
+
   <%#= f.input :photo %>
-  <%= f.submit "save", class: "btn btn-primary" %>
+  <%= f.submit "save", class: "btn btn-primary", id: "fly" %>
 <% end %>

@@ -15,11 +15,32 @@ const getKey = () => {
 //   return document.getElementById("gkey").dataset.key.toString();
 // }
 
+
+// const romain = document.getElementById("fly");
+// romain.addEventListener("click", (event) => {
+// event.preventDefault();
+//   console.log("helloo");
+//   // console.log(event.currentTarget);
+// });
+
+// const dropDownSelect = document.getElementById("trip_country_code");
+
+// dropDownSelect.addEventListener("click", (event) => {
+//   event.preventDefault();
+//   console.log("this is trip country code");
+//   // console.log(event.currentTarget);
+// });
+
 const buildMap = () => {
   mapboxgl.accessToken = mapElement.dataset.mapboxApiKey;
+  const coordinates = JSON.parse(mapElement.dataset.tripCordinates);
+
   return new mapboxgl.Map({
     container: 'map',
-    style: 'mapbox://styles/mapbox/streets-v10'
+    style: 'mapbox://styles/mapbox/streets-v10',
+    center: [coordinates[1], coordinates[0]],
+    // center: [-74.50, 40],
+    zoom: 4
   });
 };
 
@@ -146,11 +167,35 @@ const getValue = (e) => {
     .then((data) => {
       const lng = data.features[0].center[0];
       const lat = data.features[0].center[1];
+
       getGoogleApiPlaces(address, lng, lat);
+
+      const inputLongitude = document.querySelector("#trip_longitude")
+      inputLongitude.value = lng
+      console.lot(lng)
+      console.log("hellooo")
+
+      const inputLatitude = document.querySelector("#trip_latitude")
+      inputLatitude.value = lat
+      console.log(lat)
+
+      // flyToCountry(lng, lat);
     });
 
   }
 }
+
+
+// const flyToCountry = () => {
+//   document.getElementById('fly').addEventListener('click', function () {
+
+//   map.flyTo({center:[lng, lat]});
+
+//   });
+//   }
+
+
+
 
 const initGeocoderInput = (map) => {
   const el = document.getElementById('geocoder');

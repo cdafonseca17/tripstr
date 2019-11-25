@@ -13,11 +13,39 @@
     <%= simple_form_for [@trip, step] do |f| %>
       <%= f.input :location, label: false, placeholder: "Location" %>
       <%#= ("<div id='geocoder' class='geocoder'></div>").html_safe %>
+      <%#= f.hidden_field :name, input_html: { value: "", id: 'name_activity_custom' } %>
+
+      <%= ("<div id='geocoder' class='geocoder'></div>").html_safe %>
       <%= f.input :nights, placeholder: "Number of nights", label:false %>
       <%= f.submit "Add", class: "btn btn-secondary" %>
+
+<div
+  style="height: 700px; width: 500px"
+  id="map"
+  data-markers="<%= @markers.to_json %>"
+  data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
+  data-trip-cordinates="[<%= @trip.latitude %>, <%= @trip.longitude %>]"
+></div>
+</div>
+
       <% end %>
+
+
   </div>
 </div>
+
+<h2>Map</h2>
+ <!-- SEARCH BAR -->
+<div id='geocoder' class='geocoder'></div>
+<!-- MAPBOX -->
+<div
+  id="map"
+  data-markers="<%= @markers.to_json %>"
+  data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
+></div>
+</div>
+
+
 
 
 
