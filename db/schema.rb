@@ -12,7 +12,6 @@
 
 ActiveRecord::Schema.define(version: 2019_11_25_152640) do
 
-
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -60,6 +59,8 @@ ActiveRecord::Schema.define(version: 2019_11_25_152640) do
     t.datetime "updated_at", null: false
     t.boolean "published", default: false
     t.string "country"
+    t.float "longitude"
+    t.float "latitude"
     t.string "dates"
     t.string "photo"
     t.index ["user_id"], name: "index_trips_on_user_id"

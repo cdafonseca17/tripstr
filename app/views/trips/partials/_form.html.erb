@@ -2,6 +2,13 @@
   <%= f.input :name, label: false, placeholder: 'Enter trip name' %>
   <%= country_select("trip", "country_code", { include_blank: 'Select a country' }, { class: 'form-control', data: { attribute: "value" }})  %>
   <%# f.hidden_field :country, value: document.getElementById("trip_country_code") %>
+
+
+
+  <%= f.hidden_field :longitude %>
+  <%= f.hidden_field :latitude %>
+
+
 <input type="text" name="dates" value="" placeholder="Select dates" class="form-control" />
 <script type="text/javascript">
 $(function() {
@@ -28,5 +35,4 @@ $(function() {
   <%= f.input :photo %>
   <%= f.input :photo_cache, as: :hidden %>
   <%= f.submit "save", class: "btn btn-primary" %>
-
 <% end %>

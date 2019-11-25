@@ -13,7 +13,8 @@ class Trip < ApplicationRecord
     country.translations[I18n.locale.to_s] || country.name
   end
 
-  # after_validation :geocode, if: :will_save_change_to_address?
-  # geocoded_by :address
+  geocoded_by :country
+  after_validation :geocode
+
   # after_validation :geocode, if: :will_save_change_to_address?
 end

@@ -1,4 +1,15 @@
 <div>
+
+  <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://images.unsplash.com/photo-1558000143-a78f8299c40b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80)">
+    <%= @trip.name %>
+  </div>
+  <div id="card-trip-user-show" class="text-center">
+    <% @user = @trip.user %>
+    <%= link_to user_path(@user) do %>
+    <img src="https://media.licdn.com/dms/image/C4E03AQGoXplFFOtXdQ/profile-displayphoto-shrink_800_800/0?e=1579737600&v=beta&t=DIQ4dYohLrYxeelnZSJvN2meZxQ3RiPUXu70duxfMUA"  class=" avatar-large-bordered " />
+  <% end %>
+  </div>
+
 <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/breakfast.jpg)">
   Breakfast
 </div>
@@ -88,6 +99,7 @@
 <img src="https://media.licdn.com/dms/image/C4E03AQGoXplFFOtXdQ/profile-displayphoto-shrink_800_800/0?e=1579737600&v=beta&t=DIQ4dYohLrYxeelnZSJvN2meZxQ3RiPUXu70duxfMUA"  class=" avatar-large-bordered " />
 <% end %>
 </div>
+
 </div>
 
 
@@ -109,7 +121,5 @@
   data-mapbox-api-key="<%#= ENV['MAPBOX_API_KEY'] %>"
 ></div>
 </div> -->
-
-<!-- GOOGLE MAPS -->
 
 

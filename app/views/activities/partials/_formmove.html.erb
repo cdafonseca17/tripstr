@@ -1,7 +1,7 @@
 <%= simple_form_for [trip, step, activity] do |f| %>
   <h4 style="padding-bottom: 10px">How to get there?</h4>
   <%= f.hidden_field :category, value: "Move" %>
-  <%#= f.input :name, collection: ["Plane", "Taxi", "Ferry", "Train"], label: false %>
+  <%= f.input :name, collection: ["Plane", "Taxi", "Ferry", "Train"], label: false %>
   <%= f.input :comment, placeholder: "Share your feedback", label: false %>
   <%= f.submit "save", class: "btn btn-secondary" %>
 <% end %>

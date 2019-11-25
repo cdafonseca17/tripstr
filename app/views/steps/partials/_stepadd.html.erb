@@ -11,20 +11,27 @@
 <div class="collapse" id="collapseStepAdd">
   <div class="card card-body">
     <%= simple_form_for [@trip, step] do |f| %>
-      <%= f.input :location, label: false, placeholder: "Location" %>
+      <%#= f.input :location, label: false, placeholder: "Location" %>
+      <%#= ("<div id='geocoder' class='geocoder'></div>").html_safe %>
+      <%= f.hidden_field :location, label: false, class: "step-location-input-js" %>
+      <%= f.hidden_field :address, label: false, class: "step-address-input-js" %>
+      <%= f.hidden_field :latitude %>
+      <%= f.hidden_field :longitude %>
 
-</div>
-
-
-
-
-
-
+      <%= ("<div id='geocoder' class='geocoder'></div>").html_safe %>
       <%= f.input :nights, placeholder: "Number of nights", label:false %>
       <%= f.submit "Add", class: "btn btn-secondary" %>
+  </div>
+
       <% end %>
+
+
   </div>
 </div>
+
+
+
+
 
 
 
