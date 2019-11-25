@@ -91,8 +91,8 @@ class TripsController < ApplicationController
         #image_url: helpers.asset_url('REPLACE_THIS_WITH_YOUR_IMAGE_IN_ASSETS')
       }
     end
-    @steps = @trip.steps # returns activities with coordinates
-    @stepmarkers = @steps.geocoded.map do |step|
+    @steps = @trip.steps.geocoded # returns activities with coordinates
+    @stepmarkers = @steps.map do |step|
       {
         lat: step.latitude,
         lng: step.longitude,
@@ -101,7 +101,8 @@ class TripsController < ApplicationController
         #image_url: helpers.asset_url('REPLACE_THIS_WITH_YOUR_IMAGE_IN_ASSETS')
       }
     end
-    @country = @trip.country
+
+    # @country = @trip.country
     # @countrymarkers = [{
     #     lat: @trip.latitude,
     #     lng: @trip.longitude,
@@ -139,7 +140,7 @@ class TripsController < ApplicationController
     @trip.destroy
     authorize @trip
     respond_to do |format|
-      format.html { redirect_to trips_url, notice: 'Trip was successfully destroyed.' }
+      format.html { redirect_to mytrips_path, notice: 'Trip was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
