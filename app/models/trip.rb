@@ -4,8 +4,9 @@ class Trip < ApplicationRecord
   has_many :activities, through: :steps
 
   validates :name, presence: true, length: { maximum: 100 }
-  validates :start_date, presence: true
-  validates :end_date, presence: true
+  mount_uploader :photo, PhotoUploader
+  # validates :start_date, presence: true
+  # validates :end_date, presence: true
 
   def country_name
     country = ISO3166::Country[country_code]

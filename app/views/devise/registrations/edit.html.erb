@@ -1,35 +1,89 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<div class='container'>
+  <center>
+    <h2> My Account </h2>
+  </center>
+  <div class="flex-container">
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= f.error_notification %>
+    <div id="devise-form">
+      <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+      <%= f.error_notification %>
 
-  <div class="form-inputs">
-    <%= f.input :email, required: true, autofocus: true %>
+      <div class="form-inputs">
+        <%= f.input :email, required: true, autofocus: true %>
+        <%= f.input :username, required: true, autofocus: true %>
 
-    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
-    <% end %>
+        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+        <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+        <% end %>
+        <%= f.input :current_password,
+        hint: "Please enter current password to verify your identity",
+        required: true,
+        input_html: { autocomplete: "current-password" } %>
+        <%= f.input :password,
+        hint: "Leave blank if you do not wish to change password",
+        required: false,
+        input_html: { autocomplete: "new-password" } %>
+        <%= f.input :password_confirmation,
+        required: false,
+        input_html: { autocomplete: "new-password" } %>
 
-    <%= f.input :password,
-                hint: "leave it blank if you don't want to change it",
-                required: false,
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :password_confirmation,
-                required: false,
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :current_password,
-                hint: "we need your current password to confirm your changes",
-                required: true,
-                input_html: { autocomplete: "current-password" } %>
+
+      </div>
+
+      <div class="form-actions">
+        <!-- need to make text within button white, style below is not working -->
+        <button class='btn-secondary' style="color:white;">
+        <%= f.button :submit, "Save Changes" %>
+        </button>
+      </div>
+      <% end %>
+    </div>
+
+    <div id="photo-upload">
+      <div>
+        <center>
+        <% if @user.photo.present? %>
+        <%= cl_image_tag @user.photo, height: 200, width: 200, crop: :thumb, gravity: :face, class: "avatar-profile" %>
+        <% else %>
+        <%= image_tag "no_prof_pic_present.jpg", height: 200, width: 200, class: "avatar-profile" %>
+        <% end %>
+        </center>
+      </div>
+
+      <div>
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-profile" data-toggle="modal" data-target="#UploadPhotoModal">
+          Update Profile Picture
+        </button>
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="UploadPhotoModal" tabindex="-1" role="dialog" aria-labelledby="addUploadPhotoModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="addUploadPhotoModalLabel">Upload a cool selfie from your last adventure!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <%= simple_form_for(@user) do |f| %>
+                <%= f.input :photo %>
+                <%= f.input :photo_cache, as: :hidden %>
+                <%= f.submit "Upload", class: "btn btn-primary"%>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
+  <center>
+    <%= link_to "Return to previous page", :back %>
+    <p>Unhappy? <%= link_to "Deactivate my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+  </center>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Update" %>
-  </div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
+</div>

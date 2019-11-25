@@ -21,6 +21,11 @@ class TripsController < ApplicationController
       @trips = @trips.select { |trip|
         ((trip_days_param - 3)..(trip_days_param + 3)).to_a.include?(trip.end_date.to_i - trip.start_date.to_i) }
     end
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def show
@@ -69,6 +74,9 @@ class TripsController < ApplicationController
   def create
     @trip = Trip.new(trip_params)
     @trip.country = @trip.country_name
+    @trip.dates = params["dates"]
+    @trip.start_date = params["dates"].split(" - ")[0]
+    @trip.end_date = params["dates"].split(" - ")[1]
     @trip.user = current_user
     authorize @trip
     if @trip.save
@@ -95,8 +103,8 @@ class TripsController < ApplicationController
         #image_url: helpers.asset_url('REPLACE_THIS_WITH_YOUR_IMAGE_IN_ASSETS')
       }
     end
-    @steps = @trip.steps # returns activities with coordinates
-    @stepmarkers = @steps.geocoded.map do |step|
+    @steps = @trip.steps.geocoded # returns activities with coordinates
+    @stepmarkers = @steps.map do |step|
       {
         lat: step.latitude,
         lng: step.longitude,
@@ -106,7 +114,9 @@ class TripsController < ApplicationController
       }
     end
 
+
     @markers = @activitymarkers + @stepmarkers
+
 
         # infoWindow: render_to_string(partial: "country_info", locals: { country: country })
 
@@ -122,8 +132,10 @@ class TripsController < ApplicationController
   def update
     @step = Step.new
     @step.trip_id = @trip
+    @trip.start_date = params["dates"].split(" - ")[0]
+    @trip.start_date = params["dates"].split(" - ")[1]
     if @trip.update(trip_params)
-      redirect_to mytrips_path(@trip)
+      redirect_to edit_trip_path(@trip)
     else
       render :new
     end
@@ -133,7 +145,7 @@ class TripsController < ApplicationController
     @trip.destroy
     authorize @trip
     respond_to do |format|
-      format.html { redirect_to trips_url, notice: 'Trip was successfully destroyed.' }
+      format.html { redirect_to mytrips_path, notice: 'Trip was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -144,7 +156,8 @@ class TripsController < ApplicationController
     end
 
     def trip_params
-      params["trip"].permit(:name, :start_date, :end_date, :published, :country, :country_code, :longitude, :latitude)
+      params["trip"].permit(:name, :start_date, :end_date, :published, :country, :country_code, :longitude, :latitude, :photo)
+
     end
 
 end

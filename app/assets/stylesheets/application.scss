@@ -10,16 +10,18 @@
 
 // Your CSS partials
 @import "components/index";
+@import "components/flex-container";
 @import "pages/index";
 @import "pages/profile";
 
 // Mapbox
-@import "pages/map"
+@import "pages/map";
 
-html * {
+body {
   font-family: 'Roboto', sans-serif;
-  // background-color: white;
+  background-color: white;
 }
+
 
 h1 {
   font-size: 58px;

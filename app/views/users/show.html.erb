@@ -2,9 +2,15 @@
 <div class="container">
 
   <div class="profile_box">
-    <img src="https://kitt.lewagon.com/placeholder/users/arthur-littm" class="avatar-large">
+    <% if @user.photo.present? %>
+      <%= cl_image_tag @user.photo, height: 56, width: 56, crop: :thumb, gravity: :face, class: "avatar-large" %>
+    <% else %>
+      <%= image_tag "no_prof_pic_present.jpg", class: 'avatar-large' %>
+    <% end %>
+
+
     <div class="username_box">
-      <p> adamdios </p>
+      <p> <%= @user.username %> </p>
     </div>
     <div class="user_countries">
       <p><strong>COUNTRIES</strong></p>
@@ -12,7 +18,12 @@
     </div>
     <div class="user_contributions">
       <p><strong>CONTRIBUTIONS</strong></p>
-      <p><%= @user.trips.count %></p>
+      <% array = [] %>
+      <% @user.trips.each do |trip| %>
+        <% array << trip.steps.count %>
+        <% array << trip.activities.count %>
+        <% end %>
+      <p><%= @user.trips.count + array.sum%></p>
     </div>
   </div>
 
