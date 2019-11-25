@@ -37,14 +37,18 @@
           <div id="activitytypes-<%= step.id %>">
             <%= render 'activities/partials/activityadd', trip: @trip, step: step, activity: @activity %>
           </div>
-        </div>
+
      <% end %>
      <h3><%= render 'steps/partials/stepadd', trip: @trip, step: @step %></h3>
     <h4>End: <%= @trip.end_date %></h4>
+
   </div>
   <div class="map-side">
+     <!-- <img style="height: 700px; width: 500px" src="https://images.unsplash.com/photo-1532154078493-c1c3eef2023c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2468&q=80" alt=""> -->
 
-    <div id='geocoder' class='geocoder'></div>
+
+
+<div id='geocoder' class='geocoder'></div>
 
 <div
   style="height: 700px; width: 500px"
@@ -53,12 +57,14 @@
   data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
   data-trip-cordinates="[<%= @trip.latitude %>, <%= @trip.longitude %>]"
 ></div>
-</div>
 
 
-    <!-- <img style="height: 700px; width: 500px" src="https://images.unsplash.com/photo-1532154078493-c1c3eef2023c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2468&q=80" alt=""> -->
+
   </div>
 </div>
+
+
+
 
 
 

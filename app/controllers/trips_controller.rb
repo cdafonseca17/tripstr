@@ -35,8 +35,8 @@ class TripsController < ApplicationController
         #image_url: helpers.asset_url('REPLACE_THIS_WITH_YOUR_IMAGE_IN_ASSETS')
       }
     end
-    @steps = @trip.steps.geocoded # returns activities with coordinates
-    @stepmarkers = @steps.map do |step|
+    @steps = @trip.steps # returns activities with coordinates
+    @stepmarkers = @steps.geocoded.map do |step|
       {
         lat: step.latitude,
         lng: step.longitude,

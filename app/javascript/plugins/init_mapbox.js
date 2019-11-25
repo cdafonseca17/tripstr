@@ -40,7 +40,7 @@ const buildMap = () => {
     style: 'mapbox://styles/mapbox/streets-v10',
     center: [coordinates[1], coordinates[0]],
     // center: [-74.50, 40],
-    zoom: 4
+    zoom: 5
   });
 };
 
@@ -60,7 +60,7 @@ const fitMapToMarkers = (map, markers) => {
   map.fitBounds(bounds, { padding: 70, maxZoom: 15 });
 };
 
-const getGoogleApiPlaces = (address, lng, lat) => {
+const getGoogleApiPlaces = (address, lng, lat, elem) => {
   // console.log('I call Google');
   // console.log('I wait for JSON to be parse')
   // console.log('I update the forms values');
@@ -74,13 +74,13 @@ const getGoogleApiPlaces = (address, lng, lat) => {
     .then(response => response.json())
     .then((data) => {
       console.log(data);
-      getDetails(data.candidates[0].place_id)
+      getDetails(data.candidates[0].place_id, elem)
       // parse the data obj and get the data that you need to fill the form values.
   });
 }
 
 
-const getDetails = (placeId) => {
+const getDetails = (placeId, form) => {
   // console.log('I call Google');
   // console.log('I wait for JSON to be parse')
   // console.log('I update the forms values');
@@ -88,11 +88,14 @@ const getDetails = (placeId) => {
   var proxyUrl = 'https://cors-anywhere.herokuapp.com/',
       targetUrl = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=name,icon,photo,url,formatted_address,geometry,type,website,rating,formatted_phone_number&key=${getKey()}`;
 
+      const formRef = form.parentElement.parentElement;
+      console.log(formRef);
+
   // fetch(`https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${address}&inputtype=textquery&fields=photos,formatted_address,name,rating,opening_hours,geometry&key='GOOGLE_API_KEY`)
   fetch(proxyUrl + targetUrl,)
     .then(response => response.json())
     .then((data) => {
-      console.log(data.result)
+      // console.log(data.result)
       const location = data.result.name
       const name = data.result.name
       const rating = data.result.rating
@@ -102,17 +105,18 @@ const getDetails = (placeId) => {
       const address = data.result.formatted_address
       const longitude = data.result.geometry.location.lng
       const latitude = data.result.geometry.location.lat
-      console.log(name)
+      // console.log(location)
 
-      const inputLocation = document.querySelector("#step_location")
+      const inputLocation = document.querySelector('#step_location')
       inputLocation.value = location
+      console.log(location)
 
       const inputRating = document.querySelector("#activity_rating")
       inputRating.value = rating
 
       const inputName = document.querySelector("#name_activity_custom")
       inputName.value = name;
-      console.log(document.getElementById("name_activity_custom").value)
+      // console.log(document.getElementById("name_activity_custom").value)
       // alert(document.getElementById("activity_name").value);
 
       const inputUrl = document.querySelector("#activity_url")
@@ -126,7 +130,7 @@ const getDetails = (placeId) => {
 
       const inputAddress = document.querySelector("#activity_address")
       inputAddress.value = address
-      console.log(data.result)
+      // console.log(data.result)
       getPhotos(data.result.photos[0].photo_reference)
     }
   );
@@ -168,11 +172,11 @@ const getValue = (e) => {
       const lng = data.features[0].center[0];
       const lat = data.features[0].center[1];
 
-      getGoogleApiPlaces(address, lng, lat);
+      getGoogleApiPlaces(address, lng, lat, elem);
 
       const inputLongitude = document.querySelector("#trip_longitude")
       inputLongitude.value = lng
-      console.lot(lng)
+      console.log(lng)
       console.log("hellooo")
 
       const inputLatitude = document.querySelector("#trip_latitude")
@@ -198,14 +202,16 @@ const getValue = (e) => {
 
 
 const initGeocoderInput = (map) => {
-  const el = document.getElementById('geocoder');
-  var geocoder = new MapboxGeocoder({
-      accessToken: mapboxgl.accessToken,
-      mapboxgl: mapboxgl
-  });
-  el.appendChild(geocoder.onAdd(map));
+  const els = document.querySelectorAll('.geocoder');
+  els.forEach((el) => {
+     var geocoder = new MapboxGeocoder({
+        accessToken: mapboxgl.accessToken,
+        mapboxgl: mapboxgl
+    });
+    el.appendChild(geocoder.onAdd(map));
+    const value = el.addEventListener('keypress', getValue);
+  })
 
-  const value = el.addEventListener('keypress', getValue);
 
   // geocoder.on('results', function(results) {
      // console.log(results);
@@ -219,10 +225,11 @@ const initMapbox = () => {
   if (mapElement) {
     const map = buildMap();
     const markers = JSON.parse(mapElement.dataset.markers);
+    initGeocoderInput(map);
     addMarkersToMap(map, markers);
     fitMapToMarkers(map, markers);
-    initGeocoderInput(map);
-    // map.addControl(new MapboxGeocoder({ accessToken: mapboxgl.accessToken, mapboxgl: mapboxgl }));
+
+    map.addControl(new MapboxGeocoder({ accessToken: mapboxgl.accessToken, mapboxgl: mapboxgl }));
   }
 };
 
