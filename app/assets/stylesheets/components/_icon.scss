@@ -13,3 +13,17 @@
 .icon {
   color: #10B97C;
 }
+
+.icon-action {
+  color: white;
+  background-color: #ABAAAA;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  padding-top: 7px;
+}
+
+.icon-action:hover {
+  background-color: #c9c5c5;
+}

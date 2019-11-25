@@ -135,7 +135,7 @@ class TripsController < ApplicationController
     @trip.destroy
     authorize @trip
     respond_to do |format|
-      format.html { redirect_to trips_url, notice: 'Trip was successfully destroyed.' }
+      format.html { redirect_to mytrips_path, notice: 'Trip was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
