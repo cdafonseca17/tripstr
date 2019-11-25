@@ -2,8 +2,8 @@
     <% if trip.published == true %>
 
 
-    <div class="col-4">
-      <div class="card-trip">
+    <div class="col-4 ">
+      <div class="card-trip" id="homepage-cardtrip">
         <%= link_to "", trip_path(trip), class: 'card-link' %>
         <% if trip.name == 'Netherlands'  %>
         <img src="https://images.unsplash.com/photo-1558000143-a78f8299c40b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80" />
@@ -14,9 +14,9 @@
         <% end %>
         <div class="card-trip-infos">
           <div>
-            <h3><%= trip.name %></h3>
+            <strong><%= trip.name %></strong>
             <%  trip.steps.each do |step| %>
-            <%= step.location %>
+            <p> <%= step.location %> </p>
             <% end %>
           </div>
           <div>
