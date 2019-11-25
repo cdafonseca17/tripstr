@@ -10,27 +10,6 @@ const getKey = () => {
 }
 
 
-
-// const getKey = () => {
-//   return document.getElementById("gkey").dataset.key.toString();
-// }
-
-
-// const romain = document.getElementById("fly");
-// romain.addEventListener("click", (event) => {
-// event.preventDefault();
-//   console.log("helloo");
-//   // console.log(event.currentTarget);
-// });
-
-// const dropDownSelect = document.getElementById("trip_country_code");
-
-// dropDownSelect.addEventListener("click", (event) => {
-//   event.preventDefault();
-//   console.log("this is trip country code");
-//   // console.log(event.currentTarget);
-// });
-
 const buildMap = () => {
   mapboxgl.accessToken = mapElement.dataset.mapboxApiKey;
   const coordinates = JSON.parse(mapElement.dataset.tripCordinates);
@@ -139,13 +118,16 @@ const getPhotos = (photo_reference, formRef) => {
 }
 
 const getValue = (e) => {
-  if(e.keyCode == 13) {
-    var elem = e.srcElement || e.target;
-    // console.log(elem.value);
-    const address = elem.value;
-    // const lat = address.candidates[0].geometry.location.lat
-    // console.log(address)
 
+    var elem = e.srcElement || e.target;
+    const inputGeocoder = elem.parentNode.querySelector('.mapboxgl-ctrl-geocoder--input');
+
+    // console.log(elem.value);
+    const address = inputGeocoder.value;
+
+    if (address == null || address == 'undefined' || address == "") return;
+
+    console.log(address);
 
     const endpoint = `geocoding/v5/mapbox.places/${address}.json`;
     const url = `https://api.mapbox.com/${endpoint}?access_token=pk.eyJ1IjoiY2RhZm9uc2VjYSIsImEiOiJjazJlam1peHkwOWZsM29wYmxmbWw4b3pnIn0.l7jR3kxUiz-pDPh6l4fI6g`;
@@ -162,35 +144,34 @@ const getValue = (e) => {
 
       const inputLatitude = document.querySelector("#trip_latitude")
       inputLatitude.value = lat
-
-
-      // flyToCountry(lng, lat);
     });
 
-  }
 }
 
-
-// const flyToCountry = () => {
-//   document.getElementById('fly').addEventListener('click', function () {
-
-//   map.flyTo({center:[lng, lat]});
-
-//   });
-//   }
-
-
+const createFetchButton = (el) => {
+  var button = document.createElement('a');
+  button.classList.add('fetch-link');
+  button.innerHTML = 'Fetch data NERD!';
+  button.onclick = function(e){
+    e.preventDefault();
+    getValue(e);return false;
+  };
+  // where do we want to have the button to appear?
+  // you can append it to another element just by doing something like
+  // document.getElementById('foobutton').appendChild(button);
+  el.appendChild(button);
+};
 
 
 const initGeocoderInput = (map) => {
-  const els = document.querySelectorAll('.geocoder');
-  els.forEach((el) => {
-     var geocoder = new MapboxGeocoder({
+    const els = document.querySelectorAll('.geocoder');
+    els.forEach((el, index) => {
+      var geocoder = new MapboxGeocoder({
         accessToken: mapboxgl.accessToken,
         mapboxgl: mapboxgl
-    });
-    el.appendChild(geocoder.onAdd(map));
-    const value = el.addEventListener('keypress', getValue);
+      });
+      el.appendChild(geocoder.onAdd(map));
+      createFetchButton(el);
   })
 
 };
