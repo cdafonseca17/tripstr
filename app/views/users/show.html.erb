@@ -2,9 +2,40 @@
 <div class="container">
 
   <div class="profile_box">
-    <img src="https://kitt.lewagon.com/placeholder/users/arthur-littm" class="avatar-large">
+    <% if @user.photo.present? %>
+      <%= cl_image_tag @user.photo, class: "avatar-large" %>
+    <% else %>
+      <%= image_tag "no_prof_pic_present.jpg", class: 'avatar-large' %>
+    <% end %>
+
+ <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary mr-4" data-toggle="modal" data-target="#UploadPhotoModal">
+      Upload Photo
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="UploadPhotoModal" tabindex="-1" role="dialog" aria-labelledby="addUploadPhotoModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="addUploadPhotoModalLabel">Upload a cool selfie from your last adventure!</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <%= simple_form_for(@user) do |f| %>
+            <%= f.input :photo %>
+            <%= f.input :photo_cache, as: :hidden %>
+            <%= f.submit "Upload", class: "btn btn-primary"%>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="username_box">
-      <p> adamdios </p>
+      <p> <%= @user.username %> </p>
     </div>
     <div class="user_countries">
       <p><strong>COUNTRIES</strong></p>
@@ -12,7 +43,12 @@
     </div>
     <div class="user_contributions">
       <p><strong>CONTRIBUTIONS</strong></p>
-      <p><%= @user.trips.count %></p>
+      <% array = [] %>
+      <% @user.trips.each do |trip| %>
+        <% array << trip.steps.count %>
+        <% array << trip.activities.count %>
+        <% end %>
+      <p><%= @user.trips.count + array.sum%></p>
     </div>
   </div>
 
