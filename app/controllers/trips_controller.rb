@@ -130,7 +130,7 @@ class TripsController < ApplicationController
     @trip.start_date = params["dates"].split(" - ")[0]
     @trip.start_date = params["dates"].split(" - ")[1]
     if @trip.update(trip_params)
-      redirect_to mytrips_path(@trip)
+      redirect_to edit_trip_path(@trip)
     else
       render :new
     end
@@ -151,7 +151,7 @@ class TripsController < ApplicationController
     end
 
     def trip_params
-      params["trip"].permit(:name, :start_date, :end_date, :published, :country, :country_code)
+      params["trip"].permit(:name, :start_date, :end_date, :published, :country, :country_code, :photo)
 
     end
 

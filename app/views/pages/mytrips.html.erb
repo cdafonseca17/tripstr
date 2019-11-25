@@ -76,14 +76,19 @@
             <%= step.location %>
             <% end %>
           </div>
-          <img src="https://media.licdn.com/dms/image/C4E03AQGoXplFFOtXdQ/profile-displayphoto-shrink_800_800/0?e=1579737600&v=beta&t=DIQ4dYohLrYxeelnZSJvN2meZxQ3RiPUXu70duxfMUA" class="card-trip-user avatar-bordered" />
-        </div>
+            <% @user = current_user %>
+            <% if @user.photo.present? %>
+              <%= cl_image_tag @user.photo, crop: :thumb, gravity: :face, class: "card-trip-user avatar-bordered" %>
+            <% else %>
+              <%= image_tag "no_prof_pic_present.jpg", class: "card-trip-user avatar-bordered" %>
+            <% end %>
+          <!-- <img src="https://media.licdn.com/dms/image/C4E03AQGoXplFFOtXdQ/profile-displayphoto-shrink_800_800/0?e=1579737600&v=beta&t=DIQ4dYohLrYxeelnZSJvN2meZxQ3RiPUXu70duxfMUA" class="card-trip-user avatar-bordered" /> -->x
       </div>
     </div>
     <% end %>
     <% end %>
 
-
+    </div>
   </div>
 
   <h4 style="margin-top: 20px; margin-bottom: 20px">Published (<%= trippublishedcount %>) </h4>
@@ -113,7 +118,12 @@
             <%= step.location %>
             <% end %>
           </div>
-          <img src="https://media.licdn.com/dms/image/C4E03AQGoXplFFOtXdQ/profile-displayphoto-shrink_800_800/0?e=1579737600&v=beta&t=DIQ4dYohLrYxeelnZSJvN2meZxQ3RiPUXu70duxfMUA" class="card-trip-user avatar-bordered" />
+          <% @user = current_user %>
+            <% if @user.photo.present? %>
+              <%= cl_image_tag @user.photo, crop: :thumb, gravity: :face, class: "card-trip-user avatar-bordered" %>
+            <% else %>
+              <%= image_tag "no_prof_pic_present.jpg", class: "card-trip-user avatar-bordered" %>
+            <% end %>
         </div>
       </div>
     </div>
