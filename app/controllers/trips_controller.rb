@@ -21,6 +21,11 @@ class TripsController < ApplicationController
       @trips = @trips.select { |trip|
         ((trip_days_param - 3)..(trip_days_param + 3)).to_a.include?(trip.end_date.to_i - trip.start_date.to_i) }
     end
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def show

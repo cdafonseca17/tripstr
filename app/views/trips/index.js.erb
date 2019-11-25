@@ -1,0 +1,11 @@
+function searchTrips(innerHTML) {
+  const newTripForm = document.getElementById('card-trip-row');
+  newTripForm.innerHTML = innerHTML;
+}
+
+searchTrips('<%= j render "trips/partials/cardtrip", trip: @trip %>');
+
+
+//in JS
+// Grab the comntainer element
+// append to the container the list of items
