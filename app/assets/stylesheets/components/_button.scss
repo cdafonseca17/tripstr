@@ -7,6 +7,24 @@
   padding-left: 80px;
 }
 
+.btn-profile {
+  color: white;
+  background-color: #ABAAAA;
+  border-color: #ABAAAA;
+  // border-radius: 6px;
+  padding-right: 40px;
+  padding-left: 40px;
+  margin: 20px;
+
+}
+
+.btn-profile:hover {
+  color: white;
+  background-color: #ABAAAA;
+  border-color: #ABAAAA;
+  opacity: 0.9;
+}
+
 .btn-primary:hover {
   color: white;
   background-color: #10B97C;
