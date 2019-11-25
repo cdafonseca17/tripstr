@@ -7,6 +7,10 @@
 </div>
 </div>
 
+
+<h2>Map</h2>
+ <!-- SEARCH BAR -->
+
 <p id="notice"><%= notice %></p>
 <!-- <h1>Trip #<%=Trip.find(params[:id]).id%></h1> -->
 <%= link_to 'Edit', edit_trip_path(@trip) %> |
@@ -21,15 +25,13 @@
 <img id="testphoto" width="400px" height="300px" src>
 
 
-<h2>Map</h2>
- <!-- SEARCH BAR -->
 <div id='geocoder' class='geocoder'></div>
 
 <!-- MAPBOX -->
 <div
   id="map"
   data-markers="<%= @markers.to_json %>"
-  data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
+  data-mapbox-api-key="<%#= ENV['MAPBOX_API_KEY'] %>"
 ></div>
 </div>
 
@@ -96,17 +98,17 @@
 
 <div class="results"> Fetch Results for test </div>
 <img id="testphoto" width="400px" height="300px" src>
- <h2>Map</h2>
- <!-- SEARCH BAR -->
-<div id='geocoder' class='geocoder'></div>
+ <!-- <h2>Map</h2>
+  SEARCH BAR -->
+<!-- <div id='geocoder' class='geocoder'></div> -->
 
 <!-- MAPBOX -->
-<div
+<!-- <div
   id="map"
   data-markers="<%= @markers.to_json %>"
-  data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
+  data-mapbox-api-key="<%#= ENV['MAPBOX_API_KEY'] %>"
 ></div>
-</div>
+</div> -->
 
 <!-- GOOGLE MAPS -->
 
