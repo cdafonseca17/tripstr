@@ -61,22 +61,15 @@ const fitMapToMarkers = (map, markers) => {
 };
 
 const getGoogleApiPlaces = (address, lng, lat, elem) => {
-  // console.log('I call Google');
-  // console.log('I wait for JSON to be parse')
-  // console.log('I update the forms values');
   var proxyUrl = 'https://cors-anywhere.herokuapp.com/',
-      // targetUrl = `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${address}&inputtype=textquery&fields=photos,formatted_address,name,rating,opening_hours,geometry&key=`,
-
-      // anotherTarget = 'https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=Museum%20of%20Contemporary%20Art%20Australia&inputtype=textquery&fields=place_id,photos,formatted_address,name,icon,rating,opening_hours,geometry&key=';
       targetGeo = `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${address}&inputtype=textquery&fields=photos,formatted_address,name,opening_hours,place_id,rating&locationbias=point:${lat},${lng}&key=${getKey()}`;
-  // fetch(`https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${address}&inputtype=textquery&fields=photos,formatted_address,name,rating,opening_hours,geometry&key='GOOGLE_API_KEY`)
-  fetch(proxyUrl + targetGeo)
-    .then(response => response.json())
-    .then((data) => {
-      console.log(data);
-      getDetails(data.candidates[0].place_id, elem)
-      // parse the data obj and get the data that you need to fill the form values.
-  });
+
+      fetch(proxyUrl + targetGeo)
+        .then(response => response.json())
+        .then((data) => {
+          getDetails(data.candidates[0].place_id, elem)
+          // parse the data obj and get the data that you need to fill the form values.
+      });
 }
 
 
@@ -88,8 +81,8 @@ const getDetails = (placeId, form) => {
   var proxyUrl = 'https://cors-anywhere.herokuapp.com/',
       targetUrl = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=name,icon,photo,url,formatted_address,geometry,type,website,rating,formatted_phone_number&key=${getKey()}`;
 
-      const formRef = form.parentElement.parentElement;
-      console.log(formRef);
+      const formRef = form.parentElement.parentElement.parentElement;
+
 
   // fetch(`https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${address}&inputtype=textquery&fields=photos,formatted_address,name,rating,opening_hours,geometry&key='GOOGLE_API_KEY`)
   fetch(proxyUrl + targetUrl,)
@@ -107,51 +100,41 @@ const getDetails = (placeId, form) => {
       const latitude = data.result.geometry.location.lat
       // console.log(location)
 
-      const inputLocation = document.querySelector('#step_location')
-      inputLocation.value = location
-      console.log(location)
+      // const inputLocation = document.querySelector('#step_location')
+      // inputLocation.value = location
+      // console.log(location)
 
-      const inputRating = document.querySelector("#activity_rating")
-      inputRating.value = rating
+      const inputLocationStep = formRef.querySelector(".step-location-input-js");
+      const inputRating = formRef.querySelector(".activity-rating-input-js");
+      const inputActivityName = formRef.querySelector('.activity-name-input-js');
+      const inputUrl = formRef.querySelector(".activity-url-input-js");
+      const inputTypes = formRef.querySelector(".activity-types-input-js");
+      const inputIcon = formRef.querySelector(".activity-icon-input-js");
+      const inputAddress = formRef.querySelector(".activity-address-input-js");
 
-      const inputName = document.querySelector("#name_activity_custom")
-      inputName.value = name;
-      // console.log(document.getElementById("name_activity_custom").value)
-      // alert(document.getElementById("activity_name").value);
+      if (inputLocationStep != null) {
+        inputLocationStep.value = name;
+        console.log(inputLocationStep)
+      }
 
-      const inputUrl = document.querySelector("#activity_url")
-      inputUrl.value = url
+      if (inputActivityName != null) {
+        inputRating.value = rating;
+        inputActivityName.value = name;
+        inputUrl.value = url;
+        inputTypes.value = types;
+        inputIcon.value = icon;
+        inputAddress.value = address;
+        console.log(inputRating,inputActivityName,inputUrl, inputTypes, inputIcon, inputAddress)
+      }
 
-      const inputTypes = document.querySelector("#activity_types")
-      inputTypes.value = types
-
-      const inputIcon = document.querySelector("#activity_icon")
-      inputIcon.value = icon
-
-      const inputAddress = document.querySelector("#activity_address")
-      inputAddress.value = address
-      // console.log(data.result)
-      getPhotos(data.result.photos[0].photo_reference)
+      getPhotos(data.result.photos[0].photo_reference, formRef)
     }
   );
 }
 
-const getPhotos = (photo_reference) => {
-// <<<<<<< api_key
-//   console.log("PHOTO REF", photo_reference)
-
-//   var proxyUrl = 'https://cors-anywhere.herokuapp.com/',
-//       targetUrl = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photo_reference}&key=${getKey()}`;
-//   fetch(proxyUrl + targetUrl, { headers: { Authorization: authorization } })
-//     .then(response => response)
-//     .then((data) => {
-//       // console.log(data);
-//     }
-//   );
-//   document.getElementById("testphoto").src = proxyUrl + targetUrl
-// =======
-  url_path = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photo_reference}&key=${getKey()}`;
-  const inputPhoto = document.querySelector("#activity_photo");
+const getPhotos = (photo_reference, formRef) => {
+  const url_path = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photo_reference}&key=${getKey()}`;
+  const inputPhoto = formRef.querySelector(".activity-photo-input-js");
   inputPhoto.value = url_path;
 }
 
@@ -176,12 +159,10 @@ const getValue = (e) => {
 
       const inputLongitude = document.querySelector("#trip_longitude")
       inputLongitude.value = lng
-      console.log(lng)
-      console.log("hellooo")
 
       const inputLatitude = document.querySelector("#trip_latitude")
       inputLatitude.value = lat
-      console.log(lat)
+
 
       // flyToCountry(lng, lat);
     });
@@ -212,11 +193,6 @@ const initGeocoderInput = (map) => {
     const value = el.addEventListener('keypress', getValue);
   })
 
-
-  // geocoder.on('results', function(results) {
-     // console.log(results);
-  // })
-
 };
 
 
@@ -226,8 +202,8 @@ const initMapbox = () => {
     const map = buildMap();
     const markers = JSON.parse(mapElement.dataset.markers);
     initGeocoderInput(map);
-    addMarkersToMap(map, markers);
-    fitMapToMarkers(map, markers);
+    // addMarkersToMap(map, markers);
+    // fitMapToMarkers(map, markers);
 
     map.addControl(new MapboxGeocoder({ accessToken: mapboxgl.accessToken, mapboxgl: mapboxgl }));
   }

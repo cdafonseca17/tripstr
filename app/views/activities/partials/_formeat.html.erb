@@ -3,7 +3,7 @@
   <%= f.hidden_field :category, value: "Eat" %>
   <%#= f.input :name, placeholder: "Location", label: false %>
 
-  <%= f.hidden_field :name, label: false, id: 'step_location' %>
+  <%= f.hidden_field :name, label: false, class: "activity-name-input-js" %>
   <%= ("<div id='geocoder' class='geocoder'></div>").html_safe %>
 
   <%= f.input :comment, placeholder: "Share your feedback", label: false %>

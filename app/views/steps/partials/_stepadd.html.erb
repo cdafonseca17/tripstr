@@ -13,7 +13,7 @@
     <%= simple_form_for [@trip, step] do |f| %>
       <%#= f.input :location, label: false, placeholder: "Location" %>
       <%#= ("<div id='geocoder' class='geocoder'></div>").html_safe %>
-      <%= f.hidden_field :location, label: false, id: "step_location#{Step.last.id + 1}" %>
+      <%= f.hidden_field :location, label: false, class: "step-location-input-js" %>
       <%= ("<div id='geocoder' class='geocoder'></div>").html_safe %>
       <%= f.input :nights, placeholder: "Number of nights", label:false %>
       <%= f.submit "Add", class: "btn btn-secondary" %>

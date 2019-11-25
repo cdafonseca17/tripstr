@@ -1,91 +1,13 @@
 <div>
-<div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/breakfast.jpg)">
-  Breakfast
-</div>
-<div id="card-trip-user-show" class="text-center">
-<img src="https://media.licdn.com/dms/image/C4E03AQGoXplFFOtXdQ/profile-displayphoto-shrink_800_800/0?e=1579737600&v=beta&t=DIQ4dYohLrYxeelnZSJvN2meZxQ3RiPUXu70duxfMUA"  class=" avatar-large-bordered " />
-</div>
-</div>
-
-<p id="notice"><%= notice %></p>
-<!-- <h1>Trip #<%=Trip.find(params[:id]).id%></h1> -->
-<%= link_to 'Edit', edit_trip_path(@trip) %> |
-<%= link_to 'Back', trips_path %>
-
-<div class='container' name= 'page container'>
-  <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://cdn2.coachmag.co.uk/sites/coachmag/files/styles/16x9_746/public/2016/10/powerlifting.jpg?itok=mIcR1ESq&timestamp=1476292351)">
-     <h2> <%= @trip.name %> </h2>
-    </div>
-
-<div class="results"> Fetch Results for test </div>
-<img id="testphoto" width="400px" height="300px" src>
-
-
-<h2>Map</h2>
- <!-- SEARCH BAR -->
-<div id='geocoder' class='geocoder'></div>
-
-<!-- MAPBOX -->
-<div
-  id="map"
-  data-markers="<%= @markers.to_json %>"
-  data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
-></div>
-</div>
-
-<!-- GOOGLE MAPS -->
-
-
-
-
-<!--GOOGLE MAPS JS STUFF -->
-
-<!-- <!DOCTYPE html>
-<html>
-  <head>
-    <title>Simple Map</title>
-    <meta name="viewport" content="initial-scale=1.0">
-    <meta charset="utf-8">
-    <style>
-      /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-      #map {
-        height: 80%;
-      }
-      /* Optional: Makes the sample page fill the window. */
-      html, body {
-        height: 80%;
-        margin: 0;
-        padding: 0;
-      }
-    </style>
-  </head>
-  <body>
-    <div id="map"></div>
-    <script>
-      var map;
-      function initMap() {
-        map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: -34.397, lng: 150.644},
-          zoom: 8
-        });
-      }
-       </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap&libraries=geometry,places"
-    async defer></script>
-  </body>
-</html> -->
-
-<div>
-<div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://images.unsplash.com/photo-1558000143-a78f8299c40b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80)">
-  <%= @trip.name %>
-</div>
-<div id="card-trip-user-show" class="text-center">
-<% @user = @trip.user %>
-<%= link_to user_path(@user) do %>
-<img src="https://media.licdn.com/dms/image/C4E03AQGoXplFFOtXdQ/profile-displayphoto-shrink_800_800/0?e=1579737600&v=beta&t=DIQ4dYohLrYxeelnZSJvN2meZxQ3RiPUXu70duxfMUA"  class=" avatar-large-bordered " />
-<% end %>
-</div>
+  <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://images.unsplash.com/photo-1558000143-a78f8299c40b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80)">
+    <%= @trip.name %>
+  </div>
+  <div id="card-trip-user-show" class="text-center">
+    <% @user = @trip.user %>
+    <%= link_to user_path(@user) do %>
+    <img src="https://media.licdn.com/dms/image/C4E03AQGoXplFFOtXdQ/profile-displayphoto-shrink_800_800/0?e=1579737600&v=beta&t=DIQ4dYohLrYxeelnZSJvN2meZxQ3RiPUXu70duxfMUA"  class=" avatar-large-bordered " />
+  <% end %>
+  </div>
 </div>
 
 
@@ -107,7 +29,5 @@
   data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
 ></div>
 </div>
-
-<!-- GOOGLE MAPS -->
 
 
