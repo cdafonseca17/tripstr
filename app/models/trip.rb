@@ -4,6 +4,7 @@ class Trip < ApplicationRecord
   has_many :activities, through: :steps
 
   validates :name, presence: true, length: { maximum: 100 }
+  mount_uploader :photo, PhotoUploader
   # validates :start_date, presence: true
   # validates :end_date, presence: true
 
