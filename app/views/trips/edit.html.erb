@@ -1,75 +1,65 @@
-<div class="card-category d-flex " style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= @trip.photo.present? ? @trip.photo : "https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2466&q=80"%>)">
-  <div>
+<div>
+  <div class="card-category" style="position:relative; background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= @trip.photo.present? ? @trip.photo : "https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2466&q=80"%>)">
     <%= render 'trips/partials/tripinfo', trip: @trip %>
-  </div>
-  <div>
-    <%= render 'trips/partials/tripedit', trip: @trip %>
-  </div>
+    <div style="position: absolute; top: 8px; right: 10px;"><%= render 'trips/partials/tripedit', trip: @trip %></div>
 </div>
 
-    <!-- <div id='geocoder' class='geocoder'></div>
 
-<div
-  style="height: 700px; width: 500px"
-  id="map"
-  data-markers="<%= @markers.to_json %>"
-  data-mapbox-api-key="<%#= ENV['MAPBOX_API_KEY'] %>"
-  data-trip-cordinates="[<%= @trip.latitude %>, <%= @trip.longitude %>]"
-></div> -->
-</div>
+<div class="container">
 
 <div class="d-flex justify-content-between">
-  <div class="content-side" style="margin: 50px 0px 50px 50px">
-    <div>
+  <div class="content-side">
+    <div style="margin-top: 50px; margin-bottom: 50px">
       <% if @steps.empty? || @activities.empty? %>
-        <h3><%= @trip.user.first_name %>, start making your trip</h3>
+        <h3>Start making your trip to <%= @trip.country %></h3>
       <% else %>
-        <h3><%= @trip.user.first_name %>, edit your trip</h3>
+        <h3>Edit your trip to <%= @trip.country %></h3>
       <% end %>
     </div>
-    <h4>Start: <%= @trip.start_date %></h4>
-     <% @steps.each do |step| %>
+    <div class="content-info" style="border-left: 1px solid #ABAAAA;">
+      <div>
+        <i class="fas fa-circle icon-start-end"></i>Start: <%= @trip.start_date %>
+      </div>
+      <% @steps.each do |step| %>
         <div id="step-<%= step.id %>">
-          <%= render 'steps/partials/stepinfo', trip: @trip, step: step %>
+          <div style="margin-top: 30px;">
+            <%= render 'steps/partials/stepinfo', trip: @trip, step: step %>
+          </div>
           <% step.activities.map do |activity| %>
+            <div style="margin-top: 20px;">
               <%= render 'activities/partials/activityinfo', trip: @trip, step: step, activity: activity %>
+            </div>
           <% end %>
-          <div id="activitytypes-<%= step.id %>">
+          <div id="activitytypes-<%= step.id %>" style="margin-top: 20px;">
             <%= render 'activities/partials/activityadd', trip: @trip, step: step, activity: @activity %>
           </div>
-
-     <% end %>
-     <h3><%= render 'steps/partials/stepadd', trip: @trip, step: @step %></h3>
-    <h4>End: <%= @trip.end_date %></h4>
-
+        </div>
+      <% end %>
+      <div style="margin-top: 30px;">
+        <h3><%= render 'steps/partials/stepadd', trip: @trip, step: @step %></h3>
+      </div>
+      <div style="margin-top: 30px;">
+        <i class="fas fa-circle icon-start-end"></i>End: <%= @trip.end_date %>
+      </div>
+    </div>
   </div>
-  <div class="map-side">
 
-     <!-- <img style="height: 700px; width: 500px" src="https://images.unsplash.com/photo-1532154078493-c1c3eef2023c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2468&q=80" alt=""> -->
-
-
-
-<!-- <div id='geocoder' class='geocoder'></div> -->
-
-<div
-  style="height: 700px; width: 500px"
-  id="map"
-  data-markers="<%= @markers.to_json %>"
-  data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
-  data-trip-cordinates="[<%= @trip.latitude %>, <%= @trip.longitude %>]"
-></div>
-
-
-
+  <div class="map-side" style="margin-top: 50px;">
+    <div
+      style="height: 700px; width: 500px"
+      id="map"
+      data-markers="<%= @markers.to_json %>"
+      data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
+      data-trip-cordinates="[<%= @trip.latitude %>, <%= @trip.longitude %>]"
+    ></div>
   </div>
 </div>
-
 
 
 <div class="d-flex justify-content-center" style="margin: 50px 0px">
   <div style="margin-right: 20px">
-      <%= link_to "Save as Draft", mytrips_path, class: "btn btn-outline-green-primary" %>
-    </div>
+    <%= link_to "Save as Draft", mytrips_path, class: "btn btn-outline-green-primary" %>
+  </div>
   <div>
     <% if @trip.published?  %>
       <%= simple_form_for [@trip] do |f| %>
@@ -83,13 +73,14 @@
       <% end %>
     <% end %>
   </div>
-  </div>
 </div>
 
+<!-- </div>
+
 
 </div>
-
-
+ -->
+</div>
 
 
 

@@ -1,3 +1,4 @@
-<h2><%= @trip.name %></h2>
-<h4><%= @trip.start_date %></h4>
-<h4><%= @trip.end_date %></h4>
+<div style="text-align: center">
+<h1><%= @trip.name %></h1>
+<h4><%= @trip.end_date.to_i - @trip.start_date.to_i %> days </h4>
+</div>
