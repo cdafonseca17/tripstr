@@ -87,7 +87,7 @@
 <% end %>
 
 
-<h4 style="margin-top: 20px; margin-bottom: 20px"> <%=@user.first_name.capitalize%>'s Published Trips (<%= trippublishedcount %>) </h4>
+<h4 style="margin-top: 20px; margin-bottom: 20px"> <%=@user.username.capitalize%>'s Published Trips (<%= trippublishedcount %>) </h4>
 
   <div class="row">
     <% @user.trips.each do |trip| %>

@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.photo = params["user"]["photo"]
     @user.update(user_params)
-    redirect_to user_path(@user)
+    redirect_to edit_user_registration_path(@user)
   end
 
   def user_params
