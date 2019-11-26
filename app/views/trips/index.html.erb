@@ -4,63 +4,66 @@
   </div>
   <div class="row justify-content-center">
     <button id="find-trip-button" type="button" class="btn btn-primary btn-lg mr-4 mt-4">Find a trip</button>
-          <!-- Button trigger modal -->
-        <button type="button" class="btn btn-outline-primary btn-lg mt-4" data-toggle="modal" data-target="#exampleModal">
-          Add a trip
-        </button>
-        <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Add a trip!</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <% @trip = Trip.new %>
-                <%= render "trips/partials/form", trip: @trip %>
-              </div>
-            </div>
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-outline-primary btn-lg mt-4" data-toggle="modal" data-target="#exampleModal">
+      Add a trip
+    </button>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Add a trip!</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <% @trip = Trip.new %>
+            <%= render "trips/partials/form", trip: @trip %>
           </div>
         </div>
+      </div>
+    </div>
   </div>
 </div>
 
-<div class="container">
+<div class="container" style="min-height: 1000px">
   <div class="row">
     <div class="col-12 mt-3" align="center">
-    <h2 id="index-search-header" class="pt-3">Find and share travel experiences</h2>
+      <h2 id="index-search-header" class="pt-3">Find travel experiences</h2>
     </div>
   </div>
-  <div class="row justify-content-center p-5">
+  <div class="row justify-content-center p-3">
 
     <%= form_tag trips_path, method: :get, remote: true do %>
     <div class="search d-flex">
       <div>
         <%= text_field_tag :query,
-          params[:query],
-          class: "form-control",
+        params[:query],
+        class: "form-control input-mysize",
           placeholder: "Location"
-        %>
+          %>
+        </div>
+        <div class= "ml-3 mr-3">
+         <%= text_field_tag :trip_days,
+         params[:trip_days],
+         class: "form-control input-mysize",
+          placeholder: "Approx. How many days?" %>
+        </div>
+        <div id= "search-home">
+          <%= submit_tag "Search", id:"home-search-button", class: "something btn btn-primary btn-block" %>
+        </div>
       </div>
-      <div class= "ml-3 mr-3">
-       <%= text_field_tag :trip_days,
-        params[:trip_days],
-        class: "form-control",
-        placeholder: "Approx. How many days?" %>
-      </div>
-      <div id= "search-home">
-        <%= submit_tag "Search", id:"home-search-button", class: "something btn btn-primary btn-block" %>
+      <% end %>
+    </div>
+
+
+    <div class="container">
+      <div id="card-trip-row" class="row mt-3">
+        <%= render "trips/partials/cardtrip", trip: @trip %>
+
       </div>
     </div>
-    <% end %>
-
-<div class="container">
-  <div id="card-trip-row" class="row">
-    <%= render "trips/partials/cardtrip", trip: @trip %>
-
   </div>
-</div>
 
