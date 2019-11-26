@@ -16,4 +16,5 @@ class User < ApplicationRecord
   # validates :first_name, presence: true
   # validates :last_name, presence: true
   # validates :home_city, presence: true
+  validates :username, uniqueness: true
 end
