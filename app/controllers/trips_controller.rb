@@ -51,7 +51,7 @@ class TripsController < ApplicationController
       }
     end
 
-    # @markers = @activitymarkers + @stepmarkers
+    @markers = @activitymarkers + @stepmarkers
   end
 
   def new

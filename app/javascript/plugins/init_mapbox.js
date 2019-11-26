@@ -73,7 +73,7 @@ const getDetails = (placeId, form) => {
       const name = data.result.name
       const rating = data.result.rating
       const url = data.result.website
-      const types = data.result.types[0]
+      const types = data.result.types[0,1,2]
       const icon = data.result.icon
       const address = data.result.formatted_address
       const longitude = data.result.geometry.location.lng
@@ -92,6 +92,7 @@ const getDetails = (placeId, form) => {
       const inputTypes = formRef.querySelector(".activity-types-input-js");
       const inputIcon = formRef.querySelector(".activity-icon-input-js");
       const inputAddress = formRef.querySelector(".activity-address-input-js");
+
 
 
       if (inputLocationStep != null) {
