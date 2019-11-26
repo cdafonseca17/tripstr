@@ -10,11 +10,11 @@ import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
 
 import smoothScroll from "../plugins/find_a_trip_auto_scroll";
 
-// import "../plugins/homepage_cardtrip_animation";
+import "../plugins/homepage_cardtrip_animation";
 
-// import { initUpdateNavbarOnScroll } from '../plugins/init_navbar';
+import { initUpdateNavbarOnScroll } from '../plugins/init_navbar';
 
-// initUpdateNavbarOnScroll();
+initUpdateNavbarOnScroll();
 
 initMapbox();
 
