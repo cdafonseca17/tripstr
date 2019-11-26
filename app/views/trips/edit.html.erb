@@ -66,9 +66,6 @@
 
 
 
-
-
-
 <div class="d-flex justify-content-center" style="margin: 50px 0px">
   <div style="margin-right: 20px">
       <%= link_to "Save as Draft", mytrips_path, class: "btn btn-outline-green-primary" %>
@@ -89,11 +86,6 @@
   </div>
 </div>
 
-  id="map"
-  data-markers="<%= @markers.to_json %>"
-  data-mapbox-api-key="<%#= ENV['MAPBOX_API_KEY'] %>"
-  data-trip-cordinates="[<%= @trip.latitude %>, <%= @trip.longitude %>]"
-></div>
 
 </div>
 
@@ -101,6 +93,12 @@
 
 
 
+<!-- <div
+  id="map"
+  data-markers="<%= @markers.to_json %>"
+  data-mapbox-api-key="<%#= ENV['MAPBOX_API_KEY'] %>"
+  data-trip-cordinates="[<%= @trip.latitude %>, <%= @trip.longitude %>]"
+></div> -->
 
 
 <%#= link_to 'Show', @trip %> <!-- | -->
