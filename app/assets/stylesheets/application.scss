@@ -17,6 +17,10 @@
 // Mapbox
 @import "pages/map";
 
+html {
+  background-color: white;
+}
+
 body {
   font-family: 'Roboto', sans-serif;
   background-color: white;

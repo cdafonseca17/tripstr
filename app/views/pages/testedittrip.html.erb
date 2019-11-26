@@ -1,11 +1,92 @@
-<%#= link_to 'Show', @trip %>
-<%#= link_to 'Back', trips_path %>
-
 <% @trip = Trip.find(7)  %>
 <% @step = Step.new  %>
 <% @activity = Activity.new  %>
 <% @activities = @trip.activities %>
 <% @steps = @trip.steps  %>
+
+<div style="border-left: 1px solid grey; margin-left: 50px;">
+  <div id="div1" style="width: 50px; height: 50px; background:#e53935; margin-bottom: 50px; margin-left: -25px;">Hello</div>
+  <div id="div2" style="width: 50px; height: 50px; background: green; margin-bottom: 50px; margin-left: -25px;">Bonjour</div>
+  <div id="div3" style="width: 50px; height: 50px; background: yellow; margin-bottom: 50px; margin-left: -25px;">Hola</div>
+  <div id="div4" style="width: 50px; height: 50px; background:#4527a0; margin-bottom: 50px; margin-left: -25px;">Ciao</div>
+</div>
+
+
+
+
+
+
+
+<!--
+<div id="div1" style="width: 50px; height: 50px; background:#e53935; margin-bottom: 50px; margin-left: 50px;">Hello</div>
+<div id="div2" style="width: 50px; height: 50px; background: green; margin-bottom: 50px; margin-left: 50px;">Bonjour</div>
+<div id="div3" style="width: 50px; height: 50px; background: yellow; margin-bottom: 50px; margin-left: 50px;">Hola</div>
+<div id="div4" style="width: 50px; height: 50px; background:#4527a0; margin-bottom: 50px; margin-left: 50px;">Ciao</div>
+<div style="margin: 50px;">
+  <svg><line id="line1" stroke="red"/></svg>
+</div>
+
+<script>
+  line1 = $('#line1');
+  div1 = $('#div1');
+  div4 = $('#div4');
+  var pos1 = div1.position();
+  var pos2 = div4.position();
+  console.log(pos1);
+  console.log(pos2);
+  line1
+  .attr('x1', pos1.left)
+  .attr('y1', pos1.top)
+  .attr('x2', pos2.left)
+  .attr('y2', pos2.top)
+  console.log(line1)
+</script>
+
+ -->
+
+
+<!--
+<div style="margin: 100px;">
+  <h1 id="myCanvas">hello</h1>
+  <h1>hola</h1>
+  <h1 id="2d">ciao</h1>
+<div>
+
+
+<script>
+  var c = document.getElementById("myCanvas");
+  var ctx = c.getContext("2d");
+  ctx.beginPath();
+  ctx.moveTo(0, 0);
+  ctx.lineTo(300, 150);
+  ctx.stroke();
+</script>
+ -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <!-- Trip banner -->
 <div class="card-category d-flex " style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2466&q=80)">

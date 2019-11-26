@@ -53,8 +53,8 @@
     <div class="col-4">
       <div class="card-trip", style="position: relative">
         <div style="position: absolute; top: 8px; right: 10px;">
-        <%= link_to ('<i class="far fa-edit icon-action"></i>').html_safe, edit_trip_path(trip) %>
-        <%= link_to ('<i class="far fa-trash-alt icon-action"></i>').html_safe, trip_path(trip),
+        <%= link_to ('<i class="far fa-edit icon-edit-delete"></i>').html_safe, edit_trip_path(trip) %>
+        <%= link_to ('<i class="far fa-trash-alt icon-edit-delete"></i>').html_safe, trip_path(trip),
           method: :delete,
           class: 'btn btn-link',
           data: { confirm: "Are you sure?" } %>
@@ -102,12 +102,12 @@
     <div class="col-4">
       <div class="card-trip", style="position: relative">
         <div style="position: absolute; top: 8px; right: 10px;">
-        <%= link_to ('<i class="far fa-edit icon-action"></i>').html_safe, edit_trip_path(trip) %>
-        <%= link_to ('<i class="far fa-trash-alt icon-action"></i>').html_safe, trip_path(trip),
+        <%= link_to ('<i class="far fa-edit icon-edit-delete"></i>').html_safe, edit_trip_path(trip) %>
+        <%= link_to ('<i class="far fa-trash-alt icon-edit-delete"></i>').html_safe, trip_path(trip),
           method: :delete,
           class: 'btn btn-link',
           data: { confirm: "Are you sure?" } %>
-        <%= link_to ('<i class="fas fa-link icon-action"></i>').html_safe, trip_path(trip) %>
+        <%= link_to ('<i class="fas fa-link icon-edit-delete"></i>').html_safe, trip_path(trip) %>
 
         </div>
           <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3033&q=80" alt="">
