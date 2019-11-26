@@ -12,6 +12,10 @@ import smoothScroll from "../plugins/find_a_trip_auto_scroll";
 
 // import "../plugins/homepage_cardtrip_animation";
 
+// import { initUpdateNavbarOnScroll } from '../plugins/init_navbar';
+
+// initUpdateNavbarOnScroll();
+
 initMapbox();
 
 smoothScroll();
