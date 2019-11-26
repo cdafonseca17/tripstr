@@ -132,8 +132,11 @@ class TripsController < ApplicationController
   def update
     @step = Step.new
     @step.trip_id = @trip
+    if params["dates"].present?
+    @trip.dates = params["dates"]
     @trip.start_date = params["dates"].split(" - ")[0]
-    @trip.start_date = params["dates"].split(" - ")[1]
+    @trip.end_date = params["dates"].split(" - ")[1]
+  end
     if @trip.update(trip_params)
       redirect_to edit_trip_path(@trip)
     else
@@ -156,7 +159,7 @@ class TripsController < ApplicationController
     end
 
     def trip_params
-      params["trip"].permit(:name, :start_date, :end_date, :published, :country, :country_code, :longitude, :latitude, :photo)
+      params["trip"].permit(:name, :start_date, :end_date, :published, :country, :country_code, :longitude, :latitude, :photo, :dates)
 
     end
 
