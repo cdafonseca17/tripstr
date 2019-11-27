@@ -1,5 +1,5 @@
 <%= simple_form_for [@trip] do |f| %>
-  <%= f.input :name, label: false, placeholder: 'Enter trip name' %>
+  <%= f.input :name, label: false, placeholder: 'Enter trip name', input_html: { maxlength: 30 } %>
   <%= country_select("trip", "country_code", { include_blank: 'Select a country' }, { class: 'form-control', data: { attribute: "value" }})  %>
   <%# f.hidden_field :country, value: document.getElementById("trip_country_code") %>
 
