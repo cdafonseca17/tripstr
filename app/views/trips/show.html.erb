@@ -35,7 +35,7 @@
           <h4> <%= activity.name %> </h4>
 
           <div class="address-fetched">
-            <p> Address: <%= activity.address %> </p>
+            <p> <strong>Address:</strong> <%= activity.address %> </p>
 
           </div>
 
@@ -49,11 +49,17 @@
               <img class="photo-fetched" src="<%= activity.photo_google %>" />
               <% end %>
 
-            <div class="d-flex flex-column general-info-fetched">
+            <div class="general-info-fetched">
               <p class="url-fetched"> <%= link_to "Visit website", activity.url, target: :blank %> </p>
+
+              <div class="rating-fetched">
+                <i class="fab fa-google"></i> <%= activity.rating.round(1) %> / 5
+              </div>
+
               <p id="icon-fetched">
                 <%#= image_tag activity.icon, {:style => "width:20px;"} %></p>
                 <div class="tags-fetched">
+                  Types:
                 <% if activity.types.present? %>
                   <%= activity.types.gsub("_", " ").capitalize %>
                 <% end %>
@@ -75,9 +81,6 @@
                 <p><%= activity.comment %> </p>
               </div>
 
-              <div class="rating-fetched">
-                <i class="fab fa-google"></i> <%= activity.rating %> / 5
-              </div>
             </div>
 
           </div>
