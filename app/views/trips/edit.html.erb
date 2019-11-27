@@ -27,7 +27,7 @@
           </div>
           <% step.activities.map do |activity| %>
             <div style="margin-top: 20px;">
-              <%= render 'activities/partials/activityinfo', trip: @trip, step: step, activity: activity %>
+              <%= render 'activities/partials/activityinfoedit', trip: @trip, step: step, activity: activity %>
             </div>
           <% end %>
           <div id="activitytypes-<%= step.id %>" style="margin-top: 20px;">

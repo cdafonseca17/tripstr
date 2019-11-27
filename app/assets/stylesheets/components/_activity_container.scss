@@ -2,10 +2,12 @@
   font-size: 16px;
   color: #707070;
   margin-bottom: 25px;
+  margin-left: 35px;
 }
 
 .photo-comment-container {
   margin-bottom: 15px;
+  margin-left: 35px;
 }
 
 .comment-fetched-info-container {
@@ -16,7 +18,9 @@
 .comment-container {
   position: relative;
   padding-top: 20px;
-  width: 340px;
+  width: 280px;
+  padding-left: 10px;
+  padding-right: 10px;
   margin-bottom: 10px;
   background-color: #F0F0F0;
   border-radius: 4px;
@@ -25,10 +29,11 @@
 .comment-container .avatar-bordered {
   position: absolute;
   top: -20px;
-  right: 158px;
+  right: 120px;
 }
 
 .comment-container p {
+  font-size: 14px;
   color: #282828;
   text-align: left;
   padding-top: 10px;
@@ -38,16 +43,10 @@
   text-style: italic;
 }
 
-.rating-fetched .fab {
-  color: #12B97C;
-  text-shadow: 1px 1px 1px #ccc;
-  font-size: 1em;
-}
-
 
 
 .photo-fetched {
-  width: 230px;
+  width: 280px;
   border-radius: 4px;
   box-shadow: 0 10px 30px rgba(0,0,0,.1);
 }
@@ -55,11 +54,55 @@
 .general-info-fetched {
   margin-top: 10px;
   padding: 10px;
+  width: 280px;
+}
+
+.general-info-fetched .title{
+  text-align: left;
+  font-weight: bolder;
+  color: #707070;
+  border-bottom: solid 1px #F0F0F0;
+  padding-bottom: 4px;
+}
+
+.general-info-fetched .tags-fetched {
+  color: #707070;
+  font-size: 14px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-bottom: solid 1px #F0F0F0;
+}
+
+.general-info-fetched .fas, .fab {
+  color: #12B97C;
+  text-shadow: 1px 1px 1px #ccc;
+  font-size: 1.2em;
+  padding-top: 7px;
+  padding-bottom: 5px;
+  padding-right: 10px;
+}
+
+.general-info-fetched .rating-fetched {
+  color: #707070;
+  font-size: 14px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-bottom: solid 1px #F0F0F0;
+}
+
+.rating-fetched .fab {
+  color: #12B97C;
+  text-shadow: 1px 1px 1px #ccc;
+  font-size: 1em;
 }
 
 .general-info-fetched .url-fetched {
-  text-align: center;
+  font-size: 14px;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
+
+
 
 
 
