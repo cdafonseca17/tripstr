@@ -5,14 +5,14 @@
 }
 
 .navbar-lewagon-white {
+  justify-content: space-between;
   background-color: white;
-    border-bottom:1px solid #ABAAAA;
+  border-bottom:1px solid #ABAAAA;
 }
 
-.navbar-lewagon .navbar-collapse {
+.navbar-lewagon-white .navbar-collapse, .navbar-lewagon .navbar-collapse {
   flex-grow: 0;
 }
-
 .navbar-lewagon .navbar-brand img {
   width: 40px;
 }
