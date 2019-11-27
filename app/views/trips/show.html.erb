@@ -17,63 +17,99 @@
 </div>
 
 <!-- Trip information -->
-<div class="d-flex justify-content-between">
-  <div class="content-side" style="margin: 50px 0px 50px 50px">
-    <div>
-      <h3><%= @trip.name %> trip!</h3>
-    </div>
+<div class="container">
+  <div class="d-flex justify-content-between">
+    <div class="content-side" style="margin: 50px 0px 50px 50px">
+      <div>
+        <h3><%= @trip.name %> trip!</h3>
+      </div>
 
-    <h4>Start: <%= @trip.start_date %></h4>
-     <% @steps.each do |step| %>
-        <div id="step-<%= step.id %>">
+      <h4>Start: <%= @trip.start_date %></h4>
+      <% @steps.each do |step| %>
+
+      <div id="step-<%= step.id %>">
         <h3><%= step.position %>. <%= step.location %></h3>
 
-          <% step.activities.map do |activity| %>
-            <h4> <%= activity.name %></h4>
-            <ul>
-              <li> <%= "Rating:" %> <%= activity.rating %> </li>
-              <li> <% if activity.types.present? %>
-                <%= "Type:" %> <%= activity.types.gsub("_", " ").capitalize %> </li>
-                <% end %>
-              <li> <%= "Icon:" %> <%= image_tag activity.icon, {:style => "width:20px;"} %> </li>
-              <li> <%= "Address:" %> <%= activity.address %></li>
-              <li> <%= link_to "Visit website", activity.url %></li>
+      <div class="activity_container">
+        <% step.activities.map do |activity| %>
+          <h4> <%= activity.name %> </h4>
 
-              Photo Google: <img class="photo-fetched" src="<%= activity.photo_google %>" width="250px" />
-              Photo User: <%= cl_image_tag activity.photo, height: 300, width: 400, crop: :fill %>
+          <div class="address-fetched">
+            <p> Address: <%= activity.address %> </p>
+
+          </div>
+
+
+
+          <div class="d-flex photo-comment-container">
+            <div class="photo-fetched-container">
+              <%if activity.photo.present? %>
+              <%= cl_image_tag activity.photo, width: 250, crop: :fill, class: "photo-fetched" %>
+              <% else %>
+              <img class="photo-fetched" src="<%= activity.photo_google %>" />
+              <% end %>
+
+            <div class="d-flex flex-column general-info-fetched">
+              <p class="url-fetched"> <%= link_to "Visit website", activity.url, target: :blank %> </p>
+              <p id="icon-fetched">
+                <%#= image_tag activity.icon, {:style => "width:20px;"} %></p>
+                <div class="tags-fetched">
+                <% if activity.types.present? %>
+                  <%= activity.types.gsub("_", " ").capitalize %>
+                <% end %>
+                </div>
+            </div>
+
+            </div>
+
+            <div class="comment-fetched-info-container">
+              <div class="comment-container d-flex flex-column">
+                <% @user = current_user %>
+                <%= link_to user_path(@user) do %>
+                  <% if @user.photo.present? %>
+                    <%= cl_image_tag @user.photo, crop: :thumb, gravity: :face, class: "avatar-bordered" %>
+                  <% else %>
+                    <%= image_tag "no_prof_pic_present.jpg", class: "avatar-bordered" %>
+                  <% end %>
+                  <% end %>
+                <p><%= activity.comment %> </p>
+              </div>
+
+              <div class="rating-fetched">
+                <i class="fab fa-google"></i> <%= activity.rating %> / 5
+              </div>
+            </div>
+
+          </div>
 
 
 
           <% end %>
-          <div id="activitytypes-<%= step.id %>">
-
-          </div>
+      </div>
 
      <% end %>
-    <h4>End: <%= @trip.end_date %></h4>
+      <h4>End: <%= @trip.end_date %></h4>
+      </div>
+    </div>
 
-  </div>
 
   <!-- Map on the side -->
   <div class="map-side">
-
-<div
-  style="height: 700px; width: 500px"
-  id="map"
-  data-markers="<%= @markers.to_json %>"
-  data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
-  data-trip-cordinates="[<%= @trip.latitude %>, <%= @trip.longitude %>]"
-></div>
-
-
-
+    <div
+      style="height: 700px; width: 500px"
+      id="map"
+      data-markers="<%= @markers.to_json %>"
+      data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
+      data-trip-cordinates="[<%= @trip.latitude %>, <%= @trip.longitude %>]"
+    ></div>
   </div>
-</div>
+ </div <%# content-map-flex-container closing%>>
+</div <%# container closing %>>
 
-<p id="notice"><%= notice %></p>
-<!-- <h1>Trip #<%=Trip.find(params[:id]).id%></h1> -->
-<%= link_to 'Edit', edit_trip_path(@trip) %> |
-<%= link_to 'Back', trips_path %>
+<!-- <p id="notice"><%= notice %></p>
+<h1>Trip #<%#=Trip.find(params[:id]).id%></h1>
+<%#= link_to 'Edit', edit_trip_path(@trip) %> |
+<%#= link_to 'Back', trips_path %> -->
 
 
 

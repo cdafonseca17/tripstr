@@ -1,0 +1,64 @@
+.address-fetched {
+  font-size: 16px;
+  color: #707070;
+}
+
+.comment-fetched-info-container {
+  margin-left: 20px;
+
+}
+
+.comment-container {
+  position: relative;
+  padding-top: 20px;
+  width: 350px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  background-color: #F5F5F5;
+  border-radius: 4px;
+}
+
+.comment-container .avatar-bordered {
+  position: absolute;
+  top: -20px;
+  right: 158px;
+}
+
+.comment-container p {
+  color: #282828;
+  text-align: left;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+  text-style: italic;
+}
+
+.rating-fetched .fab {
+  color: #12B97C;
+  text-shadow: 1px 1px 1px #ccc;
+  font-size: 1em;
+}
+
+
+
+.photo-fetched {
+  width: 250px;
+  border-radius: 4px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.1);
+}
+
+.general-info-fetched {
+  margin-top: 10px;
+  background-color: #F5F5F5;
+  border-radius: 4px;
+  padding: 10px;
+}
+
+
+
+
+
+
+
+
