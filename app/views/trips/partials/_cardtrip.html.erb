@@ -1,33 +1,47 @@
 <% @trips.each do |trip| %>
-    <% if trip.published == true %>
-    <div class="col-4 ">
-      <div class="card-trip" id="homepage-cardtrip">
-        <%= link_to "", trip_path(trip), class: 'card-link' %>
-        <% if trip.name == 'Netherlands'  %>
-        <img src="https://images.unsplash.com/photo-1558000143-a78f8299c40b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80" />
-        <% elsif trip.name == 'Italy'  %>
-        <img src="https://images.unsplash.com/photo-1503970999490-4404449dc349?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1938&q=80" />
-        <% else  %>
-        <img src="https://images.unsplash.com/photo-1490773996481-9ff25c7d9484?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80" />
-        <% end %>
-        <div class="card-trip-infos">
-          <div>
-            <strong><%= trip.name %></strong>
-            <%  trip.steps.each do |step| %>
-            <p> <%= step.location %> </p>
-            <% end %>
-          </div>
-          <div>
-          <%=trip.end_date.to_i - trip.start_date.to_i%> days
-          </div>
-            <% @user = trip.user %>
-            <% if @user.photo.present? %>
-              <%= cl_image_tag @user.photo, crop: :thumb, gravity: :face, class: "card-trip-user avatar-bordered" %>
-            <% else %>
-              <%= image_tag "no_prof_pic_present.jpg", class: "card-trip-user avatar-bordered" %>
-            <% end %>        </div>
+<% if trip.published == true %>
+<div class="col-4 ">
+  <div class="card-trip" id="homepage-cardtrip">
+    <%= link_to "", trip_path(trip), class: 'card-link' %>
+    <% if trip.photo.present?  %>
+    <%= trip.photo %>
+    <% else  %>
+    <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3033&q=80" alt="">
+    <% end %>
+    <div class="card-trip-infos">
+      <div id='card-trip-title'>
+        <strong><%= trip.name %></strong>
       </div>
+      <div id='card-trip-location'>
+        <p>
+          <% array = [] %>
+          <%  trip.steps.each do |step| %>
+          <% array << step.location %>
+          <% end %>
+          <% if array.count == 0  %>
+          <% elsif array.count == 1  %>
+          <%=array[0]%>
+          <% elsif array.count == 2  %>
+          <%=array[0]%> <i class="fas fa-arrow-circle-right"></i> <%=array[1]%>
+          <% elsif array.count == 3  %>
+          <%=array[0]%> <i class="fas fa-arrow-circle-right"></i> <%=array[1]%> <i class="fas fa-arrow-circle-right"></i> <%=array[2]%>
+          <% else %>
+          <%=array[0]%> <i class="fas fa-arrow-circle-right"></i> <%=array[1]%> <i class="fas fa-arrow-circle-right"></i> ...<%= array.last %>
+          <% end %>
+        </p>
+      </div>
+      <div id='card-trip-day'>
+        <%=trip.end_date.to_i - trip.start_date.to_i%> days
+      </div>
+      <% @user = trip.user %>
+      <% if @user.photo.present? %>
+      <%= cl_image_tag @user.photo, crop: :thumb, gravity: :face, class: "card-trip-user avatar-bordered" %>
+      <% else %>
+      <%= image_tag "no_prof_pic_present.jpg", class: "card-trip-user avatar-bordered" %>
+      <% end %>
     </div>
-    <% end %>
-    <% end %>
+  </div>
+</div>
+<% end %>
+<% end %>
 

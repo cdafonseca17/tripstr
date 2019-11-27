@@ -26,9 +26,11 @@
 
 .card-trip .card-trip-infos {
   padding: 16px;
+  flex-direction: column;
+    padding-bottom: 5px;
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
+  align-content: space-between;
   height: 100px;
   position: relative;
   border-right: 1px solid #ABAAAA;
@@ -36,7 +38,35 @@
   border-bottom: 1px solid #ABAAAA;
   border-bottom-left-radius: 6px;
   border-bottom-right-radius: 6px;
+  word-wrap: break-word;
 }
+
+#card-trip-day {
+  width: 35px;
+  font-size: 12px;
+  vertical-align: bottom;
+  white-space: nowrap;
+  position: absolute;
+  right: 13px;
+  bottom: 5px;
+}
+// #card-trip-title {
+// font-size: 18px;
+// }
+
+#card-trip-location {
+    font-size: 14px;
+    vertical-align: bottom;
+    // height: 38px;
+    // white-space: nowrap;
+    // position: absolute;
+    // bottom: 0px;
+    max-width: 200px;
+    word-wrap: break-word;
+}
+// .card-trip-location .fas {
+
+// }
 
 .card-trip-infos .card-trip-user {
   position: absolute;
