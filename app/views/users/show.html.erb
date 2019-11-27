@@ -84,8 +84,8 @@
 <% end %>
 
 
-<h4 style="margin-top: 20px; margin-bottom: 20px"> Published Trips (<%= trippublishedcount %>) </h4>
 
+<h4 style="margin-top: 20px; margin-bottom: 20px"> Published Trips (<%= trippublishedcount %>) </h4>
   <div class="row">
     <% @user.trips.each do |trip| %>
     <% if trip.published == true %>
