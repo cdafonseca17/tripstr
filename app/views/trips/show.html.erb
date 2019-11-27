@@ -59,8 +59,7 @@
               <p id="icon-fetched">
                 <%#= image_tag activity.icon, {:style => "width:20px;"} %></p>
                 <div class="tags-fetched">
-                  Types:
-                <% if activity.types.present? %>
+                  Types: <% if activity.types.present? %>
                   <%= activity.types.gsub("_", " ").capitalize %>
                 <% end %>
                 </div>
@@ -82,18 +81,17 @@
               </div>
 
             </div>
-
           </div>
-
-
 
           <% end %>
       </div>
+    </div>
+
 
      <% end %>
       <h4>End: <%= @trip.end_date %></h4>
       </div>
-    </div>
+
 
 
   <!-- Map on the side -->
