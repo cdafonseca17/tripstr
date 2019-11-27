@@ -39,10 +39,10 @@
               <li> <%= "Address:" %> <%= activity.address %></li>
               <li> <%= link_to "Visit website", activity.url %></li>
 
-              Photo Google: <img src="<%= activity.photo_google %>" width="250px" />
+              Photo Google: <img class="photo-fetched" src="<%= activity.photo_google %>" width="250px" />
               Photo User: <%= cl_image_tag activity.photo, height: 300, width: 400, crop: :fill %>
 
-            </ul>
+
 
           <% end %>
           <div id="activitytypes-<%= step.id %>">
