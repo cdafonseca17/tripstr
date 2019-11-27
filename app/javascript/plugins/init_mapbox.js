@@ -120,6 +120,7 @@ const getPhotos = (photo_reference, formRef) => {
   const url_path = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photo_reference}&key=${getKey()}`;
   const inputPhoto = formRef.querySelector(".activity-photo-input-js");
   inputPhoto.value = url_path;
+  console.log(inputPhoto)
 }
 
 const getValue = (e) => {

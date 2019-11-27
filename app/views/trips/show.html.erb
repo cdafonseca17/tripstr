@@ -37,10 +37,10 @@
               <li> <%= "Address:" %> <%= activity.address %></li>
               <li> <%= link_to "Visit website", activity.url %></li>
 
-              <img src="<%= activity.photo %>" width="250px" />
+              <img class="photo-fetched" src="<%= activity.photo %>" width="250px" />
 
 
-            </ul>
+
 
           <% end %>
           <div id="activitytypes-<%= step.id %>">
