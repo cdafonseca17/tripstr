@@ -77,5 +77,56 @@
   opacity: 0.9;
 }
 
+.mapbox-class .geocoder .mapboxgl-ctrl {
+  box-shadow: none;
+  border: 1px solid #ABAAAA;
+  border-radius: 6px 0px 0px 6px;
+}
+
 .input-mysize { width: 250px }
+
+.fetch-link {
+  color: white !important;
+  background-color: #ABAAAA;
+  border-bottom: 3px solid #ABAAAA;
+  // border-color: #ABAAAA;
+  padding: 8px 40px 6px 40px;
+  border-radius: 0px 6px 6px 0px;
+  display: inline-block;
+  font-size: 1rem;
+  font-family: 'Open Sans';
+}
+
+.mapboxgl-ctrl-geocoder.mapboxgl-ctrl {
+  display: inline-block;
+  box-shadow: none;
+  border: 1px solid #ABAAAA;
+  border-radius: 6px 0px 0px 6px;
+}
+
+.mapboxgl-ctrl-geocoder--pin-right {
+
+}
+
+div#geocoder {
+    display: flex;
+}
+
+#activity_comment {
+  border-radius: 6px;
+  border-color: #ABAAAA;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.form-control.numeric.integer.optional {
+  border-radius: 6px;
+  border-color: #ABAAAA;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+input#step_nights::placeholder {
+  font-family: 'Open Sans';
+}
 
