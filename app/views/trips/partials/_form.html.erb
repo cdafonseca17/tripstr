@@ -1,38 +1,56 @@
-<%= simple_form_for [@trip] do |f| %>
-  <%= f.input :name, label: false, placeholder: 'Enter trip name' %>
-  <%= country_select("trip", "country_code", { include_blank: 'Select a country' }, { class: 'form-control', data: { attribute: "value" }})  %>
-  <%# f.hidden_field :country, value: document.getElementById("trip_country_code") %>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header trip-form">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body" style="text-shadow: none; font-size: 1rem;">
+            <% if @trip.id.nil? %>
+              <h4 style="text-align: center; margin-bottom: 30px; color: black">Add a trip</h4>
+            <% else %>
+              <h4 style="text-align: center; margin-bottom: 30px; color: black">Edit a trip</h4>
+            <% end %>
+              <%= simple_form_for [@trip] do |f| %>
+                <%= f.input :name, placeholder: 'Enter trip name', label: false %>
+                <%= country_select("trip", "country_code", { include_blank: 'Select a country' }, { class: 'form-control', data: { attribute: "value" }})  %>
+                <%# f.hidden_field :country, value: document.getElementById("trip_country_code") %>
+                <%= f.hidden_field :longitude %>
+                <%= f.hidden_field :latitude %>
+              <input type="text" name="dates" value="<%=@trip.dates%>" placeholder="Select dates" class="form-control" id="dates-calendar"/>
+              <script type="text/javascript">
+              $(function() {
 
+                $('input[name="dates"]').daterangepicker({
+                    autoUpdateInput: false,
+                    locale: {
+                        cancelLabel: 'Clear'
+                    }
+                });
 
+                $('input[name="dates"]').on('apply.daterangepicker', function(ev, picker) {
+                    $(this).val(picker.startDate.format('DD/MM/YYYY') + ' - ' + picker.endDate.format('DD/MM/YYYY'));
+                });
 
-  <%= f.hidden_field :longitude %>
-  <%= f.hidden_field :latitude %>
+                $('input[name="dates"]').on('cancel.daterangepicker', function(ev, picker) {
+                    $(this).val('');
+                });
 
-
-<input type="text" name="dates" value="<%=@trip.dates%>" placeholder="<%=@trip.dates%>" class="form-control" />
-<script type="text/javascript">
-$(function() {
-
-  $('input[name="dates"]').daterangepicker({
-      autoUpdateInput: false,
-      locale: {
-          cancelLabel: 'Clear'
-      }
-  });
-
-  $('input[name="dates"]').on('apply.daterangepicker', function(ev, picker) {
-      $(this).val(picker.startDate.format('DD/MM/YYYY') + ' - ' + picker.endDate.format('DD/MM/YYYY'));
-  });
-
-  $('input[name="dates"]').on('cancel.daterangepicker', function(ev, picker) {
-      $(this).val('');
-  });
-
-});
-</script>
-  <%#= f.input :photo %>
-
-  <%= f.input :photo %>
-  <%= f.input :photo_cache, as: :hidden %>
-  <%= f.submit "save", class: "btn btn-primary" %>
-<% end %>
+              });
+              </script>
+                <%#= f.input :photo %>
+                <%= f.input :photo, label: "Upload a photo" %>
+                <%= f.input :photo_cache, as: :hidden %>
+                <div id="form-trip">
+                <% if @trip.id.nil? %>
+                  <%= f.submit "next", class: "btn btn-primary form-trip" %>
+                <% else %>
+                  <%= f.submit "save", class: "btn btn-primary form-trip" %>
+                <% end %>
+                </div>
+              <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
