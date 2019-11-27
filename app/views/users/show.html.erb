@@ -1,13 +1,10 @@
-
 <div class="container">
-
   <div class="profile_box">
     <% if @user.photo.present? %>
       <%= cl_image_tag @user.photo, height: 56, width: 56, crop: :thumb, gravity: :face, class: "avatar-large" %>
     <% else %>
       <%= image_tag "no_prof_pic_present.jpg", class: 'avatar-large' %>
     <% end %>
-
 
     <div class="username_box">
       <p> <%= @user.username %> </p>
@@ -87,33 +84,27 @@
 <% end %>
 
 
-<h4 style="margin-top: 20px; margin-bottom: 20px"> <%=@user.first_name.capitalize%>'s Published Trips (<%= trippublishedcount %>) </h4>
+<h4 style="margin-top: 20px; margin-bottom: 20px"> Published Trips (<%= trippublishedcount %>) </h4>
 
   <div class="row">
     <% @user.trips.each do |trip| %>
     <% if trip.published == true %>
-
-
     <div class="col-4">
       <div class="card-trip", style="position: relative">
-        <div style="position: absolute; top: 8px; right: 10px;">
-        <%= link_to ('<i class="far fa-edit icon-edit-delete"></i>').html_safe, edit_trip_path(trip) %>
-        <%= link_to ('<i class="far fa-trash-alt icon-edit-delete"></i>').html_safe, trip_path(trip),
-          method: :delete,
-          class: 'btn btn-link',
-          data: { confirm: "Are you sure?" } %>
-        <%= link_to ('<i class="fas fa-link icon-edit-delete"></i>').html_safe, trip_path(trip) %>
-
-        </div>
           <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3033&q=80" alt="">
         <div class="card-trip-infos">
-          <div>
-            <h3><%= trip.name %></h3>
+         <div>
+            <strong><%= trip.name %></strong>
             <%  trip.steps.each do |step| %>
-            <%= step.location %>
+            <p> <%= step.location %> </p>
             <% end %>
           </div>
-          <img src="https://media.licdn.com/dms/image/C4E03AQGoXplFFOtXdQ/profile-displayphoto-shrink_800_800/0?e=1579737600&v=beta&t=DIQ4dYohLrYxeelnZSJvN2meZxQ3RiPUXu70duxfMUA" class="card-trip-user avatar-bordered" />
+          <% @user = current_user %>
+            <% if @user.photo.present? %>
+              <%= cl_image_tag @user.photo, crop: :thumb, gravity: :face, class: "card-trip-user avatar-bordered" %>
+            <% else %>
+              <%= image_tag "no_prof_pic_present.jpg", class: "card-trip-user avatar-bordered" %>
+            <% end %>
         </div>
       </div>
     </div>

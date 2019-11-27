@@ -9,7 +9,7 @@
 <% end %>
 
 <div class="container">
-  <h2 style="margin: 50px 0px">Manage my trips</h2>
+
   <h4 style="margin-bottom: 20px">Drafts (<%= tripdraftcount %>) </h4>
   <div class="row">
     <div class="col-4">
@@ -71,9 +71,9 @@
 
         <div class="card-trip-infos">
           <div>
-            <h3><%= trip.name %></h3>
+            <strong><%= trip.name %></strong>
             <%  trip.steps.each do |step| %>
-            <%= step.location %>
+            <p> <%= step.location %> </p>
             <% end %>
           </div>
             <% @user = current_user %>
@@ -91,14 +91,11 @@
     </div>
   </div>
 
+<div id=published-trips>
   <h4 style="margin-top: 20px; margin-bottom: 20px">Published (<%= trippublishedcount %>) </h4>
-
   <div class="row">
-
     <% @trips.each do |trip| %>
     <% if trip.published == true %>
-
-
     <div class="col-4">
       <div class="card-trip", style="position: relative">
         <div style="position: absolute; top: 8px; right: 10px;">
@@ -112,10 +109,10 @@
         </div>
           <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3033&q=80" alt="">
         <div class="card-trip-infos">
-          <div>
-            <h3><%= trip.name %></h3>
+           <div>
+            <strong><%= trip.name %></strong>
             <%  trip.steps.each do |step| %>
-            <%= step.location %>
+            <p> <%= step.location %> </p>
             <% end %>
           </div>
           <% @user = current_user %>
@@ -130,10 +127,16 @@
     <% end %>
     <% end %>
   </div>
+  </div>
+</div>
 
   <%#= link_to "More Details", trip_path(trip), class: 'card-link' %>
         <%#= link_to "Edit Trip", edit_trip_path(trip), class: 'card-link' %>
         <%#= link_to "Delete Trip", trip_path(trip),
         method: :delete,
         data: { confirm: "Are you sure?" } %>
+
+
+
+
 
