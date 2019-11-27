@@ -32,13 +32,15 @@
             <h4> <%= activity.name %></h4>
             <ul>
               <li> <%= "Rating:" %> <%= activity.rating %> </li>
-              <li> <%= "Type:" %> <%= activity.types.gsub("_", " ").capitalize %> </li>
+              <li> <% if activity.types.present? %>
+                <%= "Type:" %> <%= activity.types.gsub("_", " ").capitalize %> </li>
+                <% end %>
               <li> <%= "Icon:" %> <%= image_tag activity.icon, {:style => "width:20px;"} %> </li>
               <li> <%= "Address:" %> <%= activity.address %></li>
               <li> <%= link_to "Visit website", activity.url %></li>
 
-              <img src="<%= activity.photo %>" width="250px" />
-
+              Photo Google: <img src="<%= activity.photo_google %>" width="250px" />
+              Photo User: <%= cl_image_tag activity.photo, height: 300, width: 400, crop: :fill %>
 
             </ul>
 
