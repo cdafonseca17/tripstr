@@ -30,10 +30,10 @@
   </head>
   <body>
     <% if content_for? :nav %>
-  <%= content_for :nav %>
-<% else %>
-    <%= render 'shared/navbar_rest' %>
-<% end %>
+      <%= content_for :nav %>
+    <% else %>
+      <%= render 'shared/navbar_rest' %>
+    <% end %>
     <%= render 'shared/flashes' %>
     <%= yield %>
 
