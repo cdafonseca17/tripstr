@@ -73,7 +73,7 @@ const getDetails = (placeId, form) => {
       const name = data.result.name
       const rating = data.result.rating
       const url = data.result.website
-      const types = data.result.types[0,1,2]
+      const types = data.result.types
       const icon = data.result.icon
       const address = data.result.formatted_address
       const longitude = data.result.geometry.location.lng
