@@ -10,12 +10,13 @@
   <%= f.hidden_field :icon, class: "activity-icon-input-js" %>
   <%= f.hidden_field :types, class: "activity-types-input-js" %>
   <%= f.hidden_field :address, class: "activity-address-input-js" %>
-  <%= f.hidden_field :photo, class: "activity-photo-input-js" %>
+  <%= f.hidden_field :photo_google, class: "activity-photo-input-js" %>
   <%= f.hidden_field :latitude %>
   <%= f.hidden_field :longitude %>
-
   <%= f.input :comment, placeholder: "Share your feedback", label: false %>
-  <%= f.submit "save", class: "btn btn-secondary" %>
+  <%= f.input :photo %>
+  <%= f.input :photo_cache, as: :hidden %>
+  <%= f.submit "add", class: "btn btn-primary" %>
 <% end %>
 
 

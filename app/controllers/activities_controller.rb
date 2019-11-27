@@ -45,6 +45,6 @@ class ActivitiesController < ApplicationController
 
   private
     def activity_params
-      params["activity"].permit(:comment, :name, :rating, :url, :icon, :types, :address, :latitude, :longitude, :photo)
+      params["activity"].permit(:comment, :name, :rating, :url, :icon, :types, :address, :latitude, :longitude, :photo, :photo_google)
     end
   end
