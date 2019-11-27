@@ -1,47 +1,80 @@
-<i class="fas fa-plus-circle icon-add-activity">  </i>
-<a href="" data-toggle="collapse" data-target="#multiCollapseSee-<%= step.id %>" role="button" aria-expanded="false" aria-controls="multiCollapseSee-<%= step.id %>"><i class="far fa-eye icon-activity-button"></i></a>
-<a href="" data-toggle="collapse" data-target="#multiCollapseEat-<%= step.id %>" role="button" aria-expanded="false" aria-controls="multiCollapseEat-<%= step.id %>"><i class="fas fa-utensils icon-activity-button" style="padding: 5px 7px"></i></a>
-<a href="" data-toggle="collapse" data-target="#multiCollapseDrink-<%= step.id %>" role="button" aria-expanded="false" aria-controls="multiCollapseDrink-<%= step.id %>"><i class="fas fa-cocktail icon-activity-button"></i></a>
-<a href="" data-toggle="collapse" data-target="#multiCollapseSleep-<%= step.id %>" role="button" aria-expanded="false" aria-controls="multiCollapseSleep-<%= step.id %>"><i class="fas fa-bed icon-activity-button"></i></a>
-<a href="" data-toggle="collapse" data-target="#multiCollapseMove-<%= step.id %>" role="button" aria-expanded="false" aria-controls="multiCollapseMove-<%= step.id %>"><i class="fas fa-bus icon-activity-button"></i></a>
-<a href="" data-toggle="collapse" data-target="#multiCollapseComment-<%= step.id %>" role="button" aria-expanded="false" aria-controls="multiCollapseComment-<%= step.id %>"><i class="fas fa-comment icon-activity-button"></i></a>
 
+    <!-- <h4 > -->
+    <div class="d-flex">
+      <i class="fas fa-plus-circle icon-add-activity"></i>
+      <!-- <h4 style="color: #a09f9f; padding-right: 15px;">Add activity</h4> -->
+      <div>
+        <a href="" data-toggle="collapse" data-target="#multiCollapseSee-<%= step.id %>" role="button" aria-expanded="false" aria-controls="multiCollapseSee-<%= step.id %>" class="icon-activity-button-link"><i class="far fa-eye icon-activity-button"></i></a>
+          <!-- <div class='inner'>
+            Place
+          </div></a> -->
+        <a href="" data-toggle="collapse" data-target="#multiCollapseEat-<%= step.id %>" role="button" aria-expanded="false" aria-controls="multiCollapseEat-<%= step.id %>" class="icon-activity-button-link"><i class="fas fa-utensils icon-activity-button" style="padding: 5px 7px"></i></a>
+          <!-- <div class='inner'>
+            Restaurant
+          </div></a> -->
+        <a href="" data-toggle="collapse" data-target="#multiCollapseDrink-<%= step.id %>" role="button" aria-expanded="false" aria-controls="multiCollapseDrink-<%= step.id %>" class="icon-activity-button-link"><i class="fas fa-cocktail icon-activity-button"></i></a>
+          <!-- <div class='inner'>
+            Drinks
+          </div></a> -->
+        <a href="" data-toggle="collapse" data-target="#multiCollapseSleep-<%= step.id %>" role="button" aria-expanded="false" aria-controls="multiCollapseSleep-<%= step.id %>" class="icon-activity-button-link"><i class="fas fa-bed icon-activity-button"></i></a>
+          <!-- <div class='inner'>
+            Accommodation
+          </div></a> -->
+        <a href="" data-toggle="collapse" data-target="#multiCollapseMove-<%= step.id %>" role="button" aria-expanded="false" aria-controls="multiCollapseMove-<%= step.id %>" class="icon-activity-button-link"><i class="fas fa-bus icon-activity-button"></i></a>
+          <!-- <div class='inner'>
+            Transportation
+          </div></a> -->
+        <a href="" data-toggle="collapse" data-target="#multiCollapseComment-<%= step.id %>" role="button" aria-expanded="false" aria-controls="multiCollapseComment-<%= step.id %>" class="icon-activity-button-link"><i class="fas fa-comment icon-activity-button"></i></a>
+          <!-- <div class='inner'>
+            Comments
+          </div></a> -->
+      </div>
+    </div>
     <div class="collapse multi-collapse" id="multiCollapseComment-<%= step.id %>" data-parent="#activitytypes-<%= step.id %>">
-      <div class="card card-body">
+      <div class="card card-body" style="border: 0">
         <%= render 'activities/partials/formcomment', trip: @trip, step: step, activity: @activity %>
       </div>
     </div>
 
     <div class="collapse multi-collapse" id="multiCollapseSleep-<%= step.id %>" data-parent="#activitytypes-<%= step.id %>">
-      <div class="card card-body">
+      <div class="card card-body" style="border: 0">
         <%= render 'activities/partials/formsleep', trip: @trip, step: step, activity: @activity %>
       </div>
     </div>
 
     <div class="collapse multi-collapse" id="multiCollapseEat-<%= step.id %>" data-parent="#activitytypes-<%= step.id %>">
-      <div class="card card-body">
+      <div class="card card-body" style="border: 0">
         <%= render 'activities/partials/formeat', trip: @trip, step: step, activity: @activity %>
       </div>
     </div>
 
     <div class="collapse multi-collapse" id="multiCollapseSee-<%= step.id %>" data-parent="#activitytypes-<%= step.id %>">
-      <div class="card card-body">
+      <div class="card card-body" style="border: 0">
         <%= render 'activities/partials/formsee', trip: @trip, step: step, activity: @activity %>
       </div>
     </div>
 
     <div class="collapse multi-collapse" id="multiCollapseDrink-<%= step.id %>" data-parent="#activitytypes-<%= step.id %>">
-      <div class="card card-body">
+      <div class="card card-body" style="border: 0">
         <%= render 'activities/partials/formdrink', trip: @trip, step: step, activity: @activity %>
       </div>
     </div>
 
     <div class="collapse multi-collapse" id="multiCollapseMove-<%= step.id %>" data-parent="#activitytypes-<%= step.id %>">
-      <div class="card card-body">
+      <div class="card card-body" style="border: 0">
         <%= render 'activities/partials/formmove', trip: @trip, step: step, activity: @activity %>
       </div>
     </div>
 
+<!--
+<script>
+  $('.icon-activity-button-link').hover(function(){
+    $('.inner').show();
+},function(){
+    $('.inner').hide();
+});
+</script>
+ -->
 
 <!--
 <button class="btn btn-primary" data-toggle="collapse" data-target="#multiCollapseComment-<%= step.id %>" role="button" aria-expanded="false" aria-controls="multiCollapseComment-<%= step.id %>">Comment</i></button>

@@ -158,7 +158,7 @@ const getValue = (e) => {
 const createFetchButton = (el) => {
   var button = document.createElement('a');
   button.classList.add('fetch-link');
-  button.innerHTML = 'Fetch data NERD!';
+  button.innerHTML = 'search';
   button.onclick = function(e){
     e.preventDefault();
     getValue(e);return false;

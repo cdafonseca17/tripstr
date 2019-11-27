@@ -1,15 +1,15 @@
 <% if @steps.empty? %>
-  <i class="fas fa-plus-circle icon-add-step"></i><a data-toggle="collapse" href="#collapseStepAdd" role="button" aria-expanded="false" aria-controls="collapseStepAdd">
+  <i class="fas fa-plus-circle icon-add-step"></i><a data-toggle="collapse" href="#collapseStepAdd" role="button" aria-expanded="false" aria-controls="collapseStepAdd" style="color: #d6d4d4">
     Add your first step
   </a>
 <% else %>
-  <i class="fas fa-plus-circle icon-add-step"></i><a data-toggle="collapse" href="#collapseStepAdd" role="button" aria-expanded="false" aria-controls="collapseStepAdd">
+  <i class="fas fa-plus-circle icon-add-step"></i><a data-toggle="collapse" href="#collapseStepAdd" role="button" aria-expanded="false" aria-controls="collapseStepAdd" style="color: #d6d4d4">
     Add new step
   </a>
 <% end %>
 
 <div class="collapse" id="collapseStepAdd">
-  <div class="card card-body">
+  <div class="card card-body" style="border: 0">
     <%= simple_form_for [@trip, step] do |f| %>
       <%#= f.input :location, label: false, placeholder: "Location" %>
       <%#= ("<div id='geocoder' class='geocoder'></div>").html_safe %>
@@ -19,7 +19,7 @@
       <%= f.hidden_field :longitude %>
       <%= ("<div id='geocoder' class='geocoder'></div>").html_safe %>
       <%= f.input :nights, placeholder: "Number of nights", label:false %>
-      <%= f.submit "Add", class: "btn btn-secondary" %>
+      <%= f.submit "add", class: "btn btn-primary" %>
     <% end %>
   </div>
 </div>
