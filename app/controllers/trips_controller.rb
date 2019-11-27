@@ -10,10 +10,11 @@ class TripsController < ApplicationController
     @trips = policy_scope(Trip).order(created_at: :desc)
     if params[:query].present?
       sql_query = " \
-      trips.country ILIKE :query \
+      trips.name ILIKE :query \
       OR trips.country ILIKE :query \
       OR steps.location ILIKE :query \
       "
+      # @trip = Trip.where(sql_query, query: "%#{params[:query]}%")
       @trips = Trip.joins(:steps).where(sql_query, query: "%#{params[:query]}%")
     else
       @trips = Trip.all
