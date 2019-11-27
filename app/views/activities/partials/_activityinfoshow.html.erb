@@ -30,7 +30,7 @@
 
       <div class="general-info-fetched">
         <div class="title">
-          General info
+          General information
         </div>
         <div class="d-flex tags-fetched">
           <i class="fas fa-tag"></i>
@@ -53,13 +53,15 @@
 
         <div class="d-flex url-fetched">
         <i class="fas fa-external-link-alt"></i>
-        <p class="url-fetched"> <%= link_to "Visit website", activity.url, target: :blank %> </p>
+          <div class="url-content">
+           <%= link_to "Visit website", activity.url, target: :blank %>
+          </div>
         </div>
 
 
-        <p id="icon-fetched">
+        <!-- <p id="icon-fetched"> -->
           <%#= image_tag activity.icon, {:style => "width:20px;"} %>
-        </p>
+
 
       </div>
 
