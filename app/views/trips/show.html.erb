@@ -6,7 +6,7 @@
   <div id="card-trip-user-show" class="text-center">
     <% @user = @trip.user %>
     <%= link_to user_path(@user) do %>
-    <% @user = current_user %>
+    <%# @user = current_user %>
       <% if @user.photo.present? %>
         <%= cl_image_tag @user.photo, crop: :thumb, gravity: :face, class: "avatar-large-bordered" %>
       <% else %>
@@ -31,7 +31,7 @@
           </div>
           <% step.activities.map do |activity| %>
             <div style="margin-top: 20px;">
-              <%= render 'activities/partials/activityinfoshow', trip: @trip, step: step, activity: activity %>
+              <%= render 'activities/partials/activityinfoshow', trip: @trip, step: step, activity: activity, user: @user %>
             </div>
           <% end %>
         </div>
