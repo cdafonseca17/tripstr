@@ -9,7 +9,7 @@
 <% end %>
 
 <div class="collapse" id="collapseStepAdd">
-  <div class="card card-body" style="border: 0">
+  <div class="card card-body step-form" style="border: 0">
     <%= simple_form_for [@trip, step] do |f| %>
       <%#= f.input :location, label: false, placeholder: "Location" %>
       <%#= ("<div id='geocoder' class='geocoder'></div>").html_safe %>
@@ -20,9 +20,16 @@
       <%= ("<div id='geocoder' class='geocoder'></div>").html_safe %>
       <%= f.input :nights, placeholder: "Number of nights", label:false %>
       <%= f.submit "add", class: "btn btn-primary" %>
+      <input type="hidden" name="" class="activity-photo-input-js" />
     <% end %>
+
+    <div class="loader-form-takeover">
+     <div class="loader"></div>
+    </div>
+
   </div>
 </div>
+
 
 
 
