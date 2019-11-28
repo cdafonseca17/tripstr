@@ -110,7 +110,6 @@ const getDetails = (placeId, form) => {
         inputAddress.value = address;
         console.log(inputRating,inputActivityName,inputUrl, inputTypes, inputIcon, inputAddress)
       }
-
       getPhotos(data.result.photos[0].photo_reference, formRef)
     }
   );
@@ -119,14 +118,17 @@ const getDetails = (placeId, form) => {
 const getPhotos = (photo_reference, formRef) => {
   const url_path = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photo_reference}&key=${getKey()}`;
   const inputPhoto = formRef.querySelector(".activity-photo-input-js");
+  const loader = formRef.querySelector('.loader-js');
   inputPhoto.value = url_path;
-  console.log(inputPhoto)
+  loader.classList.remove('active');
 }
 
 const getValue = (e) => {
 
     var elem = e.srcElement || e.target;
     const inputGeocoder = elem.parentNode.querySelector('.mapboxgl-ctrl-geocoder--input');
+    const loader = elem.parentElement.parentElement.querySelector('.loader-js');
+    loader.classList.add('active');
 
     // console.log(elem.value);
     const address = inputGeocoder.value;
@@ -161,13 +163,19 @@ const createFetchButton = (el) => {
   button.innerHTML = 'search';
   button.onclick = function(e){
     e.preventDefault();
-    getValue(e);return false;
+    getValue(e); return false;
   };
   // where do we want to have the button to appear?
   // you can append it to another element just by doing something like
   // document.getElementById('foobutton').appendChild(button);
   el.appendChild(button);
 };
+
+const createLoaderView = (form) => {
+  console.log('form', form)
+  const template = `<div class="loader-js loader-form-takeover"><div class="loader"></div></div>`;
+  form.insertAdjacentHTML('beforeend', template);
+}
 
 
 const initGeocoderInput = (map) => {
@@ -179,7 +187,10 @@ const initGeocoderInput = (map) => {
       });
       el.appendChild(geocoder.onAdd(map));
       createFetchButton(el);
+      createLoaderView(el.parentElement);
   })
+
+    // const forms = document.querySelectorAll()
 
 };
 
