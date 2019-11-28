@@ -1,7 +1,7 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon fixed-top">
 
   <%= link_to root_path, class: "navbar-brand" do %>
-  <%= image_tag "no_prof_pic_present.jpg", height: 40, width: 40, crop: :thumb, gravity: :face %>
+  <%= image_tag "goflamingo-logo-white.png", id: 'logo'%>
     <% end %>
 
 
@@ -28,7 +28,7 @@
           </div>
         </li>
       <% else %>
-        <li class="nav-item">
+        <li  class="nav-item">
           <%= link_to "Login", new_user_session_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
