@@ -36,7 +36,7 @@
     <% end %>
     <%= render 'shared/flashes' %>
 
-    <div class="<%= current_page?(root_url) ? '' : 'space-content-from-navabar'  %>">
+    <div class="<%= current_page?('/') ? '' : 'space-content-from-navabar'  %>">
       <%= yield %>
     </div>
 
