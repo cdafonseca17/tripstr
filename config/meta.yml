@@ -1,4 +1,5 @@
 meta_product_name: "GoFlamingo"
 meta_title: "GoFlamingo - Find and share travel experiences"
 meta_description: "Goflamingo is THE website to find and share travel experiences. Find out what your friends and others did when they went on their amazing trip. Also setup and share your own trips!"
-meta_image: "trip-image-default.jpg" # should exist in `app/assets/images/`
+meta_image: "cover_1200_630.jpg" # should exist in `app/assets/images/`
+
