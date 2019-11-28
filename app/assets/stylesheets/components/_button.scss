@@ -145,7 +145,8 @@ input#step_nights::placeholder {
 }
 
 .form-control.is-valid.string.required {
-  width: 100%;
+  margin: 20px auto;
+  width: 60%;
 }
 
 #trip_country_code {

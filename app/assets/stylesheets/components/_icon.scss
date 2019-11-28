@@ -79,7 +79,7 @@
 
 .icon-edit-delete {
   color: white;
-  background-color: #ABAAAA;
+  background-color: black;
   border-radius: 50%;
   width: 30px;
   height: 30px;
@@ -88,5 +88,6 @@
 }
 
 .icon-edit-delete:hover {
-  background-color: #c9c5c5;
+  background-color: black;
+  opacity: 0.7;
 }

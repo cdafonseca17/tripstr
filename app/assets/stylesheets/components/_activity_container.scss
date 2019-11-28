@@ -107,7 +107,7 @@
 }
 
 .general-info-fetched .fas, .fab {
-  color: #12B97C;
+  color: #a8a1a1;
   text-shadow: 1px 1px 1px #ccc;
   font-size: 1.2em;
   padding-top: 7px;
@@ -135,7 +135,15 @@
   padding-bottom: 5px;
 }
 
+#visit-website-link {
+  color: #282828;
+}
 
+#visit-website-link:hover {
+  color: #282828;
+  opacity: 0.7;
+  text-decoration: none;
+}
 
 
 

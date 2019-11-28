@@ -5,10 +5,10 @@ const initUpdateNavbarOnScroll = () => {
     window.addEventListener('scroll', () => {
       if (window.scrollY >= window.innerHeight) {
         navbar.classList.add('navbar-lewagon-white');
-        brand.innerHTML = `<img id="logo" height="48" width="208" crop="thumb" gravity="face" src="/assets/goflamingo-logo-black.png">`
+        brand.innerHTML = `<img id="logo" height="auto" width="185" crop="thumb" gravity="face" src="/assets/goflamingo-logo-black.png">`
       } else {
         navbar.classList.remove('navbar-lewagon-white');
-        brand.innerHTML = `<img id="logo" height="48" width="208" crop="thumb" gravity="face" src="/assets/goflamingo-logo-white.png">`
+        brand.innerHTML = `<img id="logo" height="auto" width="185" crop="thumb" gravity="face" src="/assets/goflamingo-logo-white.png">`
       }
     });
   }

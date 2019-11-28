@@ -9,7 +9,7 @@
 <% end %>
 
 <div class="container">
-  <h2>My Trips</h2>
+  <h2 style="margin-top: 60px;">My Trips</h2>
   <div id=draft-trips>
     <h4 style="margin-top: 20px; margin-bottom: 20px">Drafts (<%= tripdraftcount %>) </h4>
     <div class="row">
@@ -24,7 +24,13 @@
             class: 'btn btn-link',
               data: { confirm: "Are you sure?" } %>
             </div>
-            <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3033&q=80" alt="">
+            <% if trip.photo.present?  %>
+              <%= cl_image_tag trip.photo %>
+             <% else  %>
+              <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3033&q=80" alt="">
+            <% end %>
+
+            <!-- <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3033&q=80" alt=""> -->
             <div class="card-trip-infos">
               <div id='card-trip-title'>
                 <strong><%= trip.name %></strong>
@@ -118,7 +124,11 @@
             <%= link_to ('<i class="fas fa-link icon-edit-delete"></i>').html_safe, trip_path(trip) %>
 
           </div>
-          <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3033&q=80" alt="">
+          <% if trip.photo.present?  %>
+              <%= cl_image_tag trip.photo %>
+             <% else  %>
+              <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3033&q=80" alt="">
+            <% end %>
           <div class="card-trip-infos">
             <div id='card-trip-title'>
               <strong><%= trip.name %></strong>
