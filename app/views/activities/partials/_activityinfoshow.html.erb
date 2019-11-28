@@ -13,6 +13,7 @@
 <% end %>
 <%= activity.name %></h4>
 <div>
+  <!-- ACTIVITY - SEE, EAT, DRINK, SLEEP -->
   <% if activity.category == "See" || activity.category == "Eat" || activity.category == "Drink" || activity.category == "Sleep" %>
   <div class="address-fetched">
     <p> <strong>Address:</strong> <%= activity.address %> </p>
@@ -26,9 +27,7 @@
           <img class="photo-fetched" src="<%= activity.photo_google %>" />
         <% end %>
 
-    <!-- GENERAL INFO EAT DRINK SLEEP SEE-->
-
-      <div class="general-info-fetched">
+    <div class="general-info-fetched">
         <div class="title">
           General information
         </div>
@@ -57,18 +56,9 @@
            <%= link_to "Visit website", activity.url, target: :blank %>
           </div>
         </div>
-
-
-        <!-- <p id="icon-fetched"> -->
-          <%#= image_tag activity.icon, {:style => "width:20px;"} %>
-
-
       </div>
-
-    <!-- GENERAL INFO ENDS EAT SLEEP DRINK SEE -->
-
-
-      </div>
+    </div>
+    <!-- GENERAL INFO ENDS FOR EAT SLEEP DRINK SEE -->
 
       <div class="comment-fetched-info-container">
         <div class="comment-container d-flex">
@@ -83,34 +73,13 @@
             <% end %>
               <p><%= activity.comment %> </p>
         </div>
-
       </div>
     </div>
 
     <% else %>
 
-    <div class="d-flex photo-comment-container">
-      <div class="photo-fetched-container">
-        <%if activity.photo.present? %>
-          <%= cl_image_tag activity.photo, width: 250, crop: :fill, class: "photo-fetched" %>
-        <% else %>
-          <img class="photo-fetched" src="<%= activity.photo_google %>" />
-        <% end %>
-
-    <!-- GENERAL INFO MOVE COMMENT -->
-
-
-
-
-
-
-    <!-- GENERAL INFO ENDS -->
-
-      </div>
-
-      <div class="comment-fetched-info-container">
+      <!-- <div class="comment-fetched-info-container"> -->
         <div class="comment-container-second d-flex">
-          <%# @user = current_user %>
           <%= link_to user_path(@user) do %>
             <% if @user.photo.present? %>
               <%= cl_image_tag @user.photo, crop: :thumb, gravity: :face, class: "avatar-bordered" %>
@@ -121,8 +90,8 @@
               <p><%= activity.comment %> </p>
         </div>
 
-      </div>
-    </div>
+      <!-- </div> -->
+
     <% end %>
 
 </div>

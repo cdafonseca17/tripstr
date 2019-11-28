@@ -13,6 +13,12 @@
 <% end %>
 <%= activity.name %></h4>
 <div>
+  <% if activity.category == "See" || activity.category == "Eat" || activity.category == "Drink" || activity.category == "Sleep" %>
+  <div class="address-fetched">
+    <p> <strong>Address:</strong> <%= activity.address %> </p>
+  </div>
+  <% end %>
+
   <%#= activity.comment %>
   <%#= activity.photo %>
   <%#= activity.types %>
