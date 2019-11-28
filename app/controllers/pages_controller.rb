@@ -6,7 +6,7 @@ class PagesController < ApplicationController
   end
 
   def trip_days
-      (@trip.end_date - @trip.start_date).to_i
+    (@trip.end_date.to_date - @trip.start_date.to_date).to_i
   end
 
   def mytrips
