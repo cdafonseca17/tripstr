@@ -64,13 +64,7 @@
         <div class="comment-container d-flex">
           <%# @user = @trip.user %>
           <%# @user = current_user %>
-          <%= link_to user_path(@user) do %>
-            <% if @user.photo.present? %>
-              <%= cl_image_tag @user.photo, crop: :thumb, gravity: :face, class: "avatar-bordered" %>
-            <% else %>
-            <%= image_tag "no_prof_pic_present.jpg", class: "avatar-bordered" %>
-              <% end %>
-            <% end %>
+
               <p><%= activity.comment %> </p>
         </div>
       </div>
@@ -80,13 +74,7 @@
 
       <!-- <div class="comment-fetched-info-container"> -->
         <div class="comment-container-second d-flex">
-          <%= link_to user_path(@user) do %>
-            <% if @user.photo.present? %>
-              <%= cl_image_tag @user.photo, crop: :thumb, gravity: :face, class: "avatar-bordered" %>
-            <% else %>
-            <%= image_tag "no_prof_pic_present.jpg", class: "avatar-bordered" %>
-              <% end %>
-            <% end %>
+
               <p><%= activity.comment %> </p>
         </div>
 
