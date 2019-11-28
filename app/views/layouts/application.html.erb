@@ -34,7 +34,10 @@
       <%= render 'shared/navbar_rest' %>
     <% end %>
     <%= render 'shared/flashes' %>
-    <%= yield %>
+
+    <div class="<%= current_page?(root_url) ? '' : 'space-content-from-navabar'  %>">
+      <%= yield %>
+    </div>
 
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
