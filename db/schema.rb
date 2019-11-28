@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 2019_11_27_094034) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "photo"
-    t.integer "rating"
+    t.string "rating"
     t.string "url"
     t.string "icon"
     t.string "types"
