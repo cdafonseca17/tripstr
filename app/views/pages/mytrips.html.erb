@@ -48,7 +48,7 @@
               </p>
               </div>
               <div id='card-trip-day'>
-                <%=trip.end_date.to_i - trip.start_date.to_i%> days
+                <%=(trip.end_date.to_date - trip.start_date.to_date).to_i%> days
               </div>
               <% @user = current_user %>
               <% if @user.photo.present? %>
@@ -142,7 +142,7 @@
               </p>
             </div>
             <div id='card-trip-day'>
-              <%=trip.end_date.to_i - trip.start_date.to_i%> days
+              <%=(trip.end_date.to_date - trip.start_date.to_date).to_i%> days
             </div>
             <% @user = current_user %>
             <% if @user.photo.present? %>

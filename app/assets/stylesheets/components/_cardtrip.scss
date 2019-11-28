@@ -27,7 +27,7 @@
 .card-trip .card-trip-infos {
   padding: 16px;
   flex-direction: column;
-    padding-bottom: 5px;
+  padding-bottom: 5px;
   display: flex;
   justify-content: space-between;
   align-content: space-between;
@@ -42,28 +42,29 @@
 }
 
 #card-trip-day {
-  width: 35px;
+  width: 45px;
   font-size: 12px;
+  text-align: right;
   vertical-align: bottom;
   white-space: nowrap;
   position: absolute;
-  right: 13px;
-  bottom: 5px;
+  right: 17px;
+  bottom: 6px;
 }
 // #card-trip-title {
 // font-size: 18px;
 // }
 
 #card-trip-location {
-    font-size: 14px;
-    vertical-align: bottom;
+  font-size: 14px;
+  vertical-align: bottom;
     // height: 38px;
     // white-space: nowrap;
     // position: absolute;
     // bottom: 0px;
     max-width: 200px;
     word-wrap: break-word;
-}
+  }
 // .card-trip-location .fas {
 
 // }
