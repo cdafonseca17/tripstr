@@ -1,18 +1,19 @@
-.container {
-  max-width: 1200px;
-  margin: 24px auto;
-}
+// .container {
+//   max-width: 1200px;
+//   margin: 24px auto;
+// }
+
 
 // Top profile div
 .profile_box {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  // display: flex;
+  // align-items: center;
+  // justify-content: space-between;
   margin-bottom: 8px;
   background: white;
   padding: 8px 16px;
   border-radius: 5px;
-  height: 100px;
+  // height: 100px;
 }
 
 .profile_box p {
@@ -20,20 +21,20 @@
 }
 
 .profile_box .username_box {
-  flex-grow: 1;
-  padding: 0 24px;
+  // flex-grow: 1;
+  // padding: 0 24px;
   font-weight: bold;
   font-size: 24px;
 }
 
 .profile_box .user_countries {
-  flex-grow: 1;
-  text-align: center;
+  // flex-grow: 1;
+  // text-align: center;
 }
 
 .profile_box .user_contributions {
-  flex-grow: 1;
-  text-align: center;
+  // flex-grow: 1;
+  // text-align: center;
 }
 
 // Map container

@@ -16,7 +16,7 @@ class TripsController < ApplicationController
       OR steps.location ILIKE :query \
       "
       # @trip = Trip.where(sql_query, query: "%#{params[:query]}%")
-      @trips = Trip.joins(:steps).where(sql_query, query: "%#{params[:query]}%")
+      @trips = Trip.joins(:steps).where(sql_query, query: "%#{params[:query]}%").uniq
     else
       @trips = Trip.all
     end

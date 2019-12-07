@@ -18,7 +18,7 @@
 
 <div class="container">
 
-<div class="d-flex justify-content-between">
+<div class="d-lg-flex justify-content-between">
   <div class="content-side">
     <div class="content-info" style="border-left: 2px solid #ABAAAA;">
       <div>
@@ -44,7 +44,6 @@
 
   <div class="map-side" style="margin-top: 50px;">
     <div
-      style="height: 700px; width: 500px"
       id="map"
       data-markers="<%= @markers.to_json %>"
       data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"

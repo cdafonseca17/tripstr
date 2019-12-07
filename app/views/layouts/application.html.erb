@@ -29,11 +29,11 @@
 
   </head>
   <body>
-    <% if content_for? :nav %>
-      <%= content_for :nav %>
-    <% else %>
+    <%# if content_for? :nav %>
+      <%#= content_for :nav %>
+    <%# else %>
       <%= render 'shared/navbar_rest' %>
-    <% end %>
+    <%# end %>
     <%= render 'shared/flashes' %>
 
     <div class="<%= current_page?('/') ? '' : 'space-content-from-navabar'  %>">

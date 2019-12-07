@@ -146,6 +146,11 @@ input#step_nights::placeholder {
 
 .form-control.is-valid.string.required {
   margin: 20px auto;
+  width: 100%;
+}
+
+#trip_name {
+  margin: 20px auto;
   width: 60%;
 }
 

@@ -1,89 +1,89 @@
 <div class='container'>
-  <center>
-    <h2> My Account </h2>
-  </center>
-  <div class="flex-container">
+  <h2 class="pt-4 pb-3"> My Account </h2>
+  <div class="d-md-flex">
+    <!-- <div class="flex-container"> -->
+      <div id="devise-form" class="mr-md-5">
+        <h5 class="pb-3"> <strong>Account settings</strong></h5>
+        <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+        <%= f.error_notification %>
 
-    <div id="devise-form">
-      <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-      <%= f.error_notification %>
+        <div class="form-inputs">
+          <%= f.input :email, required: true, autofocus: true %>
+          <%= f.input :username, required: true, autofocus: true %>
 
-      <div class="form-inputs">
-        <%= f.input :email, required: true, autofocus: true %>
-        <%= f.input :username, required: true, autofocus: true %>
-
-        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-        <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
-        <% end %>
-        <%= f.input :current_password,
-        hint: "Please enter current password to verify your identity",
-        required: true,
-        input_html: { autocomplete: "current-password" } %>
-        <%= f.input :password,
-        hint: "Leave blank if you do not wish to change password",
-        required: false,
-        input_html: { autocomplete: "new-password" } %>
-        <%= f.input :password_confirmation,
-        required: false,
-        input_html: { autocomplete: "new-password" } %>
-
-
-      </div>
-
-      <div class="form-actions">
-        <!-- need to make text within button white, style below is not working -->
-        <button class='btn btn-primary'>
-        <%= f.button :submit, "Save Changes" %>
-        </button>
-      </div>
-      <% end %>
-    </div>
-
-    <div id="photo-upload">
-      <div>
+          <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+          <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+          <% end %>
+          <%= f.input :current_password,
+          hint: "Please enter current password to verify your identity",
+          required: true,
+          input_html: { autocomplete: "current-password" } %>
+          <%= f.input :password,
+          hint: "Leave blank if you do not wish to change password",
+          required: false,
+          input_html: { autocomplete: "new-password" } %>
+          <%= f.input :password_confirmation,
+          required: false,
+          input_html: { autocomplete: "new-password" } %>
+        </div>
         <center>
-        <% if @user.photo.present? %>
-        <%= cl_image_tag @user.photo, height: 200, width: 200, crop: :thumb, gravity: :face, class: "avatar-profile" %>
-        <% else %>
-        <%= image_tag "no_prof_pic_present.jpg", height: 200, width: 200, class: "avatar-profile" %>
-        <% end %>
-        </center>
-      </div>
+          <!-- <button type="button"  style="margin-top: 10px"> -->
+            <%= f.button :submit, "Save Changes", class: "btn btn-secondary mt-3 mb-5" %>
+            <!-- </button> -->
+          </center>
 
-      <div>
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#UploadPhotoModal" style="margin-top: 10px">
-          Update Profile Picture
-        </button>
+      <!-- <div class="form-actions">
+        need to make text within button white, style below is not working -->
+        <!--  <button class='btn btn-primary'> -->
+          <%#= f.button :submit, "Save Changes" %>
+          <!-- </button> -->
+          <!-- </div> -->
+          <% end %>
+        </div>
+        <div id="photo-upload" class="ml-md-5">
+        <h5 class="pb-3"> <strong>Profile picture</strong></h5>
+          <center>
+            <% if @user.photo.present? %>
+            <%= cl_image_tag @user.photo, height: 130, width: 130, crop: :thumb, class: "avatar-profile" %>
+            <% else %>
+            <%= image_tag "no_prof_pic_present.jpg", height: 130, width: 130, class: "avatar-profile" %>
+            <% end %>
+          </center>
 
+        <div>
+          <!-- Button trigger modal -->
+          <center>
+            <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#UploadPhotoModal" style="margin-top: 10px">
+              Update picture
+            </button>
+          </center>
 
-        <!-- Modal -->
-        <div class="modal fade" id="UploadPhotoModal" tabindex="-1" role="dialog" aria-labelledby="addUploadPhotoModalLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="addUploadPhotoModalLabel">Upload a cool selfie from your last adventure!</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <%= simple_form_for(@user) do |f| %>
-                <%= f.input :photo %>
-                <%= f.input :photo_cache, as: :hidden %>
-                <%= f.submit "Upload", class: "btn btn-primary"%>
-                <% end %>
+          <!-- Modal -->
+          <div class="modal fade" id="UploadPhotoModal" tabindex="-1" role="dialog" aria-labelledby="addUploadPhotoModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="addUploadPhotoModalLabel">Upload a cool selfie from your last adventure!</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <%= simple_form_for(@user) do |f| %>
+                  <%= f.input :photo %>
+                  <%= f.input :photo_cache, as: :hidden %>
+                  <%= f.submit "Upload", class: "btn btn-primary"%>
+                  <% end %>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-
   </div>
+  <!-- </div> -->
   <center>
     <%#= link_to "Return to previous page", :back %>
-    <p style="margin-top: 30px;">Unhappy? <%= link_to "Deactivate my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+    <p style="margin-top: 50px;">Unhappy? <%= link_to "Deactivate my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
   </center>
-
 </div>
