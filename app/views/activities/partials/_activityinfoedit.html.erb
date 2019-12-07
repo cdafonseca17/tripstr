@@ -1,62 +1,61 @@
  <h4><% if activity.category == "See" %>
   <i class="far fa-eye icon-activity"></i>
-<% elsif activity.category == "Eat" %>
+  <% elsif activity.category == "Eat" %>
   <i class="fas fa-utensils icon-activity"></i>
-<% elsif activity.category == "Drink" %>
+  <% elsif activity.category == "Drink" %>
   <i class="fas fa-cocktail icon-activity"></i>
-<% elsif activity.category == "Sleep" %>
+  <% elsif activity.category == "Sleep" %>
   <i class="fas fa-bed icon-activity"></i>
-<% elsif activity.category == "Move" %>
+  <% elsif activity.category == "Move" %>
   <i class="fas fa-bus icon-activity"></i>
-<% elsif activity.category == "Comment" %>
+  <% elsif activity.category == "Comment" %>
   <i class="fas fa-comment icon-activity"></i>
-<% end %>
-<%= activity.name %></h4>
-<div>
-  <% if activity.category == "See" || activity.category == "Eat" || activity.category == "Drink" || activity.category == "Sleep" %>
+  <% end %>
+  <%= activity.name %></h4>
+  <div>
+    <% if activity.category == "See" || activity.category == "Eat" || activity.category == "Drink" || activity.category == "Sleep" %>
   <!-- <div class="address-fetched">
     <p> <strong>Address:</strong> <%= activity.address %> </p>
   </div> -->
 
-<div class="activity-information-container">
-  <div class="d-md-flex photo-comment-container">
+  <div class="activity-information-container">
+    <div class="d-md-flex photo-comment-container">
       <div class="photo-fetched-container">
         <%if activity.photo.present? %>
-          <%= cl_image_tag activity.photo, width: 250, crop: :fill, class: "photo-fetched" %>
+        <%= cl_image_tag activity.photo, width: 250, crop: :fill, class: "photo-fetched" %>
         <% else %>
-          <img class="photo-fetched" src="<%= activity.photo_google %>" />
+        <img class="photo-fetched" src="<%= activity.photo_google %>" />
         <% end %>
-
-    </div>
-    <!-- GENERAL INFO ENDS FOR EAT SLEEP DRINK SEE -->
+      </div>
+      <!-- GENERAL INFO ENDS FOR EAT SLEEP DRINK SEE -->
 
       <div class="comment-fetched-info-container mt-4 mt-md-0 ml-md-3">
         <div class="comment-container d-flex">
           <%# @user = @trip.user %>
           <%# @user = current_user %>
 
-              <p><%= activity.comment %> </p>
+          <p><%= activity.comment %> </p>
         </div>
       </div>
     </div>
+    </div>
 
-     <% else %>
+    <% else %>
 
-      <!-- <div class="comment-fetched-info-container"> -->
-        <div class="comment-container-second d-flex">
+    <!-- <div class="comment-fetched-info-container"> -->
+      <div class="comment-container-second d-flex" style="margin-left: 30px;">
 
-              <p><%= activity.comment %> </p>
-        </div>
+        <p><%= activity.comment %> </p>
+      </div>
 
       <!-- </div> -->
 
-    <% end %>
+      <% end %>
 
-  <%#= activity.comment %>
-  <%#= activity.photo %>
-  <%#= activity.types %>
-  <%#= activity.rating %>
-  <%#= activity.position %>
-  <%#= activity.photo %>
-</div>
-</div>
+      <%#= activity.comment %>
+      <%#= activity.photo %>
+      <%#= activity.types %>
+      <%#= activity.rating %>
+      <%#= activity.position %>
+      <%#= activity.photo %>
+    </div>
