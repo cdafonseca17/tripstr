@@ -12,14 +12,14 @@
   <i class="fas fa-comment icon-activity"></i>
 <% end %>
 <%= activity.name %></h4>
-<div>
+<div class="activity-information-container">
   <!-- ACTIVITY - SEE, EAT, DRINK, SLEEP -->
   <% if activity.category == "See" || activity.category == "Eat" || activity.category == "Drink" || activity.category == "Sleep" %>
-  <div class="address-fetched">
+  <!-- <div class="address-fetched">
     <p> <strong>Address:</strong> <%= activity.address %> </p>
-  </div>
+  </div> -->
 
-    <div class="d-flex photo-comment-container">
+    <div class="d-md-flex ">
       <div class="photo-fetched-container">
         <%if activity.photo.present? %>
           <%= cl_image_tag activity.photo, width: 250, crop: :fill, class: "photo-fetched" %>
@@ -27,40 +27,10 @@
           <img class="photo-fetched" src="<%= activity.photo_google %>" />
         <% end %>
 
-    <div class="general-info-fetched">
-        <div class="title">
-          General information
-        </div>
-        <div class="d-flex tags-fetched">
-          <i class="fas fa-tag"></i>
-
-          <div class="tags-content">
-            <% if activity.types.present? %>
-                  <% activity.types.split(",").each do |item| %>
-                    <%= "#" + item.gsub("_", "")%>
-                <% end %>
-               <% end %>
-          </div>
-        </div>
-
-        <div class="d-flex rating-fetched">
-          <i class="fab fa-google"></i>
-          <div class="rating-content">
-            <%= activity.rating %>
-          </div>
-        </div>
-
-        <div class="d-flex url-fetched">
-        <i class="fas fa-external-link-alt"></i>
-          <div class="url-content">
-           <%= link_to "Visit website", activity.url, target: :blank, id: "visit-website-link" %>
-          </div>
-        </div>
       </div>
-    </div>
     <!-- GENERAL INFO ENDS FOR EAT SLEEP DRINK SEE -->
 
-      <div class="comment-fetched-info-container">
+      <div class="comment-fetched-info-container mt-4 mt-md-0 ml-md-3">
         <div class="comment-container d-flex">
           <%# @user = @trip.user %>
           <%# @user = current_user %>
@@ -68,7 +38,11 @@
               <p><%= activity.comment %> </p>
         </div>
       </div>
-    </div>
+      </div>
+      <div class="general-info-fetched">
+        <%= render 'activities/partials/activitygeneralinformation', trip: @trip, step: step, activity: activity, user: @user %>
+      </div>
+
 
     <% else %>
 

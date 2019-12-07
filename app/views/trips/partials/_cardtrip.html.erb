@@ -1,6 +1,6 @@
 <% @trips.each do |trip| %>
 <% if trip.published == true %>
-<div class="col-4 ">
+<div class="col-sm-12 col-md-6 col-lg-4">
   <div class="card-trip" id="homepage-cardtrip">
     <%= link_to "", trip_path(trip), class: 'card-link' %>
     <% if trip.photo.present?  %>
@@ -33,6 +33,13 @@
       <div id='card-trip-day'>
         <%= (trip.end_date.to_date - trip.start_date.to_date).to_i %> days
       </div>
+
+      <%# if @user.photo.present? %>
+            <%#= cl_image_tag @user.photo, height: 130, width: 130, crop: :thumb, class: "avatar-profile" %>
+            <%# else %>
+            <%#= image_tag "no_prof_pic_present.jpg", height: 130, width: 130, class: "avatar-profile" %>
+            <%# end %>
+
       <% @user = trip.user %>
       <% if @user.photo.present? %>
       <%= cl_image_tag @user.photo, crop: :thumb, gravity: :face, class: "card-trip-user avatar-bordered" %>

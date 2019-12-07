@@ -1,140 +1,145 @@
 <div class="container">
-  <div class="profile_box">
-    <% if @user.photo.present? %>
-      <%= cl_image_tag @user.photo, height: 56, width: 56, crop: :thumb, gravity: :face, class: "avatar-large" %>
-    <% else %>
-      <%= image_tag "no_prof_pic_present.jpg", class: 'avatar-large' %>
-    <% end %>
-
-    <div class="username_box">
-      <p> <%= @user.username %> </p>
+  <div class="profile_box d-md-flex justify-content-between">
+    <div class="d-flex">
+      <div class="mb-3">
+        <% if @user.photo.present? %>
+        <%= cl_image_tag @user.photo, height: 56, width: 56, crop: :thumb, gravity: :face, class: "avatar-large" %>
+        <% else %>
+        <%= image_tag "no_prof_pic_present.jpg", class: 'avatar-large' %>
+        <% end %>
+      </div>
+      <div class="username_box pt-2 pl-3">
+        <p> <%= @user.username %> </p>
+      </div>
     </div>
-    <div class="user_countries">
-      <p><strong>COUNTRIES</strong></p>
-      <p><%= @user.trips.count %></p>
-    </div>
-    <div class="user_contributions">
-      <p><strong>CONTRIBUTIONS</strong></p>
-      <% array = [] %>
-      <% @user.trips.each do |trip| %>
+    <div class="d-flex">
+      <div class="user_countries" style="text-align: center">
+        <p><strong>COUNTRIES</strong></p>
+        <p><%= @user.trips.count %></p>
+      </div>
+      <div class="user_contributions" style="text-align: center; padding-left: 30px;">
+        <p><strong>CONTRIBUTIONS</strong></p>
+        <% array = [] %>
+        <% @user.trips.each do |trip| %>
         <% array << trip.steps.count %>
         <% array << trip.activities.count %>
         <% end %>
-      <p><%= @user.trips.count + array.sum%></p>
+        <p><%= @user.trips.count + array.sum%></p>
+      </div>
     </div>
   </div>
 
   <!-- <div class="map_container">
   </div> -->
 
-<script src="https://www.amcharts.com/lib/3/ammap.js" type="text/javascript"></script>
-<script src="https://www.amcharts.com/lib/3/maps/js/worldHigh.js" type="text/javascript"></script>
-<script src="https://www.amcharts.com/lib/3/themes/dark.js" type="text/javascript"></script>
-<div id="mapdiv" style="width: 100%; height: 450px;"></div>
-<div style="width: 1000px; font-size: 70%; padding: 2px 0; text-align: center; background-color: #FFFFFF; margin-top: 1px; color: #edeaea;"><a href="https://www.amcharts.com/visited_countries/" style="color: #edeaea;">Create your own visited countries map</a> or check out the <a href="https://www.amcharts.com/" style="color: #edeaea;">JavaScript Charts</a>.</div>
+  <script src="https://www.amcharts.com/lib/3/ammap.js" type="text/javascript"></script>
+  <script src="https://www.amcharts.com/lib/3/maps/js/worldHigh.js" type="text/javascript"></script>
+  <script src="https://www.amcharts.com/lib/3/themes/dark.js" type="text/javascript"></script>
+  <div id="mapdiv" style="width: 100%; height: 450px;"></div>
+  <!-- <div style="width: 1000px; font-size: 70%; padding: 2px 0; text-align: center; background-color: #FFFFFF; margin-top: 1px; color: #edeaea;"><a href="https://www.amcharts.com/visited_countries/" style="color: #edeaea;">Create your own visited countries map</a> or check out the <a href="https://www.amcharts.com/" style="color: #edeaea;">JavaScript Charts</a>.</div> -->
 
-<% country_codes = @user.trips.map {|trip| trip.country_code} %>
-<% country_codes_map = [] %>
-<% country_codes.each do |country_code| %>
+  <% country_codes = @user.trips.map {|trip| trip.country_code} %>
+  <% country_codes_map = [] %>
+  <% country_codes.each do |country_code| %>
   <% hash = Hash.new %>
   <% hash["id"] = country_code %>
   <% hash["showAsSelected"] = true %>
   <% country_codes_map << hash %>
-<% end %>
-<% @country = country_codes_map %>
-<%#= country.to_json %>
-<%# @country_json = country_codes_map.to_json %>
-<!-- <p id="thisThing" data-url="<%= @country_codes_map %>"><%= @country_codes_map %></p> -->
+  <% end %>
+  <% @country = country_codes_map %>
+  <%#= country.to_json %>
+  <%# @country_json = country_codes_map.to_json %>
+  <!-- <p id="thisThing" data-url="<%= @country_codes_map %>"><%= @country_codes_map %></p> -->
 
-<script type="text/javascript">
-  var country = JSON.parse('<%= raw(@country.to_json) %>')
-  console.log(country)
-  var map = AmCharts.makeChart("mapdiv",{
-    type: "map",
-    theme: "dark",
-    projection: "mercator",
-    panEventsEnabled : true,
-    backgroundColor : "#FFFFFF",
-    backgroundAlpha : 1,
-    zoomControl: {
-    zoomControlEnabled : true
-    },
-    dataProvider : {
-    map : "worldHigh",
-    getAreasFromMap : true,
-    areas : country
-    },
-    areasSettings : {
-    autoZoom : false,
-    color : "#edeaea",
-    colorSolid : "#69DEC5",
-    selectedColor : "#69DEC5",
-    outlineColor : "##c9c5c5",
-    rollOverColor : "#c9c5c5",
-    rollOverOutlineColor : "#c9c5c5"
-    }
+  <script type="text/javascript">
+    var country = JSON.parse('<%= raw(@country.to_json) %>')
+    console.log(country)
+    var map = AmCharts.makeChart("mapdiv",{
+      type: "map",
+      theme: "dark",
+      projection: "mercator",
+      panEventsEnabled : true,
+      backgroundColor : "#FFFFFF",
+      backgroundAlpha : 1,
+      zoomControl: {
+        zoomControlEnabled : true
+      },
+      dataProvider : {
+        map : "worldHigh",
+        getAreasFromMap : true,
+        areas : country
+      },
+      areasSettings : {
+        autoZoom : false,
+        color : "#edeaea",
+        colorSolid : "#69DEC5",
+        selectedColor : "#69DEC5",
+        outlineColor : "##c9c5c5",
+        rollOverColor : "#c9c5c5",
+        rollOverOutlineColor : "#c9c5c5"
+      }
     });
-</script>
+  </script>
 
-<% trippublishedcount = 0 %>
-<% @user.trips.each do |trip| %>
-<% if trip.published == true %>
-<% trippublishedcount +=1 %>
-<% end %>
-<% end %>
+  <% trippublishedcount = 0 %>
+  <% @user.trips.each do |trip| %>
+  <% if trip.published == true %>
+  <% trippublishedcount +=1 %>
+  <% end %>
+  <% end %>
 
 
 
-<h4 style="margin-top: 20px; margin-bottom: 20px"> Published Trips (<%= trippublishedcount %>) </h4>
+  <h4 style="margin-top: 20px; margin-bottom: 20px"> All trips </h4>
   <div class="row">
     <% @user.trips.each do |trip| %>
     <% if trip.published == true %>
-    <div class="col-4 ">
-  <div class="card-trip" id="homepage-cardtrip">
-    <%= link_to "", trip_path(trip), class: 'card-link' %>
-    <% if trip.photo.present?  %>
-       <%= cl_image_tag trip.photo %>
-    <% else  %>
-          <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3033&q=80" alt="">
-    <% end %>
-    <div class="card-trip-infos">
-              <div id='card-trip-title'>
-                <strong><%= trip.name %></strong>
-              </div>
-              <div id='card-trip-location'>
-                <p>
-                <% array = [] %>
-                <%  trip.steps.each do |step| %>
-                <% array << step.location %>
-                <% end %>
-                <% if array.count == 0  %>
-                <% elsif array.count == 1  %>
-                <%=array[0]%>
-                <% elsif array.count == 2  %>
-                <%=array[0]%> <i class="fas fa-arrow-circle-right"></i> <%=array[1]%>
-                <% elsif array.count == 3  %>
-                <%=array[0]%> <i class="fas fa-arrow-circle-right"></i> <%=array[1]%> <i class="fas fa-arrow-circle-right"></i> <%=array[2]%>
-                <% else %>
-                <%=array[0]%> <i class="fas fa-arrow-circle-right"></i> <%=array[1]%> <i class="fas fa-arrow-circle-right"></i> ...<%= array.last %>
-                <% end %>
-              </p>
-              </div>
-              <div id='card-trip-day'>
-                <%=(trip.end_date.to_date - trip.start_date.to_date).to_i%> days
-              </div>
+    <div class="col-sm-12 col-md-6 col-lg-4">
+      <div class="card-trip" id="homepage-cardtrip">
+        <%= link_to "", trip_path(trip), class: 'card-link' %>
+        <% if trip.photo.present?  %>
+        <%= cl_image_tag trip.photo %>
+        <% else  %>
+        <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3033&q=80" alt="">
+        <% end %>
+        <div class="card-trip-infos">
+          <div id='card-trip-title'>
+            <strong><%= trip.name %></strong>
+          </div>
+          <div id='card-trip-location'>
+            <p>
+              <% array = [] %>
+              <%  trip.steps.each do |step| %>
+              <% array << step.location %>
+              <% end %>
+              <% if array.count == 0  %>
+              <% elsif array.count == 1  %>
+              <%=array[0]%>
+              <% elsif array.count == 2  %>
+              <%=array[0]%> <i class="fas fa-arrow-circle-right"></i> <%=array[1]%>
+              <% elsif array.count == 3  %>
+              <%=array[0]%> <i class="fas fa-arrow-circle-right"></i> <%=array[1]%> <i class="fas fa-arrow-circle-right"></i> <%=array[2]%>
+              <% else %>
+              <%=array[0]%> <i class="fas fa-arrow-circle-right"></i> <%=array[1]%> <i class="fas fa-arrow-circle-right"></i> ...<%= array.last %>
+              <% end %>
+            </p>
+          </div>
+          <div id='card-trip-day'>
+            <%=(trip.end_date.to_date - trip.start_date.to_date).to_i%> days
+          </div>
 
-    <% @user = trip.user %>
-    <% if @user.photo.present? %>
-    <%= cl_image_tag @user.photo, crop: :thumb, gravity: :face, class: "card-trip-user avatar-bordered" %>
-    <% else %>
-    <%= image_tag "no_prof_pic_present.jpg", class: "card-trip-user avatar-bordered" %>
+          <% @user = trip.user %>
+          <% if @user.photo.present? %>
+          <%= cl_image_tag @user.photo, crop: :thumb, gravity: :face, class: "card-trip-user avatar-bordered" %>
+          <% else %>
+          <%= image_tag "no_prof_pic_present.jpg", class: "card-trip-user avatar-bordered" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <% end %>
     <% end %>
   </div>
-</div>
-</div>
-<% end %>
-<% end %>
-</div>
 
 
 
