@@ -47,12 +47,13 @@
 .comment-container-second {
   position: relative;
   padding-top: 20px;
-  width: 600px;
+  min-width: 250px;
+  max-width: 570px;
   padding-left: 10px;
   padding-right: 10px;
   margin-bottom: 10px;
-  margin-left: 30px;
-  background-color: #F8F8F8;
+  // margin-left: 30px;
+  background-color: #def7f1;
   border-radius: 4px;
 }
 

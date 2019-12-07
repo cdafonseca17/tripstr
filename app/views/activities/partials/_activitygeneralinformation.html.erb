@@ -2,12 +2,12 @@
     <div style="margin-top: 20px;">
       General information
     </div>
-    <a data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+    <a data-toggle="collapse" href="#collapseExample<%= activity.id %>" role="button" aria-expanded="false" aria-controls="collapseExample<%= activity.id %>">
       <i class="fas fa-sort-down" style="color: black; margin-left: 8px; margin-top: 21px"></i>
     </a>
   </div>
 
-<div class="collapse" id="collapseExample">
+<div class="collapse" id="collapseExample<%= activity.id %>">
   <div class="card card-body-general-information general-info-container" style="border: none;">
    <!--  <div class="d-flex">
       <i class="fas fa-tag"></i>

@@ -1,94 +1,98 @@
-<div>
-  <div class="card-category" style="position:relative; background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= @trip.photo.present? ? @trip.photo : "https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2466&q=80"%>)">
-    <%= render 'trips/partials/tripinfo', trip: @trip %>
-    <div style="position: absolute; top: 8px; right: 10px;">
-      <a href="" data-toggle="modal" data-target="#exampleModal">
+<div class="card-category" style="position:relative; background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= @trip.photo.present? ? @trip.photo : "https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2466&q=80"%>)">
+  <%= render 'trips/partials/tripinfo', trip: @trip %>
+  <div style="position: absolute; top: 8px; right: 10px;">
+    <a href="" data-toggle="modal" data-target="#exampleModal">
       <i class="far fa-edit" style="color: white"></i>
-      </a>
-      <%= render 'trips/partials/form', trip: @trip %>
-    </div>
+    </a>
+    <%= render 'trips/partials/form', trip: @trip %>
+  </div>
 </div>
-
-
 <div class="container">
+  <div class="d-lg-flex justify-content-between">
 
-<div class="d-lg-flex justify-content-between">
-  <div class="content-side">
-    <div style="margin-top: 50px; margin-bottom: 50px">
-      <% if @steps.empty? %>
+
+    <div class="content-side">
+      <div style="margin-top: 50px; margin-bottom: 50px">
+        <% if @steps.empty? %>
         <h3>Start making your trip to <%= @trip.country %></h3>
-      <% else %>
+        <% else %>
         <h3>Edit your trip to <%= @trip.country %></h3>
-      <% end %>
-    </div>
-    <div class="content-info" style="border-left: 2px solid #ABAAAA;">
-      <div>
-        <i class="far fa-circle icon-start-end" style="border-top: 3px solid white"></i>Start: <%= @trip.start_date %>
+        <% end %>
       </div>
-      <% @steps.each do |step| %>
+      <div class="content-info" style="border-left: 2px solid #ABAAAA;">
+        <div>
+          <i class="far fa-circle icon-start-end" style="border-top: 3px solid white"></i>Start: <%= @trip.start_date %>
+        </div>
+        <% @steps.each do |step| %>
         <div id="step-<%= step.id %>">
           <div style="margin-top: 30px;">
             <%= render 'steps/partials/stepinfo', trip: @trip, step: step %>
           </div>
           <% step.activities.map do |activity| %>
-            <div style="margin-top: 20px;">
-              <%= render 'activities/partials/activityinfoedit', trip: @trip, step: step, activity: activity %>
-            </div>
-        <% end %>
+          <div style="margin-top: 20px;">
+            <%= render 'activities/partials/activityinfoedit', trip: @trip, step: step, activity: activity %>
+          </div>
+          <% end %>
           <div id="activitytypes-<%= step.id %>" style="margin-top: 20px;">
             <%= render 'activities/partials/activityadd', trip: @trip, step: step, activity: @activity %>
           </div>
         </div>
-      <% end %>
-      <div style="margin-top: 30px;">
-        <h3><%= render 'steps/partials/stepadd', trip: @trip, step: @step %></h3>
-      </div>
-      <div style="margin-top: 30px;">
-        <i class="far fa-circle icon-start-end" style="border-bottom: 5px solid white"></i>End: <%= @trip.end_date %>
+        <% end %>
+        <div style="margin-top: 30px;">
+          <h3><%= render 'steps/partials/stepadd', trip: @trip, step: @step %></h3>
+        </div>
+        <div style="margin-top: 30px;">
+          <i class="far fa-circle icon-start-end" style="border-bottom: 5px solid white"></i>End: <%= @trip.end_date %>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="map-side" style="margin-top: 50px;">
-    <div
+
+
+
+    <div class="map-side" style="margin-top: 50px;">
+      <div
       id="map"
       data-markers="<%= @markers.to_json %>"
       data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
       data-trip-cordinates="[<%= @trip.latitude %>, <%= @trip.longitude %>]"
-    ></div>
+      ></div>
+    </div>
+
+
+
   </div>
-</div>
 
 
 
   <div class="container text-center">
     <% if @trip.published?  %>
-      <%= simple_form_for [@trip] do |f| %>
-        <%= f.hidden_field :published, value: :false %>
-        <%= f.submit "Change to Draft", class: "btn btn-primary" %>
-      <% end %>
+    <%= simple_form_for [@trip] do |f| %>
+    <%= f.hidden_field :published, value: :false %>
+    <%= f.submit "Change to Draft", class: "btn btn-primary" %>
+    <% end %>
     <% else %>
     <div class="d-md-flex justify-content-center mt-5 mb-5">
-       <div class="mr-md-3">
-         <%= link_to "Save as Draft", mytrips_path, class: "btn btn-outline-pink-primary" %>
-        </div>
-      <%= simple_form_for [@trip] do |f| %>
-        <%= f.hidden_field :published, value: :true %>
-        <%= f.hidden_field :dates, name: :dates %>
+     <div class="mr-md-3">
+       <%= link_to "Save as Draft", mytrips_path, class: "btn btn-outline-pink-primary" %>
+     </div>
+     <%= simple_form_for [@trip] do |f| %>
+     <%= f.hidden_field :published, value: :true %>
+     <%= f.hidden_field :dates, name: :dates %>
 
-        <%= f.submit "Publish", class: "btn btn-primary mt-3 mt-md-0" %>
+     <%= f.submit "Publish", class: "btn btn-primary mt-3 mt-md-0" %>
 
-      <% end %>
-    <% end %>
-    </div>
-  </div>
+     <% end %>
+     <% end %>
+   </div>
+ </div>
 
 
 <!-- </div>
 
 
 </div>
- -->
+-->
 </div>
 
 
@@ -98,13 +102,13 @@
   data-markers="<%= @markers.to_json %>"
   data-mapbox-api-key="<%#= ENV['MAPBOX_API_KEY'] %>"
   data-trip-cordinates="[<%= @trip.latitude %>, <%= @trip.longitude %>]"
-></div> -->
+  ></div> -->
 
 
-<%#= link_to 'Show', @trip %> <!-- | -->
-<%#= link_to 'Back', trips_path %>
+  <%#= link_to 'Show', @trip %> <!-- | -->
+  <%#= link_to 'Back', trips_path %>
 
-<!-- Trip banner -->
+  <!-- Trip banner -->
 <!-- <div class="d-flex justify-content-between card-category">
   <div>
     <%#= render 'trips/partials/tripinfo', trip: @trip %>
@@ -115,9 +119,9 @@
 </div> -->
 
 <!-- Each step of the trip -->
-  <%#= @steps1.map { |step| step.location } %>
-  <%#= @steps.map { |step| step.location } %>
-  <%# @steps.each do |step| %>
+<%#= @steps1.map { |step| step.location } %>
+<%#= @steps.map { |step| step.location } %>
+<%# @steps.each do |step| %>
     <!-- <div style="padding: 20px 50px">
       <div id="step-" class="d-flex">
         <%#= render 'steps/partials/stepinfo', trip: @trip, step: step %>
@@ -126,7 +130,7 @@
           <%#= render 'steps/partials/stepdelete', trip: @trip, step: step %>
         </div>
       </div> -->
-        <%#= render 'steps/partials/stepeditcollapse', trip: @trip, step: step %>
+      <%#= render 'steps/partials/stepeditcollapse', trip: @trip, step: step %>
 
       <!-- Each activity of a specific step -->
       <%# step.activities.map do |activity| %>
@@ -147,7 +151,7 @@
       </div>
     </div>
   <%# end %>
-  </div> -->
+</div> -->
 
 
   <!-- <div style="padding: 20px 50px">
@@ -166,14 +170,14 @@
         <%# end %>
       <%# end %>
       <%#= link_to "Save as Draft", mytrips_path, class: "btn btn-outline-green-primary" %>
-  </div> -->
+    </div> -->
 
-<!-- <h2>Map</h2> -->
+    <!-- <h2>Map</h2> -->
 
- <!-- SEARCH BAR -->
-<!-- <div id='geocoder' class='geocoder'></div> -->
+    <!-- SEARCH BAR -->
+    <!-- <div id='geocoder' class='geocoder'></div> -->
 
-<!-- MAPBOX -->
+    <!-- MAPBOX -->
 <!-- <div
   id="map"
   data-markers="<%= @markers.to_json %>"
@@ -194,8 +198,8 @@
         <div>
           <%#= link_to "Edit", edit_trip_step_path(@trip, step), remote: true %>
         </div> -->
-<!-- Comment Move Sleep See Eat Drink -->
-      <!-- if click on activity.category == "comment" -->
+        <!-- Comment Move Sleep See Eat Drink -->
+        <!-- if click on activity.category == "comment" -->
 
 <!-- <a class="btn btn-primary" data-toggle="collapse" href="#collapseComment" role="button" aria-expanded="false" aria-controls="collapseComment">
           Comment </a>
@@ -237,6 +241,6 @@
 
 <!-- if click on activity.category == "comment" -->
 <!-- if click on activity.category == "sleep" -->
-  <%#= render 'activities/partials/formsleep', trip: @trip, step: @step %>
+<%#= render 'activities/partials/formsleep', trip: @trip, step: @step %>
 
 <!--  <%#= render 'steps/partials/form', trip: @trip, step: step %> -->
