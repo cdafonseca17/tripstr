@@ -21,7 +21,7 @@ activatePlacesSearch();
 
 smoothScroll();
 
-initMap();
+// initMap();
 
 
 // initMapbox();
