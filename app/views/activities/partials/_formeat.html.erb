@@ -4,15 +4,16 @@
   <%#= f.input :name, placeholder: "Location", label: false %>
 
   <%= f.hidden_field :name, label: false, class: "activity-name-input-js" %>
-  <%= ("<div id='geocoder' class='geocoder'></div>").html_safe %>
+
   <%= f.hidden_field :rating, class: "activity-rating-input-js" %>
   <%= f.hidden_field :url, class: "activity-url-input-js" %>
   <%= f.hidden_field :icon, class: "activity-icon-input-js" %>
   <%= f.hidden_field :types, class: "activity-types-input-js" %>
   <%= f.hidden_field :address, class: "activity-address-input-js" %>
   <%= f.hidden_field :photo_google, class: "activity-photo-input-js" %>
-  <%= f.hidden_field :latitude %>
-  <%= f.hidden_field :longitude %>
+  <%= f.hidden_field :latitude, class: "activity-latitude-input-js" %>
+  <%= f.hidden_field :longitude, class: "activity-longitude-input-js" %>
+  <input type="text" class="form-control search-google" placeholder="Search...">
   <%= f.input :comment, placeholder: "Share your feedback", label: false %>
   <%= f.input :photo %>
   <%= f.input :photo_cache, as: :hidden %>
@@ -22,3 +23,4 @@
 
 
 
+<%#= ("<div id='geocoder' class='geocoder'></div>").html_safe %>
