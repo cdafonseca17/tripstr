@@ -8,11 +8,9 @@
   <%= f.hidden_field :types, class: "activity-types-input-js" %>
   <%= f.hidden_field :address, class: "activity-address-input-js" %>
   <%= f.hidden_field :photo_google, class: "activity-photo-input-js" %>
-  <%= f.hidden_field :latitude %>
-  <%= f.hidden_field :longitude %>
-  <div class="mapbox-class">
-    <%= ("<div id='geocoder' class='geocoder'></div>").html_safe %>
-  </div>
+  <%= f.hidden_field :latitude, class: "activity-latitude-input-js" %>
+  <%= f.hidden_field :longitude, class: "activity-longitude-input-js" %>
+  <input type="text" class="form-control search-google" placeholder="Search...">
   <%= f.input :comment, placeholder: "Share your feedback", label: false %>
   <%= f.input :photo %>
   <%= f.input :photo_cache, as: :hidden %>
@@ -20,4 +18,7 @@
 <% end %>
 
 
+<%#= ("<div id='geocoder' class='geocoder'></div>").html_safe %>
+<!-- <div class="mapbox-class">
 
+  </div> -->

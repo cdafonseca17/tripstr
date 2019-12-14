@@ -11,60 +11,26 @@
 <div class="collapse" id="collapseStepAdd">
   <div class="card card-body step-form" style="border: 0">
     <%= simple_form_for [@trip, step] do |f| %>
-      <%#= f.input :location, label: false, placeholder: "Location" %>
-      <%#= ("<div id='geocoder' class='geocoder'></div>").html_safe %>
       <%= f.hidden_field :location, label: false, class: "step-location-input-js" %>
       <%= f.hidden_field :address, label: false, class: "step-address-input-js" %>
       <%= f.hidden_field :latitude %>
       <%= f.hidden_field :longitude %>
-      <%= ("<div id='geocoder' class='geocoder'></div>").html_safe %>
+      <input type="text" class="form-control search-google" placeholder="Search...">
       <%= f.input :nights, placeholder: "Number of nights", label:false %>
       <%= f.submit "add", class: "btn btn-primary" %>
-      <input type="hidden" name="" class="activity-photo-input-js" />
-    <% end %>
 
+
+    <% end %>
+<!--
     <div class="loader-form-takeover">
      <div class="loader"></div>
     </div>
-
+ -->
   </div>
 </div>
 
 
 
-
-
-
-
-
-
-<!--
-  <a href="" data-toggle="collapse" data-target="#multiCollapseStepAdd-<%= step.id %>" role="button" aria-expanded="false" aria-controls="multiCollapseStepAdd-<%= step.id %>">Add your first step</a>
-<#% else %>
-  <a href="" data-toggle="collapse" data-target="#multiCollapseStepAdd-<%= step.id %>" role="button" aria-expanded="false" aria-controls="multiCollapseStepAdd-<%= step.id %>">Add step</a>
-<#% end %>
-
- -->
-
-
-<!--
- <div class="collapse multi-collapse" id="multiCollapseStepAdd-<%= step.id %>" data-parent="#activitytypes-<%= step.id %>">
-      <div class="card card-body">
-        hello
-
-      </div>
-    </div>
-
-
-
-<%= simple_form_for [@trip, step] do |f| %>
-          <%#= f.input :location, label: false, placeholder: "Location" %>
-          <%#= ("<div id='geocoder' class='geocoder'></div>").html_safe %>
-          <%#= f.input :nights, placeholder: "Number of nights", label:false %>
-          <%#= f.submit "Add", class: "btn btn-secondary" %>
-      <% end %>
-
- -->
-
-
-
+<%#= f.input :location, label: false, placeholder: "Location" %>
+<%#= ("<div id='geocoder' class='geocoder'></div>").html_safe %>
+<%#= ("<div id='geocoder' class='geocoder'></div>").html_safe %>

@@ -1,3 +1,5 @@
+
+
 <div class="card-category" style="position:relative; background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= @trip.photo.present? ? @trip.photo : "https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2466&q=80"%>)">
   <%= render 'trips/partials/tripinfo', trip: @trip %>
   <div style="position: absolute; top: 8px; right: 10px;">
@@ -7,6 +9,9 @@
     <%= render 'trips/partials/form', trip: @trip %>
   </div>
 </div>
+
+
+
 <div class="container">
   <div class="d-lg-flex justify-content-between">
 
@@ -24,14 +29,19 @@
           <i class="far fa-circle icon-start-end" style="border-top: 3px solid white"></i>Start: <%= @trip.start_date %>
         </div>
         <% @steps.each do |step| %>
+
+
         <div id="step-<%= step.id %>">
           <div style="margin-top: 30px;">
             <%= render 'steps/partials/stepinfo', trip: @trip, step: step %>
           </div>
+
+
           <% step.activities.map do |activity| %>
           <div style="margin-top: 20px;">
             <%= render 'activities/partials/activityinfoedit', trip: @trip, step: step, activity: activity %>
           </div>
+
           <% end %>
           <div id="activitytypes-<%= step.id %>" style="margin-top: 20px;">
             <%= render 'activities/partials/activityadd', trip: @trip, step: step, activity: @activity %>
@@ -43,21 +53,25 @@
         </div>
         <div style="margin-top: 30px;">
           <i class="far fa-circle icon-start-end" style="border-bottom: 5px solid white"></i>End: <%= @trip.end_date %>
+
         </div>
       </div>
     </div>
 
 
+     <div class="map-side">
+      <div id="map"></div>
+    </div>
 
 
-    <div class="map-side" style="margin-top: 50px;">
+    <!-- <div class="map-side" style="margin-top: 50px;">
       <div
       id="map"
       data-markers="<%= @markers.to_json %>"
-      data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
+      data-mapbox-api-key="<%#= ENV['MAPBOX_API_KEY'] %>"
       data-trip-cordinates="[<%= @trip.latitude %>, <%= @trip.longitude %>]"
       ></div>
-    </div>
+    </div> -->
 
 
 
@@ -87,13 +101,41 @@
    </div>
  </div>
 
-
 <!-- </div>
+
 
 
 </div>
 -->
+
+
+<script>
+  function initMap() {
+    var map = new google.maps.Map(document.getElementById('map'), {
+      center: {lat: <%= @trip.latitude %>, lng: <%= @trip.longitude %>},
+      zoom: 5
+    });
+    <% @trip.steps.each do |step| %>
+      var markerstep = new google.maps.Marker({
+        position: {lat: <%= step.latitude %>, lng: <%= step.longitude %>},
+        map: map,
+        title: 'Hello World!'
+      })
+    <% end %>
+    <% @trip.activities.each do |activity| %>
+      var markeractivity = new google.maps.Marker({
+        position: {lat: <%= activity.latitude %>, lng: <%= activity.longitude %>},
+        map: map,
+        title: 'Hello World!'
+      })
+    <% end %>
+  }
+</script>
 </div>
+
+
+
+
 
 
 

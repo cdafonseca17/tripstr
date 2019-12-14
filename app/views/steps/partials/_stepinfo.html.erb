@@ -6,7 +6,11 @@
 
   <%= step.location %>
 
-  (<% if step.nights > 1 %><%= step.nights %> nights<% elsif step.nights <= 1 %><%= step.nights %>night<% end %>)
+  (<% if step.nights != nil %>
+    <% if step.nights > 1 %><%= step.nights %> nights
+    <% elsif step.nights <= 1 %><%= step.nights %>night
+    <% end %>
+  <% end %>)
 
   </div>
 

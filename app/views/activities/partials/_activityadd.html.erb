@@ -36,11 +36,13 @@
       </div>
     </div>
 
-    <div class="collapse multi-collapse" id="multiCollapseSleep-<%= step.id %>" data-parent="#activitytypes-<%= step.id %>">
+<div class="collapse multi-collapse" id="multiCollapseSleep-<%= step.id %>" data-parent="#activitytypes-<%= step.id %>">
       <div class="card card-body activity-form" style="border: 0">
         <%= render 'activities/partials/formsleep', trip: @trip, step: step, activity: @activity %>
-      </div>
+
+ </div>
     </div>
+
 
     <div class="collapse multi-collapse" id="multiCollapseEat-<%= step.id %>" data-parent="#activitytypes-<%= step.id %>">
       <div class="card card-body activity-form" style="border: 0">
@@ -55,9 +57,11 @@
       </div>
     </div>
 
-    <div class="collapse multi-collapse" id="multiCollapseDrink-<%= step.id %>" data-parent="#activitytypes-<%= step.id %>">
+<div class="collapse multi-collapse" id="multiCollapseDrink-<%= step.id %>" data-parent="#activitytypes-<%= step.id %>">
       <div class="card card-body activity-form" style="border: 0">
+
         <%= render 'activities/partials/formdrink', trip: @trip, step: step, activity: @activity %>
+
 
       </div>
     </div>
