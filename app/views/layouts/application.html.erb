@@ -46,7 +46,7 @@
     <%= javascript_include_tag "http://maps.google.com/maps/api/js?key=#{ENV['GOOGLE_API_KEY']}&libraries=places&callback=activatePlacesSearch&callback=initMap"%>
     <%#= javascript_include_tag "http://maps.google.com/maps/api/js?key=#{ENV['GOOGLE_API_KEY']}&callback=initMap", defer: true %>
     <%= javascript_include_tag 'application' %>
-    <%= javascript_pack_tag 'application' %>
+    <%#= javascript_pack_tag 'application' %>
     <%= render 'shared/footer' %>
   </body>
 </html>
