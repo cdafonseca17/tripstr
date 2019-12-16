@@ -33,28 +33,28 @@ class TripsController < ApplicationController
 
   def show
     authorize @trip
-    @activities = @trip.activities.geocoded
-    @activitymarkers = @activities.map do |activity|
-      {
-        lat: activity.latitude,
-        lng: activity.longitude,
-        color: 'black', # blue ass water
-        infoWindow: render_to_string(partial: "activity_info", locals: { activity: activity })
-        #image_url: helpers.asset_url('REPLACE_THIS_WITH_YOUR_IMAGE_IN_ASSETS')
-      }
-    end
-    @steps = @trip.steps.geocoded # returns activities with coordinates
-    @stepmarkers = @steps.map do |step|
-      {
-        lat: step.latitude,
-        lng: step.longitude,
-        color: '#FE5665', # green from our Figma UI
-        infoWindow: render_to_string(partial: "step_info", locals: { step: step })
-        #image_url: helpers.asset_url('REPLACE_THIS_WITH_YOUR_IMAGE_IN_ASSETS')
-      }
-    end
+    @activities = @trip.activities
+    # @activitymarkers = @activities.map do |activity|
+    #   {
+    #     lat: activity.latitude,
+    #     lng: activity.longitude,
+    #     color: 'black', # blue ass water
+    #     infoWindow: render_to_string(partial: "activity_info", locals: { activity: activity })
+    #     #image_url: helpers.asset_url('REPLACE_THIS_WITH_YOUR_IMAGE_IN_ASSETS')
+    #   }
+    # end
+    @steps = @trip.steps
+    # @stepmarkers = @steps.map do |step|
+    #   {
+    #     lat: step.latitude,
+    #     lng: step.longitude,
+    #     color: '#FE5665', # green from our Figma UI
+    #     infoWindow: render_to_string(partial: "step_info", locals: { step: step })
+    #     #image_url: helpers.asset_url('REPLACE_THIS_WITH_YOUR_IMAGE_IN_ASSETS')
+    #   }
+    # end
 
-    @markers = @activitymarkers + @stepmarkers
+    # @markers = @activitymarkers + @stepmarkers
   end
 
   def new

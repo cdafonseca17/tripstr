@@ -26,7 +26,9 @@ function activatePlacesSearch(){
         const url = result['website']
         const latitude = autocomplete.getPlace().geometry.location.lat();
         const longitude = autocomplete.getPlace().geometry.location.lng();
-        const photos = result['photos'][0].getUrl();
+        const photo_reference = result['photos'][0].getUrl();
+        // console.log(photo_reference);
+        // const url_photo_path = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photo_reference}`;
 
         const inputLocationStep = form.querySelector(".step-location-input-js");
         const inputAddressStep = form.querySelector(".step-address-input-js");
@@ -38,7 +40,7 @@ function activatePlacesSearch(){
         const inputAddress = form.querySelector(".activity-address-input-js");
         const inputLatitude = form.querySelector(".activity-latitude-input-js");
         const inputLongitude = form.querySelector(".activity-longitude-input-js");
-
+        const inputPhoto = form.querySelector(".activity-photo-input-js");
 
         if (inputLocationStep != null) {
           inputLocationStep.value = name;
@@ -55,6 +57,7 @@ function activatePlacesSearch(){
           inputAddress.value = address;
           inputLatitude.value = latitude;
           inputLongitude.value = longitude;
+          inputPhoto.value = photo_reference;
           console.log(inputRating,inputActivityName,inputUrl, inputTypes, inputIcon, inputAddress)
         };
       };
@@ -63,6 +66,18 @@ function activatePlacesSearch(){
 };
 
 export default activatePlacesSearch;
+
+
+
+
+
+// const getPhotos = (photo_reference, formRef) => {
+//   const url_path = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photo_reference}&key=${getKey()}`;
+//   const inputPhoto = formRef.querySelector(".activity-photo-input-js");
+//   const loader = formRef.querySelector('.loader-js');
+//   inputPhoto.value = url_path;
+//   loader.classList.remove('active');
+// }
 
     // var autocomplete = new google.maps.places.Autocomplete(input[i])
     // console.log(autocomplete);
