@@ -1,55 +1,55 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= meta_title %></title>
-<meta name="description" content="<%= meta_description %>">
+<head>
+  <title><%= meta_title %></title>
+  <meta name="description" content="<%= meta_description %>">
 
-<!-- Facebook Open Graph data -->
-<meta property="og:title" content="<%= meta_title %>" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="<%= request.original_url %>" />
-<meta property="og:description" content="<%= meta_description %>" />
-<meta property="og:site_name" content="<%= meta_title %>" />
-<meta property="og:image" content="<%= meta_image %>" />
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Tripstr</title>
-    <%= csrf_meta_tags %>
-    <%= action_cable_meta_tag %>
-    <%= stylesheet_link_tag 'application', media: 'all' %>
-    <%= stylesheet_pack_tag 'application' %>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css">
-    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- Facebook Open Graph data -->
+  <meta property="og:title" content="<%= meta_title %>" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="<%= request.original_url %>" />
+  <meta property="og:description" content="<%= meta_description %>" />
+  <meta property="og:site_name" content="<%= meta_title %>" />
+  <meta property="og:image" content="<%= meta_image %>" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Tripstr</title>
+  <%= csrf_meta_tags %>
+  <%= action_cable_meta_tag %>
+  <%= stylesheet_link_tag 'application', media: 'all' %>
+  <%= stylesheet_pack_tag 'application' %>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
 
-  </head>
-  <body>
-    <%# if content_for? :nav %>
-      <%#= content_for :nav %>
-    <%# else %>
-      <%= render 'shared/navbar_rest' %>
-    <%# end %>
-    <%= render 'shared/flashes' %>
+</head>
+<body>
+  <%# if content_for? :nav %>
+  <%#= content_for :nav %>
+  <%# else %>
+  <%= render 'shared/navbar_rest' %>
+  <%# end %>
+  <%= render 'shared/flashes' %>
 
-    <div class="<%= current_page?('/') ? '' : 'space-content-from-navabar'  %>">
-      <%= yield %>
-    </div>
+  <div class="<%= current_page?('/') ? '' : 'space-content-from-navabar'  %>">
+    <%= yield %>
+  </div>
 
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <p id="gkey" data-key="<%= ENV['GOOGLE_API_KEY'] %>"></p>
-    <%#= javascript_include_tag "http://maps.google.com/maps/api/js?key=#{ENV['GOOGLE_API_KEY']}&libraries=places&callback=activatePlacesSearch&callback=initMap"%>
-    <script src="http://maps.google.com/maps/api/js?key=<%= ENV['GOOGLE_API_KEY'] %>&libraries=places&callback=activatePlacesSearch&callback=initMap"></script>>
-
-
-    <%= javascript_include_tag 'application' %>
-    <%= javascript_pack_tag 'application' %>
-    <%= render 'shared/footer' %>
-  </body>
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
+  <p id="gkey" data-key="<%= ENV['GOOGLE_API_KEY'] %>"></p>
+  <%#= javascript_include_tag "http://maps.google.com/maps/api/js?key=#{ENV['GOOGLE_API_KEY']}&libraries=places&callback=activatePlacesSearch&callback=initMap"%>
+  <script src="http://maps.google.com/maps/api/js?key=<%= ENV['GOOGLE_API_KEY'] %>&libraries=places&callback=activatePlacesSearch&callback=initMap"></script>
+  <%= javascript_include_tag 'application' %>
+  <%= javascript_pack_tag 'application' %>
+  <%= render 'shared/footer' %>
+</body>
 </html>
+
+<!-- comment -->
 
