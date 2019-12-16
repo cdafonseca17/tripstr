@@ -59,19 +59,9 @@
     </div>
 
 
-     <div class="map-side">
+     <div class="map-side" style="margin-top: 30px">
       <div id="map"></div>
     </div>
-
-
-    <!-- <div class="map-side" style="margin-top: 50px;">
-      <div
-      id="map"
-      data-markers="<%= @markers.to_json %>"
-      data-mapbox-api-key="<%#= ENV['MAPBOX_API_KEY'] %>"
-      data-trip-cordinates="[<%= @trip.latitude %>, <%= @trip.longitude %>]"
-      ></div>
-    </div> -->
 
 
 
@@ -101,14 +91,6 @@
    </div>
  </div>
 
-<!-- </div>
-
-
-
-</div>
--->
-
-
 <script>
   function initMap() {
     var map = new google.maps.Map(document.getElementById('map'), {
@@ -118,26 +100,19 @@
     <% @trip.steps.each do |step| %>
       var markerstep = new google.maps.Marker({
         position: {lat: <%= step.latitude %>, lng: <%= step.longitude %>},
-        map: map,
-        title: 'Hello World!'
+        map: map
       })
     <% end %>
-    <% @trip.activities.each do |activity| %>
+    <% activities_with_position = @trip.activities.select { |activity| activity.latitude.present? } %>
+    <% activities_with_position.each do |activity| %>
       var markeractivity = new google.maps.Marker({
         position: {lat: <%= activity.latitude %>, lng: <%= activity.longitude %>},
-        map: map,
-        title: 'Hello World!'
+        map: map
       })
     <% end %>
   }
 </script>
 </div>
-
-
-
-
-
-
 
 <!-- <div
   id="map"
@@ -286,3 +261,14 @@
 <%#= render 'activities/partials/formsleep', trip: @trip, step: @step %>
 
 <!--  <%#= render 'steps/partials/form', trip: @trip, step: step %> -->
+
+
+
+    <!-- <div class="map-side" style="margin-top: 50px;">
+      <div
+      id="map"
+      data-markers="<%= @markers.to_json %>"
+      data-mapbox-api-key="<%#= ENV['MAPBOX_API_KEY'] %>"
+      data-trip-cordinates="[<%= @trip.latitude %>, <%= @trip.longitude %>]"
+      ></div>
+    </div> -->
