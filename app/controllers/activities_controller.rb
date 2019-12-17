@@ -23,14 +23,15 @@ class ActivitiesController < ApplicationController
   end
 
   def edit
-    @trip = Trip.find(params["trip_id"])
-    @step = Step.find(params["step_id"])
-    @activity = Activity.find(params[:id])
+    # @trip = Trip.find(params["trip_id"])
+    # @step = Step.find(params["step_id"])
+    # @activity = Activity.find(params[:id])
   end
 
   def update
-    @activity = Activity.find(params[:id])
     @trip = Trip.find(params["trip_id"].to_i)
+    @step = Step.find(params["step_id"].to_i)
+    @activity = Activity.find(params[:id])
     @activity.update(activity_params)
     redirect_to edit_trip_path(@trip)
   end

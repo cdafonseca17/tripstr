@@ -32,9 +32,22 @@
 
 
         <div id="step-<%= step.id %>">
-          <div style="margin-top: 30px;">
-            <%= render 'steps/partials/stepinfo', trip: @trip, step: step %>
+          <div class="d-lg-flex" style="margin-top: 30px; align-items: center">
+            <div>
+              <%= render 'steps/partials/stepinfo', trip: @trip, step: step %>
+            </div>
+            <div class="d-flex">
+              <%= render 'steps/partials/stepedit', trip: @trip, step: step %>
+              <%= render 'steps/partials/stepdelete', trip: @trip, step: step %>
+            </div>
           </div>
+
+<div class="collapse" id="collapseEditStep<%= step.id %>">
+    <div class="card card-body" style="margin-left: 25px; border: 0">
+      <%= render 'steps/partials/stepaddinfo', trip: @trip, step: step %>
+    </div>
+</div>
+
 
 
           <% step.activities.map do |activity| %>

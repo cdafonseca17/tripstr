@@ -1,17 +1,54 @@
- <h4><% if activity.category == "See" %>
-  <i class="far fa-eye icon-activity"></i>
+ <div class="d-lg-flex" style="align-items: center">
+   <h4><% if activity.category == "See" %>
+    <i class="far fa-eye icon-activity"></i>
+    <% elsif activity.category == "Eat" %>
+    <i class="fas fa-utensils icon-activity"></i>
+    <% elsif activity.category == "Drink" %>
+    <i class="fas fa-cocktail icon-activity"></i>
+    <% elsif activity.category == "Sleep" %>
+    <i class="fas fa-bed icon-activity"></i>
+    <% elsif activity.category == "Move" %>
+    <i class="fas fa-bus icon-activity"></i>
+    <% elsif activity.category == "Comment" %>
+    <i class="fas fa-comment icon-activity"></i>
+    <% end %>
+    <%= activity.name %></h4>
+    <div class="d-flex">
+      <%= render 'activities/partials/activityedit', trip: @trip, step: step, activity: activity %>
+      <%= render 'activities/partials/activitydelete', trip: @trip, step: step, activity: activity %>
+    </div>
+  </div>
+
+
+<div class="collapse" id="collapseEditActivity<%= activity.id %>">
+  <% if activity.category == "See" %>
+    <div style="margin: 20px 0px 20px 25px;">
+      <%= render 'activities/partials/formsee', trip: @trip, step: step, activity: activity %>
+    </div>
   <% elsif activity.category == "Eat" %>
-  <i class="fas fa-utensils icon-activity"></i>
+    <div style="margin: 20px 0px 20px 25px;">
+      <%= render 'activities/partials/formeat', trip: @trip, step: step, activity: activity %>
+    </div>
   <% elsif activity.category == "Drink" %>
-  <i class="fas fa-cocktail icon-activity"></i>
+    <div style="margin: 20px 0px 20px 25px;">
+      <%= render 'activities/partials/formdrink', trip: @trip, step: step, activity: activity %>
+    </div>
   <% elsif activity.category == "Sleep" %>
-  <i class="fas fa-bed icon-activity"></i>
+    <div style="margin: 20px 0px 20px 25px;">
+      <%= render 'activities/partials/formsleep', trip: @trip, step: step, activity: activity %>
+    </div>
   <% elsif activity.category == "Move" %>
-  <i class="fas fa-bus icon-activity"></i>
+    <div style="margin: 20px 0px 20px 25px;">
+      <%= render 'activities/partials/formmove', trip: @trip, step: step, activity: activity %>
+    </div>
   <% elsif activity.category == "Comment" %>
-  <i class="fas fa-comment icon-activity"></i>
+    <div style="margin: 20px 0px 20px 25px;">
+      <%= render 'activities/partials/formcomment', trip: @trip, step: step, activity: activity %>
+    </div>
   <% end %>
-  <%= activity.name %></h4>
+</div>
+
+
   <div>
     <% if activity.category == "See" || activity.category == "Eat" || activity.category == "Drink" || activity.category == "Sleep" %>
   <!-- <div class="address-fetched">
@@ -51,11 +88,4 @@
       <!-- </div> -->
 
       <% end %>
-
-      <%#= activity.comment %>
-      <%#= activity.photo %>
-      <%#= activity.types %>
-      <%#= activity.rating %>
-      <%#= activity.position %>
-      <%#= activity.photo %>
     </div>
