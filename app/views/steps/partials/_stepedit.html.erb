@@ -1,10 +1,4 @@
-<a data-toggle="collapse" href="#collapseEditStep<%= step.id %>" role="button" aria-expanded="false" aria-controls="collapseEditStep<%= step.id %>">
-  <i class="far fa-edit"></i>
+<a class="edit-delete-buttons" style="padding-left: 25px; color: #ABAAAA; padding-bottom: 8px;" data-toggle="collapse" href="#collapseEditStep<%= step.id %>" aria-expanded="false" aria-controls="collapseEditStep<%= step.id %>">
+  Edit
 </a>
-
-<div class="collapse" id="collapseEditStep<%= step.id %>">
-        <div class="card card-body">
-          <%= render 'steps/partials/stepadd', trip: @trip, step: step %>
-        </div>
-      </div>
 

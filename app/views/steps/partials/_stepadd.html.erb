@@ -10,17 +10,9 @@
 
 <div class="collapse" id="collapseStepAdd">
   <div class="card card-body step-form" style="border: 0">
-    <%= simple_form_for [@trip, step] do |f| %>
-      <%= f.hidden_field :location, label: false, class: "step-location-input-js" %>
-      <%= f.hidden_field :address, label: false, class: "step-address-input-js" %>
-      <%= f.hidden_field :latitude %>
-      <%= f.hidden_field :longitude %>
-      <input type="text" class="form-control search-google" placeholder="Search...">
-      <%= f.input :nights, placeholder: "Number of nights", label:false %>
-      <%= f.submit "add", class: "btn btn-primary" %>
 
+    <%= render 'steps/partials/stepaddinfo', trip: @trip, step: step %>
 
-    <% end %>
 <!--
     <div class="loader-form-takeover">
      <div class="loader"></div>
