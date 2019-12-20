@@ -16,13 +16,19 @@ Rails.application.routes.draw do
   root to: 'trips#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
     # resources trips:
-    resources :users, only: [ :show, :update ]
+
+    # resources :users, only: [ :show, :update ], param: :username
+    get '/mytrips', to: 'pages#mytrips'
+    get '/:username', to: 'users#show', as: :username
+    post '/users/edit', to: 'users#update'
+
+    resources :users, only: [ :update ]
     resources :trips do
       resources :steps, only: [ :new, :create, :edit, :update, :destroy ] do
         resources :activities, only: [ :new, :create, :edit, :update, :destroy ]
       end
     end
     get "profile", to: "profile#index"
-    get '/mytrips', to: 'pages#mytrips'
+
     get '/testedittrip', to: 'pages#testedittrip'
 end
