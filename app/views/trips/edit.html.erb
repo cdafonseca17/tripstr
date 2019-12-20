@@ -85,6 +85,8 @@
   <div class="container text-center">
     <% if @trip.published?  %>
     <%= simple_form_for [@trip] do |f| %>
+    <%= f.hidden_field :country, value: @trip.country %>
+     <%= f.hidden_field :country_code, value: @trip.country_code %>
     <%= f.hidden_field :published, value: :false %>
     <%= f.submit "Change to Draft", class: "btn btn-primary" %>
     <% end %>
@@ -96,6 +98,8 @@
      <%= simple_form_for [@trip] do |f| %>
      <%= f.hidden_field :published, value: :true %>
      <%= f.hidden_field :dates, name: :dates %>
+     <%= f.hidden_field :country, value: @trip.country %>
+     <%= f.hidden_field :country_code, value: @trip.country_code %>
 
      <%= f.submit "Publish", class: "btn btn-primary mt-3 mt-md-0" %>
 

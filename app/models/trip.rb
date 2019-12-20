@@ -10,7 +10,8 @@ class Trip < ApplicationRecord
 
   def country_name
     country = ISO3166::Country[country_code]
-    country.translations[I18n.locale.to_s] || country.name
+    # country.translations[I18n.locale.to_s] || country.name
+    # country.name
   end
 
   geocoded_by :country
