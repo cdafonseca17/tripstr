@@ -5,7 +5,7 @@
 
   <div id="card-trip-user-show" class="text-center">
     <% @user = @trip.user %>
-    <%= link_to user_path(@user) do %>
+    <%= link_to username_path(@user) do %>
     <%# @user = current_user %>
     <% if @user.photo.present? %>
     <%= cl_image_tag @user.photo, crop: :thumb, gravity: :face, class: "avatar-large-bordered" %>

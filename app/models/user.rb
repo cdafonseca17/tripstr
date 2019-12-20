@@ -17,4 +17,8 @@ class User < ApplicationRecord
   # validates :last_name, presence: true
   # validates :home_city, presence: true
   validates :username, uniqueness: true
+
+  def to_param
+   username
+  end
 end
