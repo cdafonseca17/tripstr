@@ -134,6 +134,7 @@ class TripsController < ApplicationController
   # PATCH/PUT /trips/1.json
 
   def update
+    params
     @step = Step.new
     @step.trip_id = @trip
     if params["dates"].present?

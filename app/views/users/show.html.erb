@@ -15,16 +15,16 @@
     <div class="d-flex">
       <div class="user_countries" style="text-align: center">
         <p><strong>COUNTRIES</strong></p>
-        <p><%= @user.trips.count %></p>
+        <p><%= @user.trips.select { |trip| trip.published == true }.count %></p>
       </div>
       <div class="user_contributions" style="text-align: center; padding-left: 30px;">
         <p><strong>CONTRIBUTIONS</strong></p>
         <% array = [] %>
-        <% @user.trips.each do |trip| %>
+        <% @user.trips.select { |trip| trip.published == true }.each do |trip| %>
         <% array << trip.steps.count %>
         <% array << trip.activities.count %>
         <% end %>
-        <p><%= @user.trips.count + array.sum%></p>
+        <p><%= array.sum%></p>
       </div>
     </div>
   </div>
@@ -38,7 +38,7 @@
   <div id="mapdiv" style="width: 100%; height: 450px;"></div>
   <!-- <div style="width: 1000px; font-size: 70%; padding: 2px 0; text-align: center; background-color: #FFFFFF; margin-top: 1px; color: #edeaea;"><a href="https://www.amcharts.com/visited_countries/" style="color: #edeaea;">Create your own visited countries map</a> or check out the <a href="https://www.amcharts.com/" style="color: #edeaea;">JavaScript Charts</a>.</div> -->
 
-  <% country_codes = @user.trips.map {|trip| trip.country_code} %>
+  <% country_codes = @user.trips.select { |trip| trip.published == true }.map {|trip| trip.country_code} %>
   <% country_codes_map = [] %>
   <% country_codes.each do |country_code| %>
   <% hash = Hash.new %>
