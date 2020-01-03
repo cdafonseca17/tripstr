@@ -10,7 +10,7 @@ function activatePlacesSearch(){
     var autocomplete = new google.maps.places.Autocomplete(el);
     google.maps.event.addListener(autocomplete, 'place_changed', function () {
       var result = autocomplete.getPlace();
-      console.log(result);
+      // console.log(result);
 
       if (result != null) {
         const location = result['name']
@@ -26,7 +26,7 @@ function activatePlacesSearch(){
         const url = result['website']
         const latitude = autocomplete.getPlace().geometry.location.lat();
         const longitude = autocomplete.getPlace().geometry.location.lng();
-        const photo_reference = result['photos'][0].getUrl();
+        const photo_reference = result['photos'][0];
         // console.log(photo_reference);
         // const url_photo_path = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photo_reference}`;
 
@@ -57,7 +57,7 @@ function activatePlacesSearch(){
           inputAddress.value = address;
           inputLatitude.value = latitude;
           inputLongitude.value = longitude;
-          inputPhoto.value = photo_reference;
+          inputPhoto.value = photo_reference.getUrl();
           console.log(inputRating,inputActivityName,inputUrl, inputTypes, inputIcon, inputAddress)
         };
       };
@@ -66,10 +66,6 @@ function activatePlacesSearch(){
 };
 
 export default activatePlacesSearch;
-
-
-
-
 
 // const getPhotos = (photo_reference, formRef) => {
 //   const url_path = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photo_reference}&key=${getKey()}`;
